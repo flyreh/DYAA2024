@@ -1,5 +1,6 @@
 /dist/
 /out/
+/nbproject/private/
 /build/built-jar.properties
 /build
 /manifest.mf
