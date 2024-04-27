@@ -1,4 +1,4 @@
-package main;
+package dev.two.project;
 
 public class Ventana extends javax.swing.JFrame{
 

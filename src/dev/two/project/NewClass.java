@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package dev.two.project;
+
+import components.JPanelRound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,13 +14,17 @@ import java.awt.*;
  *
  * @author Usuario
  */
-public class NewClass extends JPanel {
+public class NewClass extends JPanelRound {
 
     public NewClass(){
         this.setLayout(null);
         this.setBounds(100, 100, 30, 30);
         this.setVisible(true);
         this.setBackground(Color.BLACK);
+        this.setRoundBottomLeft(8);
+        this.setRoundBottomRight(8);
+        this.setRoundTopLeft(8);
+        this.setRoundTopRight(8);
         initComponets();
 
     }
