@@ -26,12 +26,14 @@ public class loginForm  extends JPanelGradient {
     public JLabel title;
 
     public loginForm() {
-        this.setBounds(780, 0, 420, 800);
-        this.setGradientStart(new Color(0, 129, 230));
-        this.setGradientEnd(new Color(10, 100, 110));
+        this.setBounds(390, 80, 420, 660);
+        this.setGradientStart(new Color(10, 100, 110));
+        this.setGradientEnd(new Color(168, 191, 192));
         this.setLayout(null);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
+        this.setRoundBottomLeft(50);
+        this.setRoundTopLeft(50);
         initComponents();
 
     }
@@ -129,7 +131,7 @@ public class loginForm  extends JPanelGradient {
         jprLogin.setRoundTopRight(round);
         jprLogin.setBackground(new Color(37, 35, 39));
 
-        btnLogin = new JLabel("Entrar");
+        btnLogin = new JLabel("Sign in");
         btnLogin.setForeground(Color.WHITE);
         btnLogin.setFont(custom.deriveFont(20.0f));
         jprLogin.add(btnLogin);

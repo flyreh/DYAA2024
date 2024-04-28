@@ -3,11 +3,11 @@ package dev.two.project.Interface.login.loginPatient;
 import javax.swing.*;
 import java.awt.*;
 
-public class loginPatient extends JPanel{
+public class loginPatient extends JPanel {
     public loginForm loginForm;
-    public clinicLogo clinicLogo;
+    public clinicPanelLogo clinicLogo;
 
-    public loginPatient(){
+    public loginPatient() {
         this.setBounds(0, 0, 1200, 800);
         this.setLayout(null);
         this.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
@@ -15,9 +15,12 @@ public class loginPatient extends JPanel{
     }
 
 
-    public void initComponents(){
-            loginForm = new loginForm();
-            this.add(loginForm);
+    public void initComponents() {
+        loginForm = new loginForm();
+        this.add(loginForm);
+        clinicLogo = new clinicPanelLogo();
+        this.add(clinicLogo);
+
 
     }
 
