@@ -1,9 +1,12 @@
 package dev.two.project.userinterface;
 
 import javax.swing.*;
+import dev.two.project.userinterface.login.*;
 
 public class MainWindow extends JFrame {
     public NewClass mipanel;
+    public
+    public loginPatient loginPatient;
 
     public MainWindow(){
         initComponents();
