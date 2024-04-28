@@ -1,4 +1,6 @@
-package dev.two.project.userinterface;
+package dev.two.project.Interface;
 
-public class HeaderPanel {
+import javax.swing.*;
+
+public class HeaderPanel extends JPanel {
 }

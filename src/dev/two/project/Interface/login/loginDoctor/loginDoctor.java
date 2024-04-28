@@ -1,4 +1,4 @@
-package dev.two.project.Interface.login;
+package dev.two.project.Interface.login.loginDoctor;
 
 public class loginDoctor {
 }

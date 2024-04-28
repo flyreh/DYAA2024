@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.two.project.userinterface;
+package dev.two.project.Interface;
 import components.JPanelRound;
 import java.awt.*;
 

@@ -33,8 +33,8 @@ public class loginForm  extends JPanelGradient {
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
         initComponents();
-    }
 
+    }
     public void initComponents() {
         Font custom = new Font("Arial", Font.PLAIN, 15);
         try {

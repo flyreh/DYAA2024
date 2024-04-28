@@ -1,4 +1,6 @@
-package dev.two.project.userinterface;
+package dev.two.project.Interface;
 
-public class ExitPanel {
+import javax.swing.*;
+
+public class ExitPanel extends JPanel {
 }

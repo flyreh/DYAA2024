@@ -1,4 +1,4 @@
-package dev.two.project.Interface.login;
+package dev.two.project.Interface.login.loginAdmin;
 
 public class loginAdmin {
 }
