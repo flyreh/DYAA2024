@@ -26,9 +26,9 @@ public class loginForm  extends JPanelGradient {
     public JLabel title;
 
     public loginForm() {
-        this.setBounds(390, 80, 420, 660);
+        this.setBounds(650, 80, 420, 660);
         this.setGradientStart(new Color(10, 100, 110));
-        this.setGradientEnd(new Color(168, 191, 192));
+        this.setGradientEnd(new Color(190, 191, 192));
         this.setLayout(null);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
@@ -60,7 +60,7 @@ public class loginForm  extends JPanelGradient {
         title.setHorizontalAlignment(JLabel.CENTER);
         this.add(title);
 
-        lbUsuario = new JLabel("Ingrese su nombre de usuario:");
+        lbUsuario = new JLabel("Usuario:");
         lbUsuario.setBounds(50, 200, 400, 50);
         lbUsuario.setForeground(Color.white);
         lbUsuario.setFont(custom);
@@ -86,7 +86,7 @@ public class loginForm  extends JPanelGradient {
         sUsuario.setBorder(new LineBorder(Color.BLACK, 5, false));
         this.add(sUsuario);
 
-        lbContrasenia = new JLabel("Ingrese su contraseña:");
+        lbContrasenia = new JLabel("Contraseña:");
         lbContrasenia.setBounds(50, 310, 400, 40);
         lbContrasenia.setForeground(Color.WHITE);
         lbContrasenia.setFont(custom);

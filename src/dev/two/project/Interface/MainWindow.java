@@ -20,7 +20,7 @@ public class MainWindow extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setUndecorated(true);
-        this.setBackground(new Color(0, 0, 0, 0));
+        this.setBackground(new Color(0, 0, 0,0));
         initComponents();
     }
 

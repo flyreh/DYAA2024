@@ -13,15 +13,11 @@ public class loginPatient extends JPanel {
         this.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         initComponents();
     }
-
-
     public void initComponents() {
         loginForm = new loginForm();
         this.add(loginForm);
         clinicLogo = new clinicPanelLogo();
         this.add(clinicLogo);
-
-
     }
 
 }
