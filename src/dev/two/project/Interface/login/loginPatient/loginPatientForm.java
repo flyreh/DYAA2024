@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
-public class loginForm  extends JPanelGradient {
+public class loginPatientForm extends JPanelGradient {
 
     private JLabel lbUsuario;
     private JLabel lbContrasenia;
@@ -25,17 +25,16 @@ public class loginForm  extends JPanelGradient {
     public JLabel lbErrorLogin;
     public JLabel title;
 
-    public loginForm() {
+    public loginPatientForm() {
         this.setBounds(650, 80, 420, 660);
-        this.setGradientStart(new Color(10, 100, 110));
-        this.setGradientEnd(new Color(190, 191, 192));
+        this.setGradientStart(new Color(29, 56, 110, 131));
+        this.setGradientEnd(new Color(64, 131, 127, 68));
         this.setLayout(null);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
         this.setRoundBottomLeft(50);
         this.setRoundTopLeft(50);
         initComponents();
-
     }
     public void initComponents() {
         Font custom = new Font("Arial", Font.PLAIN, 15);
@@ -111,16 +110,6 @@ public class loginForm  extends JPanelGradient {
         sContrasenia.setBackground(Color.BLACK);
         sContrasenia.setBorder(new LineBorder(Color.BLACK, 5, false));
         this.add(sContrasenia);
-
-       /* ImageIcon imagenUsuario = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\images\\usuario.png");
-        Image scaled = imagenUsuario.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-        imagenUsuario = new ImageIcon(scaled);*/
-
-       /* lbImagenUsuario = new JLabel();
-        lbImagenUsuario.setIcon(imagenUsuario);
-        lbImagenUsuario.setBounds(0, 360, 420, 200);
-        lbImagenUsuario.setHorizontalAlignment(JLabel.CENTER);
-        this.add(lbImagenUsuario);*/
 
         int round = 25;
         jprLogin = new JPanelRound();

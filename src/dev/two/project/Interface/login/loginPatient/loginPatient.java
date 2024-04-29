@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class loginPatient extends JPanel {
-    public loginForm loginForm;
+    public loginPatientForm loginForm;
     public clinicPanelLogo clinicLogo;
 
     public loginPatient() {
@@ -14,7 +14,7 @@ public class loginPatient extends JPanel {
         initComponents();
     }
     public void initComponents() {
-        loginForm = new loginForm();
+        loginForm = new loginPatientForm();
         this.add(loginForm);
         clinicLogo = new clinicPanelLogo();
         this.add(clinicLogo);

@@ -2,16 +2,16 @@ package dev.two.project.Interface;
 
 import javax.swing.*;
 
-import dev.two.project.Interface.login.loginPatient.loginPatient;
-
 import java.awt.*;
+import dev.two.project.Interface.Main.MainLogin.*;
 
 public class MainWindow extends JFrame {
     public NewClass mipanel;
     public dev.two.project.Interface.login.loginPatient.loginPatient loginPatient;
-    //public mainMenu ----
+    //public Main ----
     public HeaderPanel headerpanel;
     public ExitPanel exitPanel;
+    public mainPanel mainPanel;
 
     public MainWindow(){
         this.setTitle("BuildSphere App");
@@ -25,10 +25,12 @@ public class MainWindow extends JFrame {
     }
 
     public void initComponents(){
-        loginPatient = new loginPatient();
-        this.add(loginPatient);
+
         headerpanel = new HeaderPanel();
         this.add(headerpanel);
+
+        mainPanel = new mainPanel();
+        this.add(mainPanel);
 
         exitPanel = new ExitPanel();
         this.add(exitPanel);
