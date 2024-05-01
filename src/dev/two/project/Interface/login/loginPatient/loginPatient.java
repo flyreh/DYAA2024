@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class loginPatient extends JPanel {
     public loginPatientForm loginForm;
-    public clinicPanelLogo clinicLogo;
+    public clinicPanelPatient clinicLogo;
 
     public loginPatient() {
         this.setBounds(0, 0, 1200, 800);
@@ -16,7 +16,7 @@ public class loginPatient extends JPanel {
     public void initComponents() {
         loginForm = new loginPatientForm();
         this.add(loginForm);
-        clinicLogo = new clinicPanelLogo();
+        clinicLogo = new clinicPanelPatient();
         this.add(clinicLogo);
     }
 

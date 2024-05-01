@@ -1,14 +1,18 @@
-package dev.two.project.Interface.Main.MainLogin;
+package dev.two.project.Interface.Main.MainInterface;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import dev.two.project.Interface.login.loginPatient.*;
+import dev.two.project.Interface.login.loginDoctor.*;
+
 
 public class mainPanel extends JPanel{
 
     public mainPanelLogo mainPanelLogo;
     public mainPanelOptions mainPanelOptions;
+
+    public loginPatient loginPatient;
+    public loginDoctor loginDoctor;
 
     public mainPanel(){
         this.setBounds(0, 0, 1200, 800);
@@ -23,6 +27,14 @@ public class mainPanel extends JPanel{
 
         mainPanelOptions = new mainPanelOptions();
         this.add(mainPanelOptions);
+
+        loginPatient = new loginPatient();
+        this.add(loginPatient);
+        loginPatient.setVisible(false);
+
+        loginDoctor = new loginDoctor();
+        this.add(loginDoctor);
+        loginDoctor.setVisible(false);
 
     }
 }

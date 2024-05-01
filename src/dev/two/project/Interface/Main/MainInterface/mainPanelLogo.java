@@ -1,4 +1,4 @@
-package dev.two.project.Interface.Main.MainLogin;
+package dev.two.project.Interface.Main.MainInterface;
 
 import components.JPanelRound;
 

@@ -1,6 +1,5 @@
 package dev.two.project.Interface.login.loginPatient;
 
-import components.JPanelGradient;
 import components.JPanelRound;
 
 import javax.swing.*;
@@ -8,13 +7,15 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class clinicPanelLogo extends JPanelRound {
+public class clinicPanelPatient extends JPanelRound {
 
     public JLabel welcomeLabel;
     public JLabel ClinicImage;
     public JLabel doctorimage;
+    public JPanelRound regresar;
+    public JLabel regresarLabel;
 
-    public clinicPanelLogo(){
+    public clinicPanelPatient(){
         this.setLayout(null);
         this.setBounds(0, 0, 1200, 800);
         this.setRoundTopLeft(50);
@@ -26,6 +27,7 @@ public class clinicPanelLogo extends JPanelRound {
     }
 
     public void initComponents(){
+
         Font fuenteCustom = new Font("Arial", Font.PLAIN, 100);
         try {
             fuenteCustom = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\utilities\\font\\JosefinSans\\JosefinSans-Bold.ttf"));
@@ -33,6 +35,21 @@ public class clinicPanelLogo extends JPanelRound {
             ex.printStackTrace(System.out);
         }
         fuenteCustom = fuenteCustom.deriveFont(Font.PLAIN, 60);
+
+        regresarLabel = new JLabel("<< Regresar");
+        regresarLabel.setHorizontalAlignment(JLabel.CENTER);
+        regresarLabel.setForeground(new Color(215, 212, 212));
+        regresarLabel.setFont(fuenteCustom.deriveFont(Font.PLAIN, 15));
+
+        regresar = new JPanelRound();
+        regresar.setBounds(70, 80, 110, 30);
+        regresar.setBackground(new Color(37, 35, 39));
+        regresar.setRoundTopLeft(20);
+        regresar.setRoundTopRight(20);
+        regresar.setRoundBottomLeft(20);
+        regresar.setRoundBottomRight(20);
+        regresar.add(regresarLabel);
+        this.add(regresar);
 
         welcomeLabel = new JLabel(">Bienvenido<");
         welcomeLabel.setBounds(10, 150, 600, 100);

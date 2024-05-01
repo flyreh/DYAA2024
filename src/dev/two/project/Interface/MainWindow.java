@@ -3,10 +3,11 @@ package dev.two.project.Interface;
 import javax.swing.*;
 
 import java.awt.*;
-import dev.two.project.Interface.Main.MainLogin.*;
+import dev.two.project.Interface.Main.MainInterface.*;
+import dev.two.project.controller.*;
 
 public class MainWindow extends JFrame {
-    public NewClass mipanel;
+
     public dev.two.project.Interface.login.loginPatient.loginPatient loginPatient;
     //public Main ----
     public HeaderPanel headerpanel;
@@ -39,6 +40,12 @@ public class MainWindow extends JFrame {
     public static void main(String[] args) {
         MainWindow ventana = new MainWindow();
         ventana.setVisible(true);
+
+        controllerMain controllerMain = new controllerMain(ventana);
+        controlDoctor controllerDoctor = new controlDoctor(ventana);
+        controlPatient controllerPatient = new controlPatient(ventana);
+        controller controlador = new controller(ventana,controllerMain, controllerDoctor, controllerPatient);
+
     }
 
 }
