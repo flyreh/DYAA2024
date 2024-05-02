@@ -19,15 +19,15 @@ public class HeaderPanel extends JPanel {
 
         Font custom = new Font("Arial", Font.PLAIN, 15);
         try {
-            custom = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\utilities\\font\\JosefinSans\\JosefinSans-Regular.ttf"));
+            custom = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\resources\\font\\JosefinSans\\JosefinSans-Regular.ttf"));
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
         }
-        custom = custom.deriveFont(Font.PLAIN, 15);
+        custom = custom.deriveFont(Font.PLAIN, 16);
 
         lbStatus = new JLabel(">> Main Menu");
         lbStatus.setForeground(Color.BLACK);
-        lbStatus.setBounds(10, 10, 200, 15);
+        lbStatus.setBounds(10, 10, 250, 16);
         lbStatus.setFont(custom);
         this.add(lbStatus);
     }

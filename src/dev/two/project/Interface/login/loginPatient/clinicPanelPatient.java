@@ -30,7 +30,7 @@ public class clinicPanelPatient extends JPanelRound {
 
         Font fuenteCustom = new Font("Arial", Font.PLAIN, 100);
         try {
-            fuenteCustom = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\utilities\\font\\JosefinSans\\JosefinSans-Bold.ttf"));
+            fuenteCustom = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\resources\\font\\JosefinSans\\JosefinSans-Bold.ttf"));
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
         }
@@ -58,7 +58,7 @@ public class clinicPanelPatient extends JPanelRound {
         welcomeLabel.setHorizontalAlignment(JLabel.CENTER);
         this.add(welcomeLabel);
 
-        ImageIcon originalIcon = new ImageIcon("src/dev/two/project/utilities/media/img/clinicLogo.png");
+        ImageIcon originalIcon = new ImageIcon("src/dev/two/project/resources/media/img/clinicLogo.png");
         Image originalImage = originalIcon.getImage();
         Image scaledImage = originalImage.getScaledInstance(550, 500, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -69,7 +69,7 @@ public class clinicPanelPatient extends JPanelRound {
         ClinicImage.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(ClinicImage);
 
-        ImageIcon originalIcon2 = new ImageIcon("src/dev/two/project/utilities/media/img/doctor.png");
+        ImageIcon originalIcon2 = new ImageIcon("src/dev/two/project/resources/media/img/doctor.png");
         Image originalImage2 = originalIcon2.getImage();
         Image scaledImage2 = originalImage2.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon2 = new ImageIcon(scaledImage2);

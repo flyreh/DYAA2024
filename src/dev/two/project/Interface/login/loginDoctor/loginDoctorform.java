@@ -39,14 +39,14 @@ public class loginDoctorform extends JPanelGradient {
     public void initComponents() {
         Font custom = new Font("Arial", Font.PLAIN, 15);
         try {
-            custom = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\utilities\\font\\Sarala\\Sarala-Regular.ttf"));
+            custom = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\resources\\font\\Sarala\\Sarala-Regular.ttf"));
             custom = custom.deriveFont(Font.PLAIN, 15);
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
         }
         Font font = new Font("Arial", Font.PLAIN, 10);
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\utilities\\font\\JosefinSans\\JosefinSans-Bold.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\resources\\font\\JosefinSans\\JosefinSans-Bold.ttf"));
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
         }
