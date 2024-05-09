@@ -1,4 +1,4 @@
-package dev.two.project.Interface.login.loginPatient;
+package dev.two.project.Interface.Register.RegisterPatient;
 
 import components.JPanelGradient;
 import components.JPanelRound;
@@ -11,11 +11,20 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
-public class loginPatientForm extends JPanelGradient {
+public class registerPatientForm extends JPanelGradient {
 
-    private JLabel lbUsuario;
+    private JLabel lbFirstName;
+    private JLabel lbSecondName;
+    private JLabel lbLastName;
     private JLabel lbContrasenia;
-    public JTextField tfUsuario;
+    private JLabel lbEdad;
+    private JLabel lbgenero;
+    private JLabel estadoCivil;
+    private JLabel lbTelefono;
+    private JLabel lbCorreo;
+
+
+    public JTextField tfName;
     public JPasswordField pfContrasenia;
     private JSeparator sUsuario;
     private JSeparator sContrasenia;
@@ -24,8 +33,8 @@ public class loginPatientForm extends JPanelGradient {
     public JLabel lbErrorLogin;
     public JLabel title;
 
-    public loginPatientForm() {
-        this.setBounds(650, 80, 420, 660);
+    public registerPatientForm() {
+        this.setBounds(650, 80, 450, 660);
         this.setGradientStart(new Color(29, 56, 110, 131));
         this.setGradientEnd(new Color(64, 131, 127, 68));
         this.setLayout(null);
@@ -51,32 +60,32 @@ public class loginPatientForm extends JPanelGradient {
         }
         font = font.deriveFont(Font.PLAIN, 30);
 
-        title = new JLabel("LOGIN DE PACIENTES");
-        title.setBounds(0, 130, 400, 40);
+        title = new JLabel("REGISTRO DE PACIENTES");
+        title.setBounds(20, 50, 400, 40);
         title.setFont(font);
         title.setForeground(Color.WHITE);
         title.setHorizontalAlignment(JLabel.CENTER);
         this.add(title);
 
-        lbUsuario = new JLabel("Usuario:");
-        lbUsuario.setBounds(50, 200, 400, 50);
-        lbUsuario.setForeground(Color.white);
-        lbUsuario.setFont(custom);
-        this.add(lbUsuario);
+        lbFirstName = new JLabel("Primer Nombre:");
+        lbFirstName.setBounds(50, 200, 400, 50);
+        lbFirstName.setForeground(Color.white);
+        lbFirstName.setFont(custom);
+        this.add(lbFirstName);
 
-        tfUsuario = new JTextField();
-        tfUsuario.setText("Usuario");
-        tfUsuario.setForeground(Color.GRAY);
-        tfUsuario.setBounds(50, 260, 300, 40);
-        tfUsuario.setFont(custom);
-        tfUsuario.setBorder(new LineBorder(Color.WHITE, 5, false));
-        tfUsuario.addMouseListener(new MouseAdapter() {
+        tfName = new JTextField();
+        tfName.setText("Nombre");
+        tfName.setForeground(Color.GRAY);
+        tfName.setBounds(50, 260, 300, 40);
+        tfName.setFont(custom);
+        tfName.setBorder(new LineBorder(Color.WHITE, 5, false));
+        tfName.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent evt) {
                 usuarioClickeado();
             }
         });
-        this.add(tfUsuario);
+        this.add(tfName);
 
         sUsuario = new JSeparator();
         sUsuario.setBounds(50, 300, 300, 3);
@@ -119,7 +128,7 @@ public class loginPatientForm extends JPanelGradient {
         jprLogin.setRoundTopRight(round);
         jprLogin.setBackground(new Color(37, 35, 39));
 
-        btnLogin = new JLabel("Sign in");
+        btnLogin = new JLabel("Sign Un");
         btnLogin.setForeground(Color.WHITE);
         btnLogin.setFont(custom.deriveFont(20.0f));
         jprLogin.add(btnLogin);
@@ -135,9 +144,9 @@ public class loginPatientForm extends JPanelGradient {
 
     public void usuarioClickeado() {
         lbErrorLogin.setText("");
-        if (tfUsuario.getText().equals("Usuario")) {
-            tfUsuario.setText("");
-            tfUsuario.setForeground(Color.BLACK);
+        if (tfName.getText().equals("Nombre")) {
+            tfName.setText("");
+            tfName.setForeground(Color.BLACK);
         }
         if (String.valueOf(pfContrasenia.getPassword()).isEmpty()) {
             pfContrasenia.setText("********");
@@ -151,10 +160,9 @@ public class loginPatientForm extends JPanelGradient {
             pfContrasenia.setText("");
             pfContrasenia.setForeground(Color.BLACK);
         }
-        if (tfUsuario.getText().isEmpty()) {
-            tfUsuario.setText("Usuario");
-            tfUsuario.setForeground(Color.GRAY);
+        if (tfName.getText().isEmpty()) {
+            tfName.setText("Nombre");
+            tfName.setForeground(Color.GRAY);
         }
     }
-
 }

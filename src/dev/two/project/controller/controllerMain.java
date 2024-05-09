@@ -56,6 +56,10 @@ public class controllerMain {
                     mainWindow.mainPanel.loginDoctor.setVisible(true);
                     mainWindow.headerpanel.lbStatus.setText(">> Iniciar Sesión - Doctores");
                 } else if (source == mainWindow.mainPanel.mainPanelOptions.RegistrarPaciente) {
+                    mainWindow.mainPanel.mainPanelOptions.setVisible(false);
+                    mainWindow.mainPanel.mainPanelLogo.setVisible(false);
+                    mainWindow.mainPanel.registerPanelPatient.setVisible(true);
+                    mainWindow.headerpanel.lbStatus.setText(">> Registrar Paciente Nuevo");
 
                 } else if (source == mainWindow.mainPanel.mainPanelOptions.RegistrarDoctor) {
 
@@ -109,10 +113,39 @@ public class controllerMain {
                 }
             }
         };
+        MouseAdapter mouseAdapterRegisterPatient  = new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                JPanelRound source = (JPanelRound) e.getSource();
+                source.setBackground(new Color(61, 61, 61));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                JPanelRound source = (JPanelRound) e.getSource();
+                source.setBackground(new Color(0, 0, 0));
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JPanelRound source = (JPanelRound) e.getSource();
+                if (source == mainWindow.mainPanel.registerPanelPatient.registerLogoClinic.regresar) {
+                    mainWindow.mainPanel.registerPanelPatient.setVisible(false);
+                    mainWindow.mainPanel.mainPanelLogo.setVisible(true);
+                    mainWindow.mainPanel.mainPanelOptions.setVisible(true);
+                    mainWindow.headerpanel.lbStatus.setText(">> Main Menu");
+                }
+            }
+        };
+        ListenerRegisterPatient(mouseAdapterRegisterPatient);
         ListenerMainPanelOptions(mouseAdapterMain);
-        //POR MIENTRAS??
         ListenerLoginPatient(mouseAdapterLoginPatient);
         ListenerLoginDoctor(mouseAdapterLoginDoctor);
+    }
+    public void ListenerRegisterPatient(MouseAdapter mouseAdapterRegisterPatient){
+        mainWindow.mainPanel.registerPanelPatient.registerLogoClinic.regresar.addMouseListener(mouseAdapterRegisterPatient);
+       // mainWindow.mainPanel.registerPanelPatient.registerPatientForm..addMouseListener(mouseAdapterRegisterPatient);
+
     }
     public void ListenerMainPanelOptions(MouseAdapter mouseAdapterMain){
         mainWindow.mainPanel.mainPanelOptions.IniciarPacientes.addMouseListener(mouseAdapterMain);
