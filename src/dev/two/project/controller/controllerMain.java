@@ -53,6 +53,7 @@ public class controllerMain {
                 } else if (source == mainWindow.mainPanel.mainPanelOptions.IniciarDoctores) {
                     mainWindow.mainPanel.mainPanelOptions.setVisible(false);
                     mainWindow.mainPanel.mainPanelLogo.setVisible(false);
+                    mainWindow.mainPanel.loginDoctor.repaint();
                     mainWindow.mainPanel.loginDoctor.setVisible(true);
                     mainWindow.headerpanel.lbStatus.setText(">> Iniciar Sesión - Doctores");
                 } else if (source == mainWindow.mainPanel.mainPanelOptions.RegistrarPaciente) {

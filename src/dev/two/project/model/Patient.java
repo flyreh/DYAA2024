@@ -1,6 +1,6 @@
 package dev.two.project.model;
 
-public class Patient extends NodoAVL {
+public class Patient extends NodoAVL  {
 
     private String id;
     private String firstname;
