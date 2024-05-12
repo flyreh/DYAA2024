@@ -26,8 +26,8 @@ public class loginDoctorform extends JPanelGradient {
 
     public loginDoctorform(){
         this.setBounds(650, 80, 420, 660);
-        this.setGradientStart(new Color(29, 56, 110, 131));
-        this.setGradientEnd(new Color(64, 131, 127, 68));
+        this.setGradientStart(new Color(0, 26, 131, 131));
+        this.setGradientEnd(new Color(59, 82, 79, 68));
         this.setLayout(null);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);

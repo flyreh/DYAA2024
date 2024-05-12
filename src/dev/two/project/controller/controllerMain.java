@@ -48,19 +48,21 @@ public class controllerMain {
                 if (source == mainWindow.mainPanel.mainPanelOptions.IniciarPacientes) {
                     mainWindow.mainPanel.mainPanelOptions.setVisible(false);
                     mainWindow.mainPanel.mainPanelLogo.setVisible(false);
-                    mainWindow.mainPanel.loginPatient.setVisible(true);
-                    mainWindow.headerpanel.lbStatus.setText(">> Iniciar Sesión - Pacientes");
+                    mainWindow.mainPanel.mainLogin.setVisible(true);
+                    mainWindow.mainPanel.mainLogin.loginPatient.setVisible(true);
+                    mainWindow.headerpanel.lbStatus.setText(">>> Iniciar Sesión - Pacientes");
                 } else if (source == mainWindow.mainPanel.mainPanelOptions.IniciarDoctores) {
                     mainWindow.mainPanel.mainPanelOptions.setVisible(false);
                     mainWindow.mainPanel.mainPanelLogo.setVisible(false);
-                    mainWindow.mainPanel.loginDoctor.repaint();
-                    mainWindow.mainPanel.loginDoctor.setVisible(true);
-                    mainWindow.headerpanel.lbStatus.setText(">> Iniciar Sesión - Doctores");
+                    mainWindow.mainPanel.mainLogin.setVisible(true);
+                    mainWindow.mainPanel.mainLogin.loginDoctor.setVisible(true);
+                    mainWindow.headerpanel.lbStatus.setText(">>> Iniciar Sesión - Doctores");
                 } else if (source == mainWindow.mainPanel.mainPanelOptions.RegistrarPaciente) {
                     mainWindow.mainPanel.mainPanelOptions.setVisible(false);
                     mainWindow.mainPanel.mainPanelLogo.setVisible(false);
-                    mainWindow.mainPanel.registerPanelPatient.setVisible(true);
-                    mainWindow.headerpanel.lbStatus.setText(">> Registrar Paciente Nuevo");
+                    mainWindow.mainPanel.mainRegister.setVisible(true);
+                    mainWindow.mainPanel.mainRegister.registerPanelPatient.setVisible(true);
+                    mainWindow.headerpanel.lbStatus.setText(">>> Registrar Paciente Nuevo");
 
                 } else if (source == mainWindow.mainPanel.mainPanelOptions.RegistrarDoctor) {
 
@@ -81,13 +83,14 @@ public class controllerMain {
             @Override
             public void mouseClicked(MouseEvent evt) {
                 JPanelRound source = (JPanelRound) evt.getSource();
-                if (source == mainWindow.mainPanel.loginPatient.clinicLogo.regresar) {
-                   mainWindow.mainPanel.loginPatient.setVisible(false);
+                if (source == mainWindow.mainPanel.mainLogin.loginPatient.clinicLogo.regresar) {
+                    mainWindow.mainPanel.mainLogin.setVisible(false);
+                   mainWindow.mainPanel.mainLogin.loginPatient.setVisible(false);
                    mainWindow.mainPanel.mainPanelLogo.setVisible(true);
                      mainWindow.mainPanel.mainPanelOptions.setVisible(true);
                      mainWindow.headerpanel.lbStatus.setText(">> Main Menu");
-                } else if (source == mainWindow.mainPanel.loginPatient.loginForm.jprLogin) {
-                    System.out.println("ingresar presionado");
+                } else if (source == mainWindow.mainPanel.mainLogin.loginPatient.loginForm.jprLogin) {
+                    System.out.println("ingresar paciente presionado");
                 }
             }
         };
@@ -105,12 +108,14 @@ public class controllerMain {
             @Override
             public void mouseClicked(MouseEvent evt) {
                 JPanelRound source = (JPanelRound) evt.getSource();
-                if (source == mainWindow.mainPanel.loginDoctor.clinicPanelDoctor.regresar) {
-                    mainWindow.mainPanel.loginDoctor.setVisible(false);
+                if (source == mainWindow.mainPanel.mainLogin.loginDoctor.clinicPanelDoctor.regresar) {
+                    mainWindow.mainPanel.mainLogin.setVisible(false);
+                    mainWindow.mainPanel.mainLogin.loginDoctor.setVisible(false);
                     mainWindow.mainPanel.mainPanelLogo.setVisible(true);
                     mainWindow.mainPanel.mainPanelOptions.setVisible(true);
                     mainWindow.headerpanel.lbStatus.setText(">> Main Menu");
-                } else if (source == mainWindow.mainPanel.loginDoctor.loginDoctorform.jprLogin) {
+                } else if (source == mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.jprLogin) {
+                    System.out.println("ingresar doctor presionado");
                 }
             }
         };
@@ -130,8 +135,9 @@ public class controllerMain {
             @Override
             public void mouseClicked(MouseEvent e) {
                 JPanelRound source = (JPanelRound) e.getSource();
-                if (source == mainWindow.mainPanel.registerPanelPatient.registerLogoClinic.regresar) {
-                    mainWindow.mainPanel.registerPanelPatient.setVisible(false);
+                if (source == mainWindow.mainPanel.mainRegister.registerPanelPatient.registerLogoClinic.regresar) {
+                    mainWindow.mainPanel.mainRegister.setVisible(false);
+                    mainWindow.mainPanel.mainRegister.registerPanelPatient.setVisible(false);
                     mainWindow.mainPanel.mainPanelLogo.setVisible(true);
                     mainWindow.mainPanel.mainPanelOptions.setVisible(true);
                     mainWindow.headerpanel.lbStatus.setText(">> Main Menu");
@@ -144,9 +150,8 @@ public class controllerMain {
         ListenerLoginDoctor(mouseAdapterLoginDoctor);
     }
     public void ListenerRegisterPatient(MouseAdapter mouseAdapterRegisterPatient){
-        mainWindow.mainPanel.registerPanelPatient.registerLogoClinic.regresar.addMouseListener(mouseAdapterRegisterPatient);
-       // mainWindow.mainPanel.registerPanelPatient.registerPatientForm..addMouseListener(mouseAdapterRegisterPatient);
-
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerLogoClinic.regresar.addMouseListener(mouseAdapterRegisterPatient);
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.jprLogin.addMouseListener(mouseAdapterRegisterPatient);
     }
     public void ListenerMainPanelOptions(MouseAdapter mouseAdapterMain){
         mainWindow.mainPanel.mainPanelOptions.IniciarPacientes.addMouseListener(mouseAdapterMain);
@@ -155,13 +160,14 @@ public class controllerMain {
         mainWindow.mainPanel.mainPanelOptions.RegistrarDoctor.addMouseListener(mouseAdapterMain);
     }
     public void ListenerLoginPatient(MouseAdapter mouseAdapterLoginPatient){
-        mainWindow.mainPanel.loginPatient.clinicLogo.regresar.addMouseListener(mouseAdapterLoginPatient);
-        mainWindow.mainPanel.loginPatient.loginForm.jprLogin.addMouseListener(mouseAdapterLoginPatient);
+        mainWindow.mainPanel.mainLogin.loginPatient.clinicLogo.regresar.addMouseListener(mouseAdapterLoginPatient);
+        mainWindow.mainPanel.mainLogin.loginPatient.loginForm.jprLogin.addMouseListener(mouseAdapterLoginPatient);
     }
     public void ListenerLoginDoctor(MouseAdapter mouseAdapterLoginDoctor){
-        mainWindow.mainPanel.loginDoctor.clinicPanelDoctor.regresar.addMouseListener(mouseAdapterLoginDoctor);
-        mainWindow.mainPanel.loginDoctor.loginDoctorform.jprLogin.addMouseListener(mouseAdapterLoginDoctor);
+        mainWindow.mainPanel.mainLogin.loginDoctor.clinicPanelDoctor.regresar.addMouseListener(mouseAdapterLoginDoctor);
+        mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.jprLogin.addMouseListener(mouseAdapterLoginDoctor);
     }
+
 
 
 }

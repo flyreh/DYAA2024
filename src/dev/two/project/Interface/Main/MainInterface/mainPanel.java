@@ -13,11 +13,9 @@ public class mainPanel extends JPanel{
 
     public mainPanelLogo mainPanelLogo;
     public mainPanelOptions mainPanelOptions;
+    public mainLogin mainLogin;
 
-    public loginPatient loginPatient;
-    public loginDoctor loginDoctor;
-
-    public RegisterPanelPatient registerPanelPatient;
+    public mainRegister mainRegister;
 
     public mainPanel(){
         this.setBounds(0, 0, 1200, 800);
@@ -33,17 +31,13 @@ public class mainPanel extends JPanel{
         mainPanelOptions = new mainPanelOptions();
         this.add(mainPanelOptions);
 
-        loginPatient = new loginPatient();
-        this.add(loginPatient);
-        loginPatient.setVisible(false);
+        mainLogin = new mainLogin();
+        this.add(mainLogin);
+        mainLogin.setVisible(false);
 
-        loginDoctor = new loginDoctor();
-        this.add(loginDoctor);
-        loginDoctor.setVisible(false);
-
-        registerPanelPatient = new RegisterPanelPatient();
-        this.add(registerPanelPatient);
-        registerPanelPatient.setVisible(false);
+        mainRegister = new mainRegister();
+        this.add(mainRegister);
+        mainRegister.setVisible(false);
 
     }
 }

@@ -25,7 +25,7 @@ public class HeaderPanel extends JPanel {
         }
         custom = custom.deriveFont(Font.PLAIN, 16);
 
-        lbStatus = new JLabel(">> Main Menu");
+        lbStatus = new JLabel(">>> Main Menu");
         lbStatus.setForeground(Color.BLACK);
         lbStatus.setBounds(10, 10, 250, 16);
         lbStatus.setFont(custom);

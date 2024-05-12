@@ -40,10 +40,10 @@ public class MainWindow extends JFrame {
     public static void main(String[] args) {
         MainWindow ventana = new MainWindow();
         ventana.setVisible(true);
-
         controllerMain controllerMain = new controllerMain(ventana);
         controlDoctor controllerDoctor = new controlDoctor(ventana);
         controlPatient controllerPatient = new controlPatient(ventana);
+
         controller controlador = new controller(ventana,controllerMain, controllerDoctor, controllerPatient);
 
     }

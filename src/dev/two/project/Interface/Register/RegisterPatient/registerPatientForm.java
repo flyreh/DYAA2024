@@ -83,7 +83,7 @@ public class registerPatientForm extends JPanelGradient {
         this.add(title);
 
         lbFirstName = new JLabel("Primer Nombre:");
-        lbFirstName.setBounds(50, 100, 400, 50);
+        lbFirstName.setBounds(60, 100, 400, 30);
         lbFirstName.setForeground(Color.white);
         lbFirstName.setFont(custom);
         this.add(lbFirstName);
@@ -91,25 +91,26 @@ public class registerPatientForm extends JPanelGradient {
         tfFirstName = new JTextField();
         tfFirstName.setText("Primer Nombre");
         tfFirstName.setForeground(Color.GRAY);
-        tfFirstName.setBounds(50, 150, 300, 40);
+        tfFirstName.setBounds(60, 130, 300, 40);
         tfFirstName.setFont(custom);
-        tfFirstName.setBorder(new LineBorder(Color.WHITE, 5, false));
+        tfFirstName.setBorder(new LineBorder(Color.BLACK, 2, false));
+
         tfFirstName.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent evt) {
-                usuarioClickeado();
+                usuarioClickeado(evt);
             }
         });
         this.add(tfFirstName);
 
         sFirstName = new JSeparator();
-        sFirstName.setBounds(50, 190, 300, 3);
+        sFirstName.setBounds(60, 170, 300, 3);
         sFirstName.setBackground(Color.BLACK);
         sFirstName.setBorder(new LineBorder(Color.BLACK, 5, false));
         this.add(sFirstName);
 
         lbSecondName = new JLabel("Segundo Nombre:");
-        lbSecondName.setBounds(50, 200, 400, 50);
+        lbSecondName.setBounds(60, 180, 400, 30);
         lbSecondName.setForeground(Color.white);
         lbSecondName.setFont(custom);
         this.add(lbSecondName);
@@ -117,25 +118,25 @@ public class registerPatientForm extends JPanelGradient {
         tfSecondName = new JTextField();
         tfSecondName.setText("Segundo Nombre");
         tfSecondName.setForeground(Color.GRAY);
-        tfSecondName.setBounds(50, 250, 300, 40);
+        tfSecondName.setBounds(60, 210, 300, 40);
         tfSecondName.setFont(custom);
-        tfSecondName.setBorder(new LineBorder(Color.WHITE, 5, false));
+        tfSecondName.setBorder(new LineBorder(Color.BLACK, 2, false));
         tfSecondName.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent evt) {
-                usuarioClickeado();
+                usuarioClickeado(evt);
             }
         });
         this.add(tfSecondName);
 
         sSecondName = new JSeparator();
-        sSecondName.setBounds(50, 290, 300, 3);
+        sSecondName.setBounds(60, 250, 300, 3);
         sSecondName.setBackground(Color.BLACK);
         sSecondName.setBorder(new LineBorder(Color.BLACK, 5, false));
         this.add(sSecondName);
 
         lbLastName = new JLabel("Apellido:");
-        lbLastName.setBounds(50, 300, 400, 50);
+        lbLastName.setBounds(60, 250, 400, 30);
         lbLastName.setForeground(Color.white);
         lbLastName.setFont(custom);
         this.add(lbLastName);
@@ -143,34 +144,34 @@ public class registerPatientForm extends JPanelGradient {
         tfLastName = new JTextField();
         tfLastName.setText("Apellido");
         tfLastName.setForeground(Color.GRAY);
-        tfLastName.setBounds(50, 350, 300, 40);
+        tfLastName.setBounds(60, 280, 300, 40);
         tfLastName.setFont(custom);
-        tfLastName.setBorder(new LineBorder(Color.WHITE, 5, false));
+        tfLastName.setBorder(new LineBorder(Color.BLACK, 2, false));
         tfLastName.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent evt) {
-                usuarioClickeado();
+                usuarioClickeado(evt);
             }
         });
         this.add(tfLastName);
 
         sLastName = new JSeparator();
-        sLastName.setBounds(50, 390, 300, 3);
+        sLastName.setBounds(60, 320, 300, 3);
         sLastName.setBackground(Color.BLACK);
         sLastName.setBorder(new LineBorder(Color.BLACK, 5, false));
         this.add(sLastName);
 
 
         lbContrasenia = new JLabel("Contraseña:");
-        lbContrasenia.setBounds(50, 390, 400, 40);
+        lbContrasenia.setBounds(60, 320, 400, 30);
         lbContrasenia.setForeground(Color.WHITE);
         lbContrasenia.setFont(custom);
         this.add(lbContrasenia);
 
         pfContrasenia = new JPasswordField();
-        pfContrasenia.setBounds(50, 430, 300, 40);
+        pfContrasenia.setBounds(60, 350, 300, 40);
         pfContrasenia.setForeground(Color.GRAY);
-        pfContrasenia.setBorder(new LineBorder(Color.WHITE, 5, false));
+        pfContrasenia.setBorder(new LineBorder(Color.BLACK, 2, false));
         pfContrasenia.setText("********");
         pfContrasenia.setFont(custom);
         pfContrasenia.addMouseListener(new MouseAdapter() {
@@ -182,7 +183,7 @@ public class registerPatientForm extends JPanelGradient {
         this.add(pfContrasenia);
 
         sContrasenia = new JSeparator();
-        sContrasenia.setBounds(50, 470, 300, 3);
+        sContrasenia.setBounds(60, 390, 300, 3);
         sContrasenia.setBackground(Color.BLACK);
         sContrasenia.setBorder(new LineBorder(Color.BLACK, 5, false));
         this.add(sContrasenia);
@@ -203,18 +204,51 @@ public class registerPatientForm extends JPanelGradient {
         this.add(jprLogin);
 
         lbErrorLogin = new JLabel();
-        lbErrorLogin.setBounds(0, 650, 420, 10);
+        lbErrorLogin.setBounds(0, 640, 420, 10);
         lbErrorLogin.setForeground(Color.red);
         lbErrorLogin.setFont(custom.deriveFont(Font.PLAIN, 15));
         lbErrorLogin.setHorizontalAlignment(JLabel.CENTER);
         this.add(lbErrorLogin);
     }
 
-    public void usuarioClickeado() {
+    public void usuarioClickeado(MouseEvent e) {
+        JTextField source = (JTextField) e.getSource();
         lbErrorLogin.setText("");
-        if (tfFirstName.getText().equals("Primer Nombre")) {
+        if(source == tfFirstName && tfFirstName.getText().equals("Primer Nombre")){
             tfFirstName.setText("");
+            if(tfSecondName.getText().isEmpty()){
+                tfSecondName.setText("Segundo Nombre");
+                tfSecondName.setForeground(Color.GRAY);
+            }
+            if(tfLastName.getText().isEmpty()){
+                tfLastName.setText("Apellido");
+                tfLastName.setForeground(Color.GRAY);
+            }
             tfFirstName.setForeground(Color.BLACK);
+        }
+        if(source == tfSecondName && tfSecondName.getText().equals("Segundo Nombre")){
+            tfSecondName.setText("");
+            if(tfFirstName.getText().isEmpty()){
+                tfFirstName.setText("Primer Nombre");
+                tfFirstName.setForeground(Color.GRAY);
+            }
+            if(tfLastName.getText().isEmpty()){
+                tfLastName.setText("Apellido");
+                tfLastName.setForeground(Color.GRAY);
+            }
+            tfSecondName.setForeground(Color.BLACK);
+        }
+        if(source == tfLastName && tfLastName.getText().equals("Apellido")){
+            tfLastName.setText("");
+            if(tfFirstName.getText().isEmpty()){
+                tfFirstName.setText("Primer Nombre");
+                tfFirstName.setForeground(Color.GRAY);
+            }
+            if(tfSecondName.getText().isEmpty()){
+                tfSecondName.setText("Segundo Nombre");
+                tfSecondName.setForeground(Color.GRAY);
+            }
+            tfLastName.setForeground(Color.BLACK);
         }
         if (String.valueOf(pfContrasenia.getPassword()).isEmpty()) {
             pfContrasenia.setText("********");
@@ -232,5 +266,14 @@ public class registerPatientForm extends JPanelGradient {
             tfFirstName.setText("Primer Nombre");
             tfFirstName.setForeground(Color.GRAY);
         }
+        if (tfSecondName.getText().isEmpty()) {
+            tfSecondName.setText("Segundo Nombre");
+            tfSecondName.setForeground(Color.GRAY);
+        }
+        if (tfLastName.getText().isEmpty()) {
+            tfLastName.setText("Apellido");
+            tfLastName.setForeground(Color.GRAY);
+        }
+
     }
 }
