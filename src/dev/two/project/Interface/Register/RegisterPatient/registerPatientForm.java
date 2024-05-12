@@ -255,6 +255,85 @@ public class registerPatientForm extends JPanelGradient {
         });
         tfEstadoCivil.setForeground(Color.WHITE);
         this.add(tfEstadoCivil);
+
+        lbEdad = new JLabel("Edad:");
+        lbEdad.setBounds(60, 400, 400, 30);
+        lbEdad.setForeground(Color.white);
+        lbEdad.setFont(custom);
+        this.add(lbEdad);
+
+        tfEdad = new JTextField();
+        tfEdad.setText("Edad");
+        tfEdad.setForeground(Color.GRAY);
+        tfEdad.setBounds(60, 430, 300, 40);
+        tfEdad.setFont(custom);
+        tfEdad.setBorder(new LineBorder(Color.BLACK, 2, false));
+        tfEdad.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent evt) {
+                usuarioClickeado(evt);
+            }
+        });
+        this.add(tfEdad);
+
+        sEdad = new JSeparator();
+        sEdad.setBounds(60, 470, 300, 3);
+        sEdad.setBackground(Color.BLACK);
+        sEdad.setBorder(new LineBorder(Color.BLACK, 5, false));
+        this.add(sEdad);
+
+        lbTelefono = new JLabel("Telefono:");
+        lbTelefono.setBounds(60, 470, 400, 30);
+        lbTelefono.setForeground(Color.white);
+        lbTelefono.setFont(custom);
+        this.add(lbTelefono);
+
+        tfTelefono = new JTextField();
+        tfTelefono.setText("Telefono");
+        tfTelefono.setForeground(Color.GRAY);
+        tfTelefono.setBounds(60, 500, 300, 40);
+        tfTelefono.setFont(custom);
+        tfTelefono.setBorder(new LineBorder(Color.BLACK, 2, false));
+        tfTelefono.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent evt) {
+                usuarioClickeado(evt);
+            }
+        });
+        this.add(tfTelefono);
+
+        sTelefono = new JSeparator();
+        sTelefono.setBounds(60, 540, 300, 3);
+        sTelefono.setBackground(Color.BLACK);
+        sTelefono.setBorder(new LineBorder(Color.BLACK, 5, false));
+        this.add(sTelefono);
+
+        lbCorreo = new JLabel("Correo:");
+        lbCorreo.setBounds(60, 540, 400, 30);
+        lbCorreo.setForeground(Color.white);
+        lbCorreo.setFont(custom);
+        this.add(lbCorreo);
+
+        tfCorreo = new JTextField();
+        tfCorreo.setText("Correo");
+        tfCorreo.setForeground(Color.GRAY);
+        tfCorreo.setBounds(60, 570, 300, 40);
+        tfCorreo.setFont(custom);
+        tfCorreo.setBorder(new LineBorder(Color.BLACK, 2, false));
+        tfCorreo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent evt) {
+                usuarioClickeado(evt);
+            }
+        });
+        this.add(tfCorreo);
+
+        sCorreo = new JSeparator();
+        sCorreo.setBounds(60, 610, 300, 3);
+        sCorreo.setBackground(Color.BLACK);
+        sCorreo.setBorder(new LineBorder(Color.BLACK, 5, false));
+        this.add(sCorreo);
+
     }
 
     public void usuarioClickeado(MouseEvent e) {

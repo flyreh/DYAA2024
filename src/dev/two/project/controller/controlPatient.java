@@ -3,12 +3,15 @@ package dev.two.project.controller;
 import components.JPanelRound;
 import dev.two.project.Interface.MainWindow;
 
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Objects;
 
 import dev.two.project.controller.gestor.*;
 import dev.two.project.model.Patient;
+
+import javax.crypto.CipherInputStream;
 
 public class controlPatient {
 
@@ -19,12 +22,13 @@ public class controlPatient {
         initComponents();
     }
     public void initComponents(){
-        MouseAdapter paciente = new MouseAdapter() {
+        MouseAdapter pacienteregistro = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 JPanelRound source = (JPanelRound) e.getSource();
                 if (source == mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.jprLogin) {
                     if (!ValidateRegisterData()) {
+                        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.lbErrorLogin.setForeground(new Color(255, 0, 0));
                         mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.lbErrorLogin.setText("Registro Incorrecto");
                     }else{
                                 AddPatientTree(mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfFirstName.getText(),
@@ -36,17 +40,13 @@ public class controlPatient {
                                 Objects.requireNonNull(mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfEstadoCivil.getSelectedItem()).toString(),
                                 mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfTelefono.getText(),
                                 mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfCorreo.getText());
-                        mainWindow.mainPanel.mainRegister.setVisible(false);
-                        mainWindow.mainPanel.mainLogin.setVisible(true);
                     }
                 }
             }
         };
-        ListenerPaciente(paciente);
-
+        ListenerRegistroPaciente(pacienteregistro);
     }
-   public void ListenerPaciente(MouseAdapter evt){
-        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerLogoClinic.regresar.addMouseListener(evt);
+   public void ListenerRegistroPaciente(MouseAdapter evt){
         mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.jprLogin.addMouseListener(evt);
     }
 
@@ -67,7 +67,6 @@ public class controlPatient {
                 String.valueOf(mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.pfContrasenia.getPassword()).equals("********"))){
             return false;
         }
-
         return true;
     }
     public boolean verifyAuth(String primerNombre, String SecondName, String password){
@@ -77,13 +76,27 @@ public class controlPatient {
             ,String apellido, String password,int edad
             , String genero, String estadoCivil, String telefono, String correo){
         if(!verifyAuth(primerNombre, segundoNombre, password)){
+            mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.lbErrorLogin.setForeground(new Color(255, 0, 0));
             mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.lbErrorLogin.setText("Paciente existente");
         }else{
             Patient newpatient = new Patient(primerNombre, segundoNombre, apellido, password, edad, genero, estadoCivil, telefono, correo);
             gestorPatient.WritePatientFile(newpatient);
             gestorPatient.AddPatientTree(newpatient);
+            mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.lbErrorLogin.setForeground(new Color(3, 253, 53));
+            mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.lbErrorLogin.setText("Paciente registrado");
+            clearRegisterForm();
         }
-
         }
+    public void clearRegisterForm() {
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfFirstName.setText("");
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfSecondName.setText("");
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfLastName.setText("");
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.pfContrasenia.setText("");
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfEdad.setText("");
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfGenero.setSelectedIndex(0);
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfEstadoCivil.setSelectedIndex(0);
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfTelefono.setText("");
+        mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfCorreo.setText("");
+    }
 
     }

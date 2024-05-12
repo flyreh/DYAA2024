@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public abstract class FileManager {
-    private static final String ruta = "src/com/grupo8/finalproject/files/";
+    private static final String ruta = "src\\dev\\two\\project\\files\\";
 
     public static void crearArchivo(String nombreArchivo) throws FileNotFoundException {
         String nombreFullArchivo = ruta + nombreArchivo;
