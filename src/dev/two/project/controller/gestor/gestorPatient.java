@@ -22,9 +22,10 @@ public class gestorPatient {
     public static void WritePatientFile(Patient patient) {
 
     }
-    public static Patient SearchPatientFile(Patient patient) {
-        return null;
-
+    public static boolean SearchPatientFile(String primerNombre, String segundoNombre, String apellido) {
+        //regresa true si encuentra el paciente en el archivo de pacientes
+        //regresa false si no encuentra el paciente en el archivo de pacientes
+        return false;
     }
     public static void DeletePatientFile(Patient patient) {
 
@@ -32,7 +33,9 @@ public class gestorPatient {
     public static void UpdatePatientFile(Patient patient) {
 
     }
-
+    public static Patient searchPatientTree(Patient patient) {
+        return null;
+    }
 
     public static void AddPatientTree(Patient patient) {
 

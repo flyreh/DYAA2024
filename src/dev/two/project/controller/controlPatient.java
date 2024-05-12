@@ -5,6 +5,10 @@ import dev.two.project.Interface.MainWindow;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
+
+import dev.two.project.controller.gestor.*;
+import dev.two.project.model.Patient;
 
 public class controlPatient {
 
@@ -23,7 +27,17 @@ public class controlPatient {
                     if (!ValidateRegisterData()) {
                         mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.lbErrorLogin.setText("Registro Incorrecto");
                     }else{
-                        AddPatientTree();
+                                AddPatientTree(mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfFirstName.getText(),
+                                mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfSecondName.getText(),
+                                mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfLastName.getText(),
+                                String.valueOf(mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.pfContrasenia.getPassword()),
+                                Integer.parseInt(mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfEdad.getText()),
+                                Objects.requireNonNull(mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfGenero.getSelectedItem()).toString(),
+                                Objects.requireNonNull(mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfEstadoCivil.getSelectedItem()).toString(),
+                                mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfTelefono.getText(),
+                                mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfCorreo.getText());
+                        mainWindow.mainPanel.mainRegister.setVisible(false);
+                        mainWindow.mainPanel.mainLogin.setVisible(true);
                     }
                 }
             }
@@ -56,8 +70,20 @@ public class controlPatient {
 
         return true;
     }
-    public void AddPatientTree(){
-        System.out.println("Agregando paciente");
+    public boolean verifyAuth(String primerNombre, String SecondName, String password){
+        return !gestorPatient.SearchPatientFile(primerNombre, SecondName, password);
+    }
+    public void AddPatientTree(String primerNombre, String segundoNombre
+            ,String apellido, String password,int edad
+            , String genero, String estadoCivil, String telefono, String correo){
+        if(!verifyAuth(primerNombre, segundoNombre, password)){
+            mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.lbErrorLogin.setText("Paciente existente");
+        }else{
+            Patient newpatient = new Patient(primerNombre, segundoNombre, apellido, password, edad, genero, estadoCivil, telefono, correo);
+            gestorPatient.WritePatientFile(newpatient);
+            gestorPatient.AddPatientTree(newpatient);
+        }
+
+        }
 
     }
-}

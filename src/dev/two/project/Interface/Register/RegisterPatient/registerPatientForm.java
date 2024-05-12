@@ -27,8 +27,8 @@ public class registerPatientForm extends JPanelGradient {
     public JTextField tfSecondName;
     public JTextField tfLastName;
     public JTextField tfEdad;
-    public JTextField tfGenero;
-    public JTextField tfEstadoCivil;
+    public JComboBox<String> tfGenero;
+    public JComboBox<String> tfEstadoCivil;
     public JTextField tfTelefono;
     public JTextField tfCorreo;
 
@@ -38,8 +38,6 @@ public class registerPatientForm extends JPanelGradient {
     private JSeparator sLastName;
     private JSeparator sContrasenia;
     private JSeparator sEdad;
-    private JSeparator sGenero;
-    private JSeparator sEstadoCivil;
     private JSeparator sTelefono;
     private JSeparator sCorreo;
 
@@ -209,6 +207,54 @@ public class registerPatientForm extends JPanelGradient {
         lbErrorLogin.setFont(custom.deriveFont(Font.PLAIN, 15));
         lbErrorLogin.setHorizontalAlignment(JLabel.CENTER);
         this.add(lbErrorLogin);
+
+
+        String[] opciones = {"primero", "segundo", "Tercero"};
+
+        UIManager.put("ComboBox.selectionBackground", new Color(0, 129, 155));
+        UIManager.put("ComboBox.selectionForeground", Color.WHITE);
+
+        tfGenero = new JComboBox<>(opciones);
+        tfGenero.setBounds(50, 400, 400, 30);
+        tfGenero.setBackground(new Color(21, 20, 23));
+        tfGenero.setBorder(new LineBorder(Color.BLACK, 1, false));
+        tfGenero.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JLabel renderer = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (isSelected) {
+                    renderer.setBackground(new Color(0, 129, 155));
+                    renderer.setForeground(Color.WHITE);
+                } else {
+                    renderer.setBackground(Color.BLACK);
+                    renderer.setForeground(Color.WHITE);
+                }
+                return renderer;
+            }
+        });
+        tfGenero.setForeground(Color.WHITE);
+        this.add(tfGenero);
+
+        tfEstadoCivil = new JComboBox<>(opciones);
+        tfEstadoCivil.setBounds(50, 450, 400, 30);
+        tfEstadoCivil.setBackground(new Color(21, 20, 23));
+        tfEstadoCivil.setBorder(new LineBorder(Color.BLACK, 1, false));
+        tfEstadoCivil.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JLabel renderer = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (isSelected) {
+                    renderer.setBackground(new Color(0, 129, 155));
+                    renderer.setForeground(Color.WHITE);
+                } else {
+                    renderer.setBackground(Color.BLACK);
+                    renderer.setForeground(Color.WHITE);
+                }
+                return renderer;
+            }
+        });
+        tfEstadoCivil.setForeground(Color.WHITE);
+        this.add(tfEstadoCivil);
     }
 
     public void usuarioClickeado(MouseEvent e) {
