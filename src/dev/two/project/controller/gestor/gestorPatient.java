@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class gestorPatient {
-    public static Patient sesion;
+    private static Patient sesion;
     public static AVLpatients patients = new AVLpatients();
 
     public gestorPatient(AVLpatients patients, Patient sesion) {
@@ -33,7 +33,7 @@ public class gestorPatient {
         }
 
     }
-    public static boolean SearchPatientFile(String primerNombre, String segundoNombre, String password) {
+    public static boolean SearchPatientFile(String primerNombre, String password) {
         ArrayList<String> almacen = new ArrayList<>();
         try {
             FileManager.leerArchivo("patients.txt", almacen);
@@ -56,11 +56,14 @@ public class gestorPatient {
 
     }
     public static Patient searchPatientTree(Patient patient) {
-        return null;
+        return patients.searchPatient(patient);
     }
 
-    public static void AddPatientTree(Patient patient) {
-            patients.insert(patient);
-
+    public static void AddPatientTree(Patient patient) throws Exception {
+            patients.insertar(patient);
+            showPatients();
+    }
+    public static void showPatients() {
+        patients.inorden(patients.getRaiz());
     }
 }

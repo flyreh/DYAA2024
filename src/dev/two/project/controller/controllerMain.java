@@ -89,8 +89,6 @@ public class controllerMain {
                    mainWindow.mainPanel.mainPanelLogo.setVisible(true);
                      mainWindow.mainPanel.mainPanelOptions.setVisible(true);
                      mainWindow.headerpanel.lbStatus.setText(">> Main Menu");
-                } else if (source == mainWindow.mainPanel.mainLogin.loginPatient.loginForm.jprLogin) {
-                    System.out.println("ingresar paciente presionado");
                 }
             }
         };

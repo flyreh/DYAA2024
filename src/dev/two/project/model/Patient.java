@@ -19,6 +19,7 @@ public class Patient extends NodoAVL {
     public Patient(String firstname, String secondName, String lastName
             , String password, int edad, String genero
             , String estadoCivil, String telefono, String correo) {
+        super();
         this.id = ++idCounter;
         this.firstname = firstname;
         this.secondName = secondName;

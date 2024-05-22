@@ -195,7 +195,7 @@ public class registerPatientForm extends JPanelGradient {
         jprLogin.setRoundTopRight(round);
         jprLogin.setBackground(new Color(37, 35, 39));
 
-        btnLogin = new JLabel("Sign Un");
+        btnLogin = new JLabel("Sign Up");
         btnLogin.setForeground(Color.WHITE);
         btnLogin.setFont(custom.deriveFont(20.0f));
         jprLogin.add(btnLogin);
@@ -204,7 +204,7 @@ public class registerPatientForm extends JPanelGradient {
         lbErrorLogin = new JLabel();
         lbErrorLogin.setBounds(0, 640, 420, 10);
         lbErrorLogin.setForeground(Color.red);
-        lbErrorLogin.setFont(custom.deriveFont(Font.PLAIN, 15));
+        lbErrorLogin.setFont(custom.deriveFont(Font.PLAIN, 10));
         lbErrorLogin.setHorizontalAlignment(JLabel.CENTER);
         this.add(lbErrorLogin);
 
