@@ -267,17 +267,17 @@ public class AVLpatients  {
     public  void inorden(Patient r){
         if(r!=null){
             inorden((Patient) r.getIzdo());
-            System.out.print(r.getFirstname() + ", ");
+            System.out.print(r.getFirstname() + r.getId() + ", ");
             inorden((Patient) r.getDcho());
         }
     }
-    public Patient searchPatient(Patient patient){
+    public Patient searchPatient(int id){
         boolean encontrado=false;
         Patient raizpatient = raiz;
 
         while(!encontrado && raizpatient!=null){
-            if(patient.getId() == raizpatient.getId()) encontrado=true;
-            else if(patient.getId() < raizpatient.getId()) raizpatient = (Patient) raizpatient.getIzdo();
+            if(id == raizpatient.getId()) encontrado=true;
+            else if(id < raizpatient.getId()) raizpatient = (Patient) raizpatient.getIzdo();
             else raizpatient = (Patient) raizpatient.getDcho();
         }
         return raizpatient;

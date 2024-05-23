@@ -14,6 +14,8 @@ public class mainPanel extends JPanel{
     public mainPanelLogo mainPanelLogo;
     public mainPanelOptions mainPanelOptions;
     public mainLogin mainLogin;
+    //public mainPatient mainPatient;
+    //public mainDoctor mainDoctor;
 
     public mainRegister mainRegister;
 

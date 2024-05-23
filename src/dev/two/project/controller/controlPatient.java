@@ -54,8 +54,11 @@ public class controlPatient {
                 JPanelRound source = (JPanelRound) e.getSource();
                 if (source == mainWindow.mainPanel.mainLogin.loginPatient.loginForm.jprLogin) {
                     if(!ValidateLoginData()){
-
+                        mainWindow.mainPanel.mainLogin.loginPatient.loginForm.lbErrorLogin.setForeground(new Color(255, 0, 0));
+                        mainWindow.mainPanel.mainLogin.loginPatient.loginForm.lbErrorLogin.setText("Datos incorrectos");
                     }else{
+                        InitSessionPatient(mainWindow.mainPanel.mainLogin.loginPatient.loginForm.tfUsuario.getText(),
+                                String.valueOf(mainWindow.mainPanel.mainLogin.loginPatient.loginForm.pfContrasenia.getPassword()));
 
                     }
 
@@ -72,7 +75,15 @@ public class controlPatient {
         mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.jprLogin.addMouseListener(evt);
     }
     public boolean ValidateLoginData(){
-        return false;
+        if(mainWindow.mainPanel.mainLogin.loginPatient.loginForm.tfUsuario.getText().isEmpty() ||
+                mainWindow.mainPanel.mainLogin.loginPatient.loginForm.tfUsuario.getText().equals("Usuario")){
+            return false;
+        }
+        if((String.valueOf(mainWindow.mainPanel.mainLogin.loginPatient.loginForm.pfContrasenia.getPassword()).isEmpty()||
+                String.valueOf(mainWindow.mainPanel.mainLogin.loginPatient.loginForm.pfContrasenia.getPassword()).equals("********"))){
+            return false;
+        }
+        return true;
     }
 
     public boolean ValidateRegisterData(){
@@ -94,13 +105,13 @@ public class controlPatient {
         }
         return true;
     }
-    public boolean verifyAuth(String primerNombre, String SecondName, String password){
+    public boolean verifyAuth(String primerNombre, String password){
         return !gestorPatient.SearchPatientFile(primerNombre, password);
     }
     public void AddPatientTree(String primerNombre, String segundoNombre
             ,String apellido, String password,int edad
             , String genero, String estadoCivil, String telefono, String correo) throws Exception {
-        if(!verifyAuth(primerNombre, segundoNombre, password)){
+        if(!verifyAuth(primerNombre, password)){
             mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.lbErrorLogin.setForeground(new Color(255, 0, 0));
             mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.lbErrorLogin.setText("Paciente existente con el mismo nombre y contraseña");
         }else{
@@ -112,13 +123,18 @@ public class controlPatient {
             clearRegisterForm();
         }
     }
-    public void InitSessionPatient(String primerNombre, String segundoNombre, String password){
-        if(verifyAuth(primerNombre, segundoNombre, password)){
+    public void InitSessionPatient(String primerNombre, String password){
+        if(verifyAuth(primerNombre, password)){
             mainWindow.mainPanel.mainLogin.loginPatient.loginForm.lbErrorLogin.setForeground(new Color(255, 0, 0));
             mainWindow.mainPanel.mainLogin.loginPatient.loginForm.lbErrorLogin.setText("Usuario no encontrado");
-        }else{
-            mainWindow.mainPanel.mainLogin.loginPatient.loginForm.lbErrorLogin.setForeground(new Color(3, 253, 53));
-            mainWindow.mainPanel.mainLogin.loginPatient.loginForm.lbErrorLogin.setText("Usuario encontrado");
+        }else {
+            //hacer no visible la vista de login y de inicio.
+            //hacer visible la vista principal de un paciente.
+            if(gestorPatient.searchPatientTree(gestorPatient.returnIdpatient(primerNombre, password)) != null){
+                gestorPatient.setSesion(gestorPatient.searchPatientTree(gestorPatient.returnIdpatient(primerNombre, password)));
+                mainWindow.mainPanel.mainLogin.loginPatient.loginForm.lbErrorLogin.setText("sesión : " + gestorPatient.getSesion().getFirstname());
+            }
+
         }
     }
     public void clearRegisterForm() {
