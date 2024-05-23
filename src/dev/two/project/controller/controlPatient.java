@@ -132,7 +132,8 @@ public class controlPatient {
             //hacer visible la vista principal de un paciente.
             if(gestorPatient.searchPatientTree(gestorPatient.returnIdpatient(primerNombre, password)) != null){
                 gestorPatient.setSesion(gestorPatient.searchPatientTree(gestorPatient.returnIdpatient(primerNombre, password)));
-                mainWindow.mainPanel.mainLogin.loginPatient.loginForm.lbErrorLogin.setText("sesión : " + gestorPatient.getSesion().getFirstname());
+                mainWindow.mainPanel.mainLogin.loginPatient.loginForm.lbErrorLogin.setForeground(new Color(9, 7, 7));
+                mainWindow.mainPanel.mainLogin.loginPatient.loginForm.lbErrorLogin.setText("sesión : " + gestorPatient.getSesion().getTelefono());
             }
 
         }
