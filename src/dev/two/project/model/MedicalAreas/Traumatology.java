@@ -1,4 +1,4 @@
 package dev.two.project.model.MedicalAreas;
 
-public class Traumatology {
+public class Traumatology extends Area{
 }

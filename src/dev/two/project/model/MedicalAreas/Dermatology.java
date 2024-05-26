@@ -1,4 +1,4 @@
 package dev.two.project.model.MedicalAreas;
 
-public class Dermatology {
+public class Dermatology extends Area{
 }
