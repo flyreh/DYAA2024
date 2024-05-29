@@ -268,7 +268,7 @@ public class AVLDerma {
             inorden((Doctor) r.getDcho());
         }
     }
-    public Doctor searchDoctor(int id){
+    public Doctor searchDoctorDermaId(int id){
         boolean encontrado=false;
         Doctor raizpatient = raiz;
 

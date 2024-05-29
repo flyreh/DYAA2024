@@ -25,8 +25,8 @@ public class loginAdminForm extends JPanelGradient {
 
     public loginAdminForm() {
         this.setBounds(650, 80, 420, 660);
-        this.setGradientStart(new Color(29, 56, 110, 131));
-        this.setGradientEnd(new Color(34, 140, 136, 68));
+        this.setGradientStart(new Color(21, 50, 96, 133));
+        this.setGradientEnd(new Color(115, 159, 180, 246));
         this.setLayout(null);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
@@ -50,7 +50,7 @@ public class loginAdminForm extends JPanelGradient {
         }
         font = font.deriveFont(Font.PLAIN, 30);
 
-        title = new JLabel("LOGIN DE ADMINISTRADOR");
+        title = new JLabel("ADMINISTRADOR");
         title.setBounds(0, 130, 400, 40);
         title.setFont(font);
         title.setForeground(Color.WHITE);

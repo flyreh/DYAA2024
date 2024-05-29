@@ -3,7 +3,7 @@ package dev.two.project.model;
 public class Patient extends NodoAVL {
 
     private final int id;
-    private static int idCounter = 10;
+    private static int idCounter = 100;
     private String firstname;
     private String secondName;
     private String lastName;

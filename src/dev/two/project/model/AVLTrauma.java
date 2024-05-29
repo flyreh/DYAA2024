@@ -268,7 +268,7 @@ public class AVLTrauma {
             inorden((Doctor) r.getDcho());
         }
     }
-    public Doctor searchDoctor(int id){
+    public Doctor searchDoctorTraumaId(int id){
         boolean encontrado=false;
         Doctor raizpatient = raiz;
 

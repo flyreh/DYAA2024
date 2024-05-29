@@ -2,8 +2,8 @@ package dev.two.project.model;
 
 public class Queue {
 
-    private NodoQueue first;
-    private NodoQueue last;
+    private Nodo first;
+    private Nodo last;
     private int size;
 
     public Queue() {
@@ -42,14 +42,14 @@ public class Queue {
 
     }
 
-    public NodoQueue getFirst() {
+    public Nodo getFirst() {
         if (isEmpty()) {
             return null;
         }
         return this.first;
     }
 
-    public NodoQueue getLast() {
+    public Nodo getLast() {
         if (isEmpty()) {
             return null;
         }
@@ -67,11 +67,11 @@ public class Queue {
     }
 
 
-   public NodoQueue get(int index) {
+   public Nodo get(int index) {
         if (index < 0 || index >= this.size) {
             return null;
         }
-        NodoQueue current = this.first;
+        Nodo current = this.first;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }

@@ -1,7 +1,9 @@
-package dev.two.project.Interface.Register.RegisterPatient;
+package dev.two.project.Interface.Register.RegisterDoctor;
 
 import components.JPanelGradient;
 import components.JPanelRound;
+import dev.two.project.model.Queue;
+import dev.two.project.model.medicalH;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -11,8 +13,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
-public class registerPatientForm extends JPanelGradient {
-
+public class DoctorRegisterForm extends JPanelGradient {
     private JLabel lbFirstName;
     private JLabel lbSecondName;
     private JLabel lbLastName;
@@ -46,8 +47,8 @@ public class registerPatientForm extends JPanelGradient {
     public JLabel lbErrorLogin;
     public JLabel title;
 
-    public registerPatientForm() {
-        this.setBounds(650, 80, 450, 660);
+    public DoctorRegisterForm() {
+        this.setBounds(650, 60, 450, 700);
         this.setGradientStart(new Color(29, 56, 110, 131));
         this.setGradientEnd(new Color(64, 131, 127, 68));
         this.setLayout(null);
@@ -73,7 +74,7 @@ public class registerPatientForm extends JPanelGradient {
         }
         font = font.deriveFont(Font.PLAIN, 30);
 
-        title = new JLabel("REGISTRO DE PACIENTES");
+        title = new JLabel("REGISTRO DE DOCTORES");
         title.setBounds(20, 50, 400, 40);
         title.setFont(font);
         title.setForeground(Color.WHITE);
@@ -188,7 +189,7 @@ public class registerPatientForm extends JPanelGradient {
 
         int round = 25;
         jprLogin = new JPanelRound();
-        jprLogin.setBounds(160, 600, 100, 40);
+        jprLogin.setBounds(160, 660, 100, 40);
         jprLogin.setRoundBottomLeft(round);
         jprLogin.setRoundBottomRight(round);
         jprLogin.setRoundTopLeft(round);
@@ -237,7 +238,7 @@ public class registerPatientForm extends JPanelGradient {
 
         String [] opcionesEstadoCivil = {"Soltero", "Casado", "Divorciado", "Viudo"};
         tfEstadoCivil = new JComboBox<>(opcionesEstadoCivil);
-        tfEstadoCivil.setBounds(50, 450, 400, 30);
+        tfEstadoCivil.setBounds(50, 470, 400, 30);
         tfEstadoCivil.setBackground(new Color(21, 20, 23));
         tfEstadoCivil.setBorder(new LineBorder(Color.BLACK, 1, false));
         tfEstadoCivil.setRenderer(new DefaultListCellRenderer() {
@@ -264,17 +265,17 @@ public class registerPatientForm extends JPanelGradient {
         this.add(lbEdad);
 
         tfEdad = new JTextField();
-        tfEdad.setText("Edad1");
-        tfEdad.setForeground(Color.BLACK);
+        tfEdad.setText("Edad");
+        tfEdad.setForeground(Color.GRAY);
         tfEdad.setBounds(60, 430, 300, 40);
         tfEdad.setFont(custom);
         tfEdad.setBorder(new LineBorder(Color.BLACK, 2, false));
-        /*tfEdad.addMouseListener(new MouseAdapter() {
+        tfEdad.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent evt) {
                 usuarioClickeado(evt);
             }
-        });*/
+        });
         this.add(tfEdad);
 
         sEdad = new JSeparator();
@@ -284,7 +285,7 @@ public class registerPatientForm extends JPanelGradient {
         this.add(sEdad);
 
         lbTelefono = new JLabel("Telefono:");
-        lbTelefono.setBounds(60, 470, 400, 30);
+        lbTelefono.setBounds(60, 490, 400, 30);
         lbTelefono.setForeground(Color.white);
         lbTelefono.setFont(custom);
         this.add(lbTelefono);
@@ -292,7 +293,7 @@ public class registerPatientForm extends JPanelGradient {
         tfTelefono = new JTextField();
         tfTelefono.setText("Telefono");
         tfTelefono.setForeground(Color.GRAY);
-        tfTelefono.setBounds(60, 500, 300, 40);
+        tfTelefono.setBounds(60, 520, 300, 40);
         tfTelefono.setFont(custom);
         tfTelefono.setBorder(new LineBorder(Color.BLACK, 2, false));
         tfTelefono.addMouseListener(new MouseAdapter() {
@@ -310,7 +311,7 @@ public class registerPatientForm extends JPanelGradient {
         this.add(sTelefono);
 
         lbCorreo = new JLabel("Correo:");
-        lbCorreo.setBounds(60, 540, 400, 30);
+        lbCorreo.setBounds(60, 560, 400, 30);
         lbCorreo.setForeground(Color.white);
         lbCorreo.setFont(custom);
         this.add(lbCorreo);
@@ -318,7 +319,7 @@ public class registerPatientForm extends JPanelGradient {
         tfCorreo = new JTextField();
         tfCorreo.setText("Correo");
         tfCorreo.setForeground(Color.GRAY);
-        tfCorreo.setBounds(60, 570, 300, 40);
+        tfCorreo.setBounds(60, 590, 300, 40);
         tfCorreo.setFont(custom);
         tfCorreo.setBorder(new LineBorder(Color.BLACK, 2, false));
         tfCorreo.addMouseListener(new MouseAdapter() {
@@ -402,4 +403,5 @@ public class registerPatientForm extends JPanelGradient {
         }
 
     }
+
 }

@@ -50,7 +50,7 @@ public class clinicPanelAdmin extends JPanelRound {
         regresar.add(regresarLabel);
         this.add(regresar);
 
-        welcomeLabel = new JLabel(">Bienvenido<");
+        welcomeLabel = new JLabel(">Administrador<");
         welcomeLabel.setBounds(10, 150, 600, 100);
         welcomeLabel.setFont(fuenteCustom);
         welcomeLabel.setForeground(new Color(4, 81, 105));

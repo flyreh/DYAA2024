@@ -2,7 +2,7 @@ package dev.two.project.model;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
-public class AVLpatients  {
+public class AVLpatients {
 
     Patient raiz;
 

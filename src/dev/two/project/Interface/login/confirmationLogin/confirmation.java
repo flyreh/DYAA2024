@@ -23,7 +23,7 @@ public class confirmation extends JFrame {
 
         Font fuenteCustom = new Font("Arial", Font.PLAIN, 20);
         try {
-            fuenteCustom = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\resources\\fonts\\JosefinSans\\JosefinSans-Bold.ttf"));
+            fuenteCustom = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\resources\\font\\JosefinSans\\JosefinSans-Bold.ttf"));
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
         }

@@ -3,7 +3,6 @@ package dev.two.project.controller;
 import components.JPanelRound;
 import dev.two.project.Interface.FrameDark.FrameDark;
 import dev.two.project.Interface.MainWindow;
-import dev.two.project.Interface.login.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -74,12 +73,21 @@ public class controlPatient {
             public void mouseClicked(MouseEvent e) {
                 JPanelRound source = (JPanelRound) e.getSource();
                 if (source == mainWindow.mainPanel.mainPatient.patientOptions.showAppointments) {
+                    mainWindow.mainPanel.mainPatient.patientOptions.showAppointments.setBackground(new Color(96, 96, 96));
+                    mainWindow.mainPanel.mainPatient.patientOptions.newAppointment.setBackground(new Color(0, 0, 0));
+                    mainWindow.mainPanel.mainPatient.patientOptions.showHistory.setBackground(new Color(0, 0, 0));
                     mainWindow.mainPanel.mainPatient.mainPatientCard.cardLayout.show(mainWindow.mainPanel.mainPatient.mainPatientCard, "showAppointments");
                 }
                 if (source == mainWindow.mainPanel.mainPatient.patientOptions.newAppointment) {
+                    mainWindow.mainPanel.mainPatient.patientOptions.showAppointments.setBackground(new Color(0, 0, 0));
+                    mainWindow.mainPanel.mainPatient.patientOptions.newAppointment.setBackground(new Color(96, 96, 96));
+                    mainWindow.mainPanel.mainPatient.patientOptions.showHistory.setBackground(new Color(0, 0, 0));
                     mainWindow.mainPanel.mainPatient.mainPatientCard.cardLayout.show(mainWindow.mainPanel.mainPatient.mainPatientCard, "newAppointment");
                 }
                 if (source == mainWindow.mainPanel.mainPatient.patientOptions.showHistory) {
+                    mainWindow.mainPanel.mainPatient.patientOptions.showAppointments.setBackground(new Color(0, 0, 0));
+                    mainWindow.mainPanel.mainPatient.patientOptions.newAppointment.setBackground(new Color(0, 0, 0));
+                    mainWindow.mainPanel.mainPatient.patientOptions.showHistory.setBackground(new Color(96, 96, 96));
                     mainWindow.mainPanel.mainPatient.mainPatientCard.cardLayout.show(mainWindow.mainPanel.mainPatient.mainPatientCard, "showHistory");
                 }
                 if (source == mainWindow.mainPanel.mainPatient.patientOptions.SingOff) {
@@ -194,6 +202,7 @@ public class controlPatient {
             mainWindow.mainPanel.mainPatient.patientInfo.mail.setText(gestorPatient.getSesion().getCorreo());
             mainWindow.headerpanel.lbStatus.setText(">> Panel Principal Paciente");
             mainWindow.mainPanel.mainPatient.setVisible(true);
+            //actualizar tablas de citas y historial para el paciente que ha iniciado sesión.
         });
         timer.setRepeats(false);
         timer.start();
