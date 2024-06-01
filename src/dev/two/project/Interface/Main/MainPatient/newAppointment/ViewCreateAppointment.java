@@ -1,4 +1,4 @@
-package dev.two.project.Interface.Main.MainPatient;
+package dev.two.project.Interface.Main.MainPatient.newAppointment;
 
 import components.JPanelRound;
 
@@ -10,15 +10,16 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class showHistory extends JPanelRound {
+public class ViewCreateAppointment extends JPanelRound {
     public JPanelRound jprInformationPanel;
     public JLabel jlNameArea;
     public JPanelRound createAppointment;
+    public JLabel jlCreateAppointment;
     public JTable doctorsTable;
     public JScrollPane scrollPaneTable;
     public JTextArea doctorsInfo;
 
-    public showHistory() {
+    public ViewCreateAppointment() {
         this.setLayout(null);
         this.setBounds(0, 0, 850, 620);
         this.setRoundTopLeft(50);
@@ -60,7 +61,8 @@ public class showHistory extends JPanelRound {
         jprInformationPanel.add(jlNameArea);
         this.add(jprInformationPanel);
 
-        String[] columnNames = {"Status", "Doctor", "H.Creación", "H.Atención"};
+
+        String[] columnNames = {"ID", "Nombre", "Apellido", "Teléfono"};
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
         doctorsTable = new JTable(model) {
@@ -99,6 +101,10 @@ public class showHistory extends JPanelRound {
         jprDoctorsInfo.add(doctorsInfo);
         this.add(jprDoctorsInfo);
 
+        jlCreateAppointment = new JLabel("Crear cita con este doctor");
+        jlCreateAppointment.setBounds(550, 540, 200, 20);
+        jlCreateAppointment.setFont(custom);
+
         createAppointment = new JPanelRound();
         createAppointment.setBounds(500, 530, 200, 40);
         createAppointment.setRoundBottomLeft(25);
@@ -106,7 +112,9 @@ public class showHistory extends JPanelRound {
         createAppointment.setRoundTopLeft(25);
         createAppointment.setRoundTopRight(25);
         createAppointment.setBackground(Color.WHITE);
+        createAppointment.add(jlCreateAppointment);
         this.add(createAppointment);
 
     }
+
 }

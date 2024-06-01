@@ -1,8 +1,15 @@
 package dev.two.project.model;
 
 public class medicalH {
-    Appointment cabeza;
+    private Appointment cabeza;
 
+
+    public medicalH(){
+        this.cabeza = null;
+    }
+    public Appointment getCabeza() {
+        return cabeza;
+    }
     public void eliminarInicio(){
         if(cabeza == null){
             System.out.println("la lista está vacía, paciente : " + cabeza.getPatient().getFirstname());

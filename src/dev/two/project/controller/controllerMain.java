@@ -171,7 +171,7 @@ public class controllerMain {
                     mainWindow.mainPanel.mainPanelOptions.setVisible(true);
                     mainWindow.headerpanel.lbStatus.setText(">> Main Menu");
                 } else if (source == mainWindow.mainPanel.mainLogin.loginAdmin.adminForm.jprLogin) {
-                    if (!ValidateLoginData()) {
+                    if (!ValidateLoginDataAdmin()) {
                         mainWindow.mainPanel.mainLogin.loginAdmin.adminForm.lbErrorLogin.setForeground(new Color(255, 0, 0));
                         mainWindow.mainPanel.mainLogin.loginAdmin.adminForm.lbErrorLogin.setText("Datos incorrectos");
                     } else {
@@ -192,6 +192,7 @@ public class controllerMain {
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.Ofthalmology.setBackground(new Color(0, 0, 0));
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.Traumatology.setBackground(new Color(0, 0, 0));
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.setSelectArea("Dermatology");
+                    mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.information.setText("Registrar un Doctor en el área de Dermatología");
                     System.out.println(mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.getSelectedArea());
                 }
                 if (source == mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.Ofthalmology) {
@@ -199,6 +200,7 @@ public class controllerMain {
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.Ofthalmology.setBackground(new Color(61, 61, 61));
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.Traumatology.setBackground(new Color(0, 0, 0));
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.setSelectArea("Ofthalmology");
+                    mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.information.setText("Registrar un Doctor en el área de Ofthalmología");
                     System.out.println(mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.getSelectedArea());
                 }
                 if (source == mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.Traumatology) {
@@ -206,9 +208,11 @@ public class controllerMain {
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.Ofthalmology.setBackground(new Color(0, 0, 0));
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.Traumatology.setBackground(new Color(61, 61, 61));
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.setSelectArea("Traumatology");
+                    mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.information.setText("Registrar un Doctor en el área de Traumatología");
                     System.out.println(mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.getSelectedArea());
                 }
                 if (source == mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.singOffAdmin) {
+                    mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.setSelectArea("");
                     mainWindow.mainPanel.mainRegister.setVisible(false);
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.setVisible(false);
                     mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.setVisible(false);
@@ -228,7 +232,7 @@ public class controllerMain {
         ListenerLoginAdmin(mouseAdapterLoginAdmin);
         ListenerOptionsAdmin(mouseAdapterOptionsAdmin);
     }
-    public boolean ValidateLoginData() {
+    public boolean ValidateLoginDataAdmin() {
         if (mainWindow.mainPanel.mainLogin.loginAdmin.adminForm.tfUsuario.getText().isEmpty() ||
                 mainWindow.mainPanel.mainLogin.loginAdmin.adminForm.tfUsuario.getText().equals("Usuario")) {
             return false;

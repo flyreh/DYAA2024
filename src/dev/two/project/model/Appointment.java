@@ -1,5 +1,7 @@
 package dev.two.project.model;
 
+import java.util.Date;
+
 public class Appointment extends Nodo {
 
     public enum Status {
@@ -11,10 +13,28 @@ public class Appointment extends Nodo {
     private String description;
     private Doctor doctor;
     private Patient patient;
+    private Date CreationTime;
+    private Date CreationAttention;
 
     public Appointment(String description){
         this.description = description;
         this.status = Status.POR_ATENDER;
+    }
+
+    public Date getCreationTime() {
+        return CreationTime;
+    }
+
+    public void setCreationTime(Date CreationTime) {
+        this.CreationTime = CreationTime;
+    }
+
+    public Date getCreationAttention() {
+        return CreationAttention;
+    }
+
+    public void setCreationAttention(Date CreationAttention) {
+        this.CreationAttention = CreationAttention;
     }
 
     public String getDescription() {

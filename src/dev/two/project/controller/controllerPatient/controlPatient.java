@@ -1,4 +1,4 @@
-package dev.two.project.controller;
+package dev.two.project.controller.controllerPatient;
 
 import components.JPanelRound;
 import dev.two.project.Interface.FrameDark.FrameDark;
@@ -10,10 +10,11 @@ import java.util.Objects;
 
 import dev.two.project.Interface.login.confirmationLogin.confirmation;
 import dev.two.project.controller.gestor.*;
+import dev.two.project.model.Appointment;
 import dev.two.project.model.Patient;
 
-import javax.crypto.CipherInputStream;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class controlPatient {
 
@@ -76,6 +77,7 @@ public class controlPatient {
                     mainWindow.mainPanel.mainPatient.patientOptions.showAppointments.setBackground(new Color(96, 96, 96));
                     mainWindow.mainPanel.mainPatient.patientOptions.newAppointment.setBackground(new Color(0, 0, 0));
                     mainWindow.mainPanel.mainPatient.patientOptions.showHistory.setBackground(new Color(0, 0, 0));
+                    ActTableAppointments(gestorPatient.getSesion());
                     mainWindow.mainPanel.mainPatient.mainPatientCard.cardLayout.show(mainWindow.mainPanel.mainPatient.mainPatientCard, "showAppointments");
                 }
                 if (source == mainWindow.mainPanel.mainPatient.patientOptions.newAppointment) {
@@ -88,12 +90,31 @@ public class controlPatient {
                     mainWindow.mainPanel.mainPatient.patientOptions.showAppointments.setBackground(new Color(0, 0, 0));
                     mainWindow.mainPanel.mainPatient.patientOptions.newAppointment.setBackground(new Color(0, 0, 0));
                     mainWindow.mainPanel.mainPatient.patientOptions.showHistory.setBackground(new Color(96, 96, 96));
+                    ActTableHistorial(gestorPatient.getSesion());
                     mainWindow.mainPanel.mainPatient.mainPatientCard.cardLayout.show(mainWindow.mainPanel.mainPatient.mainPatientCard, "showHistory");
                 }
                 if (source == mainWindow.mainPanel.mainPatient.patientOptions.SingOff) {
                     SignOff();
                 }
             }
+        };
+        MouseAdapter newAppointmentAreas = new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent evt){
+                JPanelRound source = (JPanelRound) evt.getSource();
+                source.setBackground(new Color(61, 61, 61));
+            }
+            @Override
+            public void mouseExited(MouseEvent evt){
+                JPanelRound source = (JPanelRound) evt.getSource();
+                source.setBackground(new Color(0, 0, 0));
+            }
+            @Override
+            public void mouseClicked(MouseEvent evt){
+                JPanelRound source = (JPanelRound) evt.getSource();
+
+            }
+
         };
         ListenerMainPatientOptions(MainPatientOptions);
         ListenerInitSessionPatient(initSessionPatient);
@@ -202,12 +223,43 @@ public class controlPatient {
             mainWindow.mainPanel.mainPatient.patientInfo.mail.setText(gestorPatient.getSesion().getCorreo());
             mainWindow.headerpanel.lbStatus.setText(">> Panel Principal Paciente");
             mainWindow.mainPanel.mainPatient.setVisible(true);
-            //actualizar tablas de citas y historial para el paciente que ha iniciado sesión.
+            mainWindow.mainPanel.mainPatient.mainPatientCard.cardLayout.show(mainWindow.mainPanel.mainPatient.mainPatientCard, "showAppointments");
+            //actualizar - llenar tablas de citas sacadas e historial para el paciente que ha iniciado sesión.
+            ActTableAppointments(gestorPatient.getSesion());
+            ActTableHistorial(gestorPatient.getSesion());
         });
         timer.setRepeats(false);
         timer.start();
     }
 
+    public void ActTableAppointments(Patient patient){
+        DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsTable.getModel();
+        model.setRowCount(0);
+
+        for (int i = 0; i < patient.getQueueAppointments().getSize(); i++) {
+            Appointment appointment = (Appointment) patient.getQueueAppointments().get(i);
+            Object[] row = new Object[4];
+            row[0] = appointment.getStatus();
+            row[1] = appointment.getDoctor().getLastName();
+            row[2] = appointment.getCreationTime();
+            row[3] = appointment.getStatus();
+            model.addRow(row);
+        }
+    }
+    public void ActTableHistorial(Patient patient){
+        DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.doctorsTable.getModel();
+        model.setRowCount(0);
+        Appointment appointment = patient.getMedicalHistory().getCabeza();
+        while (appointment != null) {
+            Object[] row = new Object[4];
+            row[0] = appointment.getStatus();
+            row[1] = appointment.getDoctor().getLastName();
+            row[2] = appointment.getCreationTime();
+            row[3] = appointment.getStatus();
+            model.addRow(row);
+            appointment = (Appointment) appointment.next;
+        }
+    }
     public void clearRegisterForm() {
         mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfFirstName.setText("");
         mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfSecondName.setText("");
@@ -219,7 +271,6 @@ public class controlPatient {
         mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfTelefono.setText("");
         mainWindow.mainPanel.mainRegister.registerPanelPatient.registerPatientForm.tfCorreo.setText("");
     }
-
     public void SignOff() {
         gestorPatient.setSesion(null);
         mainWindow.mainPanel.mainPatient.setVisible(false);

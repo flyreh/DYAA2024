@@ -49,7 +49,7 @@ public class gestorOfta {
         public static int returnIdDoctorOfta(String primerNombre, String password) {
                 ArrayList<String> almacen = new ArrayList<>();
                 try {
-                        FileManager.leerArchivo("patientsOfta.txt", almacen);
+                        FileManager.leerArchivo("doctorsOfta.txt", almacen);
                 } catch (IOException e) {
                         e.printStackTrace();
                 }

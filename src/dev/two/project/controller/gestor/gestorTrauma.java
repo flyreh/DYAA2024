@@ -50,7 +50,7 @@ public class gestorTrauma {
         public static int returnIdDoctorTrauma(String primerNombre, String password) {
                 ArrayList<String> almacen = new ArrayList<>();
                 try {
-                        FileManager.leerArchivo("patientsTrauma.txt", almacen);
+                        FileManager.leerArchivo("doctorsTrauma.txt", almacen);
                 } catch (IOException e) {
                         e.printStackTrace();
                 }

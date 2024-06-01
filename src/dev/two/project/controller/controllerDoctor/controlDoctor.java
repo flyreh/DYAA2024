@@ -1,17 +1,15 @@
-package dev.two.project.controller;
+package dev.two.project.controller.controllerDoctor;
 
 import components.JPanelRound;
 import dev.two.project.Interface.MainWindow;
-import dev.two.project.controller.gestor.gestorPatient;
 import dev.two.project.controller.gestor.*;
 import dev.two.project.model.Doctor;
 import dev.two.project.model.MedicalAreas.Dermatology;
 import dev.two.project.model.MedicalAreas.Oftalmologia;
-import dev.two.project.model.Patient;
 
-import javax.print.Doc;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Objects;
 
 public class controlDoctor {
@@ -77,11 +75,92 @@ public class controlDoctor {
                 }
             }
         };
+        MouseAdapter initSessionDoctor = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JPanelRound source = (JPanelRound) e.getSource();
+                if (source == mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.jprLogin) {
+                    System.out.println("login doctor presionado");
+                    if (!ValidateLoginData()) {
+                        mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.lbErrorLogin.setForeground(new Color(255, 0, 0));
+                        mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.lbErrorLogin.setText("Datos incorrectos");
+                    } else {
+                        InitSessionDoctor(mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.tfUsuario.getText(),
+                                String.valueOf(mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.pfContrasenia.getPassword()));
+
+                    }
+
+                }
+            }
+        };
+        ListenerInitSessionDoctor(initSessionDoctor);
         ListenerRegisterDoctor(DoctorRegistro);
 
     }
+
+    public void ListenerInitSessionDoctor(MouseAdapter listener) {
+        mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.jprLogin.addMouseListener(listener);
+    }
     public void ListenerRegisterDoctor(MouseAdapter listener) {
         mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorRegisterForm.jprLogin.addMouseListener(listener);
+    }
+
+    public void InitSessionDoctor(String primerNombre, String password) {
+        String specialty = verifyAuthDoctors(primerNombre, password);
+        if (specialty == null) {
+            mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.lbErrorLogin.setForeground(new Color(255, 0, 0));
+            mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.lbErrorLogin.setText("Usuario no encontrado");
+        } else {
+            Doctor doctor = null;
+            int id = 0;
+            switch (specialty) {
+                case "Dermatology":
+                    id = gestorDerma.returnIdDoctorDerma(primerNombre, password);
+                    doctor = gestorDerma.searchDoctorDermaTree(id);
+                    break;
+                case "Ofthalmology":
+                    id = gestorOfta.returnIdDoctorOfta(primerNombre, password);
+                    doctor = gestorOfta.searchDoctorOftaTree(id);
+                    break;
+                case "Traumatology":
+                    id = gestorTrauma.returnIdDoctorTrauma(primerNombre, password);
+                    doctor = gestorTrauma.searchDoctorTraumaTree(id);
+                    break;
+            }
+            if (doctor != null) {
+                gestorDoctor.setSesion(doctor);
+                mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.lbErrorLogin.setForeground(new Color(3, 253, 53));
+                mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.lbErrorLogin.setText(gestorDoctor.getSesion().getFirstname());
+                completeDoctorInfo();
+            }
+        }
+    }
+
+    public void completeDoctorInfo(){
+
+
+    }
+    public String verifyAuthDoctors(String primerNombre, String password) {
+        if (gestorDerma.SearchDoctorDermaFile(primerNombre, password)) {
+            return "Dermatology";
+        } else if (gestorOfta.SearchDoctorOftaFile(primerNombre, password)) {
+            return "Ofthalmology";
+        } else if (gestorTrauma.SearchDoctorTraumaFile(primerNombre, password)) {
+            return "Traumatology";
+        }
+        return null;
+    }
+
+    public boolean ValidateLoginData() {
+        if (mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.tfUsuario.getText().isEmpty() ||
+                mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.tfUsuario.getText().equals("Usuario")) {
+            return false;
+        }
+        if ((String.valueOf(mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.pfContrasenia.getPassword()).isEmpty() ||
+                String.valueOf(mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.pfContrasenia.getPassword()).equals("********"))) {
+            return false;
+        }
+        return true;
     }
 
     public void AddPatientTreeDerma(String primerNombre, String segundoNombre

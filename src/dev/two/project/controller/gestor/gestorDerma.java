@@ -50,7 +50,7 @@ public class gestorDerma {
     public static int returnIdDoctorDerma(String primerNombre, String password) {
         ArrayList<String> almacen = new ArrayList<>();
         try {
-            FileManager.leerArchivo("patientsDerma.txt", almacen);
+            FileManager.leerArchivo("doctorsDerma.txt", almacen);
         } catch (IOException e) {
             e.printStackTrace();
         }

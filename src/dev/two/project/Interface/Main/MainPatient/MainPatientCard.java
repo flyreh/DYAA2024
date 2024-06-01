@@ -1,16 +1,16 @@
 package dev.two.project.Interface.Main.MainPatient;
 
 import components.JPanelRound;
+import dev.two.project.Interface.Main.MainPatient.newAppointment.newAppointment;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class MainPatientCard extends JPanelRound {
+public class MainPatientCard extends JPanelRound{
 
     public CardLayout cardLayout;
-    private showAppointments showAppointments;
-    private showHistory showHistory;
-    private newAppointment newAppointment;
+    public showAppointments showAppointments;
+    public showHistory showHistory;
+    public  newAppointment newAppointment;
 
     public MainPatientCard(){
         this.setBounds(300, 80, 850, 620);

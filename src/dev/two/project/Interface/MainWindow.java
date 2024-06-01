@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import dev.two.project.Interface.Main.MainInterface.*;
 import dev.two.project.controller.*;
+import dev.two.project.controller.controllerDoctor.controlDoctor;
+import dev.two.project.controller.controllerPatient.controlPatient;
 
 public class MainWindow extends JFrame {
 
