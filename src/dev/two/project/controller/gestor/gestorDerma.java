@@ -12,9 +12,6 @@ public class gestorDerma {
     
     public static AVLDerma DoctorsDerma = new AVLDerma();
 
-
-
-
     public static void WriteDoctorDermaFile(Doctor doctor) {
         try {
             FileManager.escribirArchivo("doctorsDerma.txt", String.valueOf(doctor.getId()), true);

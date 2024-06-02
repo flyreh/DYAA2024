@@ -1,6 +1,7 @@
 package dev.two.project.Interface.Main.MainPatient.newAppointment;
 
 import components.JPanelRound;
+import dev.two.project.Interface.login.confirmation.AppointmentForm.AppointmentForm;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -37,7 +38,7 @@ public class ViewCreateAppointment extends JPanelRound {
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
         }
-        custom = custom.deriveFont(Font.PLAIN, 18);
+        custom = custom.deriveFont(Font.PLAIN, 15);
 
         Font custom2 = new Font("Arial", Font.PLAIN, 15);
         try {
@@ -102,11 +103,11 @@ public class ViewCreateAppointment extends JPanelRound {
         this.add(jprDoctorsInfo);
 
         jlCreateAppointment = new JLabel("Crear cita con este doctor");
-        jlCreateAppointment.setBounds(550, 540, 200, 20);
+        jlCreateAppointment.setBounds(550, 540, 220, 20);
         jlCreateAppointment.setFont(custom);
 
         createAppointment = new JPanelRound();
-        createAppointment.setBounds(500, 530, 200, 40);
+        createAppointment.setBounds(500, 530, 220, 40);
         createAppointment.setRoundBottomLeft(25);
         createAppointment.setRoundBottomRight(25);
         createAppointment.setRoundTopLeft(25);

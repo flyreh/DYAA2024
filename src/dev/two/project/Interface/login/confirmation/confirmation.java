@@ -1,4 +1,4 @@
-package dev.two.project.Interface.login.confirmationLogin;
+package dev.two.project.Interface.login.confirmation;
 
 import components.JPanelRound;
 

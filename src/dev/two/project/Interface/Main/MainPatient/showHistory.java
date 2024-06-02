@@ -46,9 +46,11 @@ public class showHistory extends JPanelRound {
         }
         custom2 = custom2.deriveFont(Font.PLAIN, 15);
 
-        jlNameArea = new JLabel();
-        jlNameArea.setBounds(0, 0, 150, 40);
+        jlNameArea = new JLabel(">> HISTORIAL DE CITAS <<");
+        jlNameArea.setBounds(0, 0, 200, 40);
         jlNameArea.setForeground(Color.BLACK);
+        jlNameArea.setFont(custom);
+        jlNameArea.setHorizontalAlignment(SwingConstants.CENTER);
 
         jprInformationPanel = new JPanelRound();
         jprInformationPanel.setBounds(200, 30, 400, 40);
@@ -60,7 +62,7 @@ public class showHistory extends JPanelRound {
         jprInformationPanel.add(jlNameArea);
         this.add(jprInformationPanel);
 
-        String[] columnNames = {"Status", "Doctor", "H.Creación", "H.Atención"};
+        String[] columnNames = {"ID Cita","Status", "Doctor", "H.Creación", "H.Atención"};
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
         doctorsTable = new JTable(model) {
@@ -78,11 +80,11 @@ public class showHistory extends JPanelRound {
         doctorsTable.getTableHeader().setBackground(new Color(44, 42, 42));
         doctorsTable.getTableHeader().setForeground(Color.WHITE);
         scrollPaneTable = new JScrollPane(doctorsTable);
-        scrollPaneTable.setBounds(50, 100, 400, 300);
+        scrollPaneTable.setBounds(50, 250, 400, 300);
         this.add(scrollPaneTable);
 
         JPanelRound jprDoctorsInfo = new JPanelRound();
-        jprDoctorsInfo.setBounds(500, 100, 250, 300);
+        jprDoctorsInfo.setBounds(500, 250, 250, 300);
         jprDoctorsInfo.setBackground(Color.BLACK);
         jprDoctorsInfo.setRoundBottomLeft(25);
         jprDoctorsInfo.setRoundBottomRight(25);
@@ -90,7 +92,7 @@ public class showHistory extends JPanelRound {
         jprDoctorsInfo.setRoundTopRight(25);
 
         doctorsInfo = new JTextArea();
-        doctorsInfo.setBounds(0, 0, 200, 400);
+        doctorsInfo.setBounds(0, 0, 250, 300);
         doctorsInfo.setFont(custom2);
         doctorsInfo.setBackground(Color.BLACK);
         doctorsInfo.setForeground(Color.WHITE);
@@ -100,12 +102,13 @@ public class showHistory extends JPanelRound {
         this.add(jprDoctorsInfo);
 
         createAppointment = new JPanelRound();
-        createAppointment.setBounds(500, 530, 200, 40);
+        createAppointment.setBounds(50, 205, 200, 40);
         createAppointment.setRoundBottomLeft(25);
         createAppointment.setRoundBottomRight(25);
         createAppointment.setRoundTopLeft(25);
         createAppointment.setRoundTopRight(25);
         createAppointment.setBackground(Color.WHITE);
+        createAppointment.add(new JLabel("Ordenar Alfabeticamente"));
         this.add(createAppointment);
 
     }

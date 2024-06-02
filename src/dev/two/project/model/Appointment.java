@@ -1,6 +1,9 @@
 package dev.two.project.model;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Appointment extends Nodo {
 
@@ -8,41 +11,70 @@ public class Appointment extends Nodo {
         POR_ATENDER,
         ATENDIDA
     }
-
+    private final int id;
+    private static int idCounter = 10;
     private Status status;
-    private String description;
+    private String Initialdescription;
+    private String Doctordescription;
     private Doctor doctor;
     private Patient patient;
-    private Date CreationTime;
-    private Date CreationAttention;
+    private LocalDate CreationTimeDay;
+    private LocalTime CreationTime;
+    private LocalDate CreationAttentionDay;
+    private LocalTime CreationAttentionTime;
 
-    public Appointment(String description){
-        this.description = description;
+    public Appointment(String description, LocalDate CreationTimeDay,LocalTime CreationTime, Doctor doctor, Patient patient){
+        this.id = ++idCounter;
+        this.doctor = doctor;
+        this.patient = patient;
+        this.CreationTimeDay = CreationTimeDay;
+        this.CreationTime = CreationTime;
+        this.Initialdescription = description;
         this.status = Status.POR_ATENDER;
     }
 
-    public Date getCreationTime() {
+    public int getId() {
+        return id;
+    }
+
+    public LocalTime getCreationTime() {
         return CreationTime;
     }
 
-    public void setCreationTime(Date CreationTime) {
+    public void setCreationTime(LocalTime CreationTime) {
         this.CreationTime = CreationTime;
     }
 
-    public Date getCreationAttention() {
-        return CreationAttention;
+    public LocalDate getCreationTimeDay() {
+        return CreationTimeDay;
     }
 
-    public void setCreationAttention(Date CreationAttention) {
-        this.CreationAttention = CreationAttention;
+    public void setCreationTimeDay(LocalDate CreationTimeDay) {
+        this.CreationTimeDay = CreationTimeDay;
     }
 
-    public String getDescription() {
-        return description;
+    public LocalTime getCreationAttention() {
+        return CreationAttentionTime;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCreationAttention(LocalTime CreationAttention) {
+        this.CreationAttentionTime = CreationAttention;
+    }
+
+    public LocalDate getCreationAttentionDay() {
+        return CreationAttentionDay;
+    }
+
+    public void setCreationAttentionDay(LocalDate CreationAttentionDay) {
+        this.CreationAttentionDay = CreationAttentionDay;
+    }
+
+    public String getDoctordescription() {
+        return Doctordescription;
+    }
+
+    public void setDoctordescription(String description) {
+        this.Doctordescription = description;
     }
 
     public Doctor getDoctor() {
@@ -68,4 +100,5 @@ public class Appointment extends Nodo {
     public void setStatus(Status status) {
         this.status = status;
     }
+
 }

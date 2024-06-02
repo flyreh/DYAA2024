@@ -3,8 +3,7 @@ package dev.two.project.controller;
 import components.JPanelRound;
 import dev.two.project.Interface.FrameDark.FrameDark;
 import dev.two.project.Interface.MainWindow;
-import dev.two.project.Interface.login.confirmationLogin.confirmation;
-import dev.two.project.controller.gestor.gestorPatient;
+import dev.two.project.Interface.login.confirmation.confirmation;
 import dev.two.project.controller.gestor.gestorAdmin;
 
 import javax.swing.*;

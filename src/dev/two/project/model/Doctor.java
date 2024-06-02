@@ -3,6 +3,8 @@ package dev.two.project.model;
 import dev.two.project.model.MedicalAreas.Area;
 import dev.two.project.model.MedicalAreas.Dermatology;
 
+import java.time.format.DateTimeFormatter;
+
 public class Doctor extends NodoAVL {
     private static int idCounter = 50;
     private int id;
@@ -30,6 +32,46 @@ public class Doctor extends NodoAVL {
         this.estadoCivil = estadoCivil;
         this.telefono = telefono;
         this.correo = correo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     public int getId(){
@@ -82,5 +124,19 @@ public class Doctor extends NodoAVL {
 
     public void setQueueAppointments(Queue queueAppointments) {
         this.queueAppointments = queueAppointments;
+    }
+    @Override
+    public String toString() {
+        String Doctor = "";
+        Doctor += "Estado:  " +"Activo ✓ "+ "\n";
+        Doctor += "Primer Nombre: " + this.firstName + "\n";
+        Doctor += "Segundo Nombre: " + this.secondName + "\n";
+        Doctor += "Apellido: " + this.lastName + "\n";
+        Doctor += "Género:    " + this.genero + "\n";
+        Doctor += "Teléfono:  " + this.telefono + "\n";
+        Doctor += "Correo Dr: " + this.correo + "\n";
+        Doctor += "Especialidad: " + this.specialty.getClass().getSimpleName() + "\n";
+
+        return Doctor;
     }
 }

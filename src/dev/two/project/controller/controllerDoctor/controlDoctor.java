@@ -135,8 +135,8 @@ public class controlDoctor {
             }
         }
     }
-
     public void completeDoctorInfo(){
+        //la sesion ya está seteada, mostrar la tabla con citas del doctor.
 
 
     }
@@ -196,7 +196,6 @@ public class controlDoctor {
             clearRegisterForm();
         }
     }
-
     public void AddPatientTreeTrauma(String primerNombre, String segundoNombre
             , String apellido, String password, int edad
             , String genero, String estadoCivil, String telefono, String correo) throws Exception {
@@ -217,7 +216,6 @@ public class controlDoctor {
     public boolean verifyAuthDerma(String primerNombre, String password) {
         return !gestorDerma.SearchDoctorDermaFile(primerNombre, password);
     }
-
     public boolean verifyAuthOfta(String primerNombre, String password) {
         return !gestorOfta.SearchDoctorOftaFile(primerNombre, password);
     }
@@ -225,7 +223,6 @@ public class controlDoctor {
     public boolean verifyAuthTrauma(String primerNombre, String password) {
         return !gestorTrauma.SearchDoctorTraumaFile(primerNombre, password);
     }
-
 
     public Boolean ValidateRegisterData() {
         if (mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorRegisterForm.tfFirstName.getText().isEmpty() ||
