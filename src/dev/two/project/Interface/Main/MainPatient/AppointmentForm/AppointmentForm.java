@@ -17,7 +17,7 @@ public class AppointmentForm extends JFrame {
         this.setLayout(null);
         this.setUndecorated(true);
         this.setBackground(new Color(0, 0, 0, 0));
-        this.setSize(785, 539);
+        this.setSize(450, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("Creación de Cita");
@@ -27,24 +27,23 @@ public class AppointmentForm extends JFrame {
 
     public void initComponents() {
         appointmentFormBack = new AppointmentFormBack();
-        appointmentFormBack.setBounds(5, 5, 775, 529);
         this.add(appointmentFormBack);
 
         appointmentFormBorder = new AppointmentFormBorder();
         this.add(appointmentFormBorder);
 
         appointmentFormTitle = new AppointmentFormTitle();
-        appointmentFormTitle.setBounds(60, 30, 700, 110);
+        appointmentFormTitle.setBounds(8, 30, 445, 40);
         appointmentFormBack.add(appointmentFormTitle);
 
         Color color_estilo = new Color(0, 120, 145);
         JPanel panel_estilo = new JPanel();
         panel_estilo.setBackground(color_estilo);
-        panel_estilo.setBounds(0, 190, 1500, 60);
+        panel_estilo.setBounds(0, 190, 445, 60);
         appointmentFormBack.add(panel_estilo);
 
         appointmentForminputDesc = new AppointmentForminputDesc();
-        appointmentForminputDesc.setBounds(20, 270, 450, 275);
+        appointmentForminputDesc.setBounds(20, 270, 410, 275);
         appointmentFormBack.add(appointmentForminputDesc);
     }
 

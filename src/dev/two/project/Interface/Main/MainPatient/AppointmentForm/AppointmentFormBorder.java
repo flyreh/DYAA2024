@@ -7,7 +7,7 @@ import java.awt.*;
 public class AppointmentFormBorder extends JPanelRound {
 
     public AppointmentFormBorder() {
-        this.setBounds(0, 0, 785, 539);
+        this.setBounds(0, 0, 453, 600);
         this.setBackground(Color.WHITE);
         this.setRoundBottomLeft(50);
         this.setRoundBottomRight(50);

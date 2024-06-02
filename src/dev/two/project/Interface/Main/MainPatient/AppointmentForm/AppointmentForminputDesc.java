@@ -37,23 +37,22 @@ public class AppointmentForminputDesc extends JPanel {
 
 
         etiqueta_direccionObra = new JLabel("Descripción: ");
-        etiqueta_direccionObra.setBounds(25, 110, 250, 20);
+        etiqueta_direccionObra.setBounds(25, 110, 80, 20);
         etiqueta_direccionObra.setForeground(Color.WHITE);
         etiqueta_direccionObra.setFont(mifuentepanel);
         campo_direccionObra = new JTextArea();
         campo_direccionObra.setFont(mifuentepanel.deriveFont(Font.PLAIN, 12));
-        campo_direccionObra.setBounds(185, 110, 255, 80);
+        campo_direccionObra.setBounds(110, 90, 250, 80);
         campo_direccionObra.setBorder(new LineBorder(Color.WHITE, 5, false));
 
         campoDesc = new JPanelRound();
-        campoDesc.setBounds(185, 110, 260, 85);
+        campoDesc.setBounds(110, 90, 260, 90);
         campoDesc.setBackground(new Color(255, 255, 255));
         campoDesc.setRoundBottomLeft(20);
         campoDesc.setRoundBottomRight(20);
         campoDesc.setRoundTopLeft(20);
         campoDesc.setRoundTopRight(20);
         campoDesc.add(campo_direccionObra);
-        this.add(campoDesc);
 
         Color micolorBoton = new Color(110, 190, 170);
         Aceptar = new JButton("Crear");
@@ -61,7 +60,7 @@ public class AppointmentForminputDesc extends JPanel {
         Aceptar.setBackground(micolorBoton);
         Aceptar.setForeground(Color.WHITE);
         Aceptar.setBorder(new LineBorder(micolorBoton, 3, true));
-        Aceptar.setFont(mifuentepanel.deriveFont(Font.PLAIN, 12));
+        Aceptar.setFont(mifuentepanel.deriveFont(Font.PLAIN, 15));
         ImageIcon aceptar = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\gif\\aceptar.png");
         Aceptar.setIcon(aceptar);
 
@@ -71,13 +70,12 @@ public class AppointmentForminputDesc extends JPanel {
         Cancelar.setBackground(micolorBoton_2);
         Cancelar.setForeground(Color.WHITE);
         Cancelar.setBorder(new LineBorder(micolorBoton_2, 5, true));
-        Cancelar.setFont(mifuentepanel.deriveFont(Font.PLAIN, 12));
+        Cancelar.setFont(mifuentepanel.deriveFont(Font.PLAIN, 15));
         ImageIcon mostrar = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\gif\\MostrarDetalles.png");
         Cancelar.setIcon(mostrar);
 
+        this.add(campoDesc);
         this.add(etiqueta_direccionObra);
-        this.add(campo_direccionObra);
-
         this.add(Aceptar);
         this.add(Cancelar);
 

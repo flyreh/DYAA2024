@@ -9,13 +9,15 @@ public class AppointmentFormBack extends JPanelRound {
     private ImageIcon imagen;
 
     public AppointmentFormBack() {
-        this.setBounds(0, 0, 800, 600);
-        this.setLayout(null);//Para colocar los componentes manualmente
+        this.setBounds(2, 5, 445, 590);
+        this.setLayout(null);
         this.setBackground(new Color(0, 0, 0));
         this.setRoundBottomLeft(50);
         this.setRoundBottomRight(50);
         this.setRoundTopLeft(50);
         this.setRoundTopRight(50);
+        this.setAlignmentX(CENTER_ALIGNMENT);
+        this.setAlignmentY(CENTER_ALIGNMENT);
         initComponents();
     }
 
