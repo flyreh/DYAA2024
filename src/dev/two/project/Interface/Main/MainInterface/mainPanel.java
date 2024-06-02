@@ -3,6 +3,7 @@ package dev.two.project.Interface.Main.MainInterface;
 import javax.swing.*;
 import java.awt.*;
 
+import dev.two.project.Interface.Main.MainDoctor.MainDoctor;
 import dev.two.project.Interface.Main.MainPatient.MainPatient;
 import dev.two.project.Interface.Register.RegisterPatient.RegisterLogoClinic;
 import dev.two.project.Interface.Register.RegisterPatient.RegisterPanelPatient;
@@ -16,7 +17,7 @@ public class mainPanel extends JPanel{
     public mainPanelOptions mainPanelOptions;
     public mainLogin mainLogin;
     public MainPatient mainPatient;
-    //public mainDoctor mainDoctor;
+    public MainDoctor mainDoctor;
 
     public mainRegister mainRegister;
 
@@ -46,5 +47,8 @@ public class mainPanel extends JPanel{
         this.add(mainPatient);
         mainPatient.setVisible(false);
 
+        mainDoctor = new MainDoctor();
+        this.add(mainDoctor);
+        mainDoctor.setVisible(false);
     }
 }

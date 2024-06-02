@@ -8,14 +8,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.Objects;
 
-import dev.two.project.Interface.login.confirmation.AppointmentForm.AppointmentForm;
-import dev.two.project.Interface.login.confirmation.AppointmentForm.AppointmentFormTitle;
-import dev.two.project.Interface.login.confirmation.AppointmentForm.AppointmentForminputDesc;
+import dev.two.project.Interface.Main.MainPatient.AppointmentForm.AppointmentForm;
+import dev.two.project.Interface.Main.MainPatient.AppointmentForm.AppointmentForminputDesc;
 import dev.two.project.Interface.login.confirmation.confirmation;
 import dev.two.project.controller.gestor.*;
 import dev.two.project.model.Appointment;
@@ -28,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 public class controlPatient {
 
     public MainWindow mainWindow;
-    public JFrame currentFrame;
+    public FrameDark currentFrame;
     public AppointmentForm appForm = new AppointmentForm();
 
     public controlPatient(MainWindow mainWindow) {
@@ -159,6 +156,9 @@ public class controlPatient {
                 JPanelRound source = (JPanelRound) evt.getSource();
                 if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.createAppointment) {
                     currentFrame = new FrameDark();
+                    currentFrame.setSize(845, 615);
+                    currentFrame.paneldark.setSize(845, 615);
+
                     currentFrame.setLocationRelativeTo(mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment);
                     currentFrame.setVisible(true);
                     currentFrame.addMouseListener(new MouseAdapter() {
@@ -342,6 +342,8 @@ public class controlPatient {
 
     public void completePatientInfo() {
         FrameDark fo = new FrameDark();
+        fo.setSize(1200, 800);
+        fo.paneldark.setSize(1200, 800);
         confirmation confirmation = new confirmation();
         fo.setLocationRelativeTo(mainWindow);
         fo.setVisible(true);
@@ -358,13 +360,14 @@ public class controlPatient {
             confirmation.dispose();
             mainWindow.mainPanel.mainLogin.setVisible(false);
             mainWindow.mainPanel.mainLogin.loginPatient.setVisible(false);
+
             mainWindow.mainPanel.mainPatient.patientInfo.Name.setText(gestorPatient.getSesion().getFirstname());
             mainWindow.mainPanel.mainPatient.patientInfo.SecondName.setText(gestorPatient.getSesion().getSecondName());
             mainWindow.mainPanel.mainPatient.patientInfo.mail.setText(gestorPatient.getSesion().getCorreo());
             mainWindow.headerpanel.lbStatus.setText(">> Panel Principal Paciente");
             mainWindow.mainPanel.mainPatient.setVisible(true);
             mainWindow.mainPanel.mainPatient.mainPatientCard.cardLayout.show(mainWindow.mainPanel.mainPatient.mainPatientCard, "showAppointments");
-            //actualizar - llenar tablas de citas sacadas e historial para el paciente que ha iniciado sesión.
+
             ActTableAppointments(gestorPatient.getSesion());
             ActTableHistorial(gestorPatient.getSesion());
         });
@@ -375,6 +378,8 @@ public class controlPatient {
     public void ActTableAppointments(Patient patient) {
         DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.doctorsTable.getModel();
         model.setRowCount(0);
+
+        mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.ActuallyAppointmentInfo.setText("");
 
         for (int i = 0; i < patient.getQueueAppointments().getSize(); i++) {
             Appointment appointment = (Appointment) patient.getQueueAppointments().get(i);
@@ -387,6 +392,12 @@ public class controlPatient {
             row[5] = appointment.getCreationTime();
             row[6] = appointment.getDoctor().getSpecialty().getClass().getSimpleName();
             model.addRow(row);
+        }
+        for (int i = 0; i < patient.getQueueAppointments().getSize(); i++) {
+            Appointment appointment = (Appointment) patient.getQueueAppointments().get(i);
+            if(appointment.getDoctor().getQueueAppointments().getFirst() == appointment){
+                mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.ActuallyAppointmentInfo.setText(appointment.toString());
+            }
         }
     }
 

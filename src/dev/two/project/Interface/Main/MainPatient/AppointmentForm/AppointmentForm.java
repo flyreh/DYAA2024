@@ -1,11 +1,7 @@
-package dev.two.project.Interface.login.confirmation.AppointmentForm;
-
-import components.JPanelRound;
+package dev.two.project.Interface.Main.MainPatient.AppointmentForm;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class AppointmentForm extends JFrame {
     public  AppointmentFormBack appointmentFormBack;

@@ -1,7 +1,6 @@
 package dev.two.project.Interface.Main.MainPatient.newAppointment;
 
 import components.JPanelRound;
-import dev.two.project.Interface.login.confirmation.AppointmentForm.AppointmentForm;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

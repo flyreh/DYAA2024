@@ -80,11 +80,11 @@ public class showHistory extends JPanelRound {
         doctorsTable.getTableHeader().setBackground(new Color(44, 42, 42));
         doctorsTable.getTableHeader().setForeground(Color.WHITE);
         scrollPaneTable = new JScrollPane(doctorsTable);
-        scrollPaneTable.setBounds(50, 250, 400, 300);
+        scrollPaneTable.setBounds(50, 250, 480, 300);
         this.add(scrollPaneTable);
 
         JPanelRound jprDoctorsInfo = new JPanelRound();
-        jprDoctorsInfo.setBounds(500, 250, 250, 300);
+        jprDoctorsInfo.setBounds(555, 250, 230, 300);
         jprDoctorsInfo.setBackground(Color.BLACK);
         jprDoctorsInfo.setRoundBottomLeft(25);
         jprDoctorsInfo.setRoundBottomRight(25);
@@ -102,7 +102,7 @@ public class showHistory extends JPanelRound {
         this.add(jprDoctorsInfo);
 
         createAppointment = new JPanelRound();
-        createAppointment.setBounds(50, 205, 200, 40);
+        createAppointment.setBounds(50, 200, 200, 40);
         createAppointment.setRoundBottomLeft(25);
         createAppointment.setRoundBottomRight(25);
         createAppointment.setRoundTopLeft(25);

@@ -1,4 +1,4 @@
-package dev.two.project.Interface.Main.MainPatient.AppointmentForm;
+package dev.two.project.Interface.Main.MainDoctor.AppointmentFormDoctor;
 
 import components.JPanelRound;
 
@@ -8,8 +8,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class AppointmentForminputDesc extends JPanel {
-
+public class DoctorForminputDesc extends JPanel {
     public JLabel etiqueta_direccionObra;
     public JPanelRound campoDesc;
     public static JTextArea campo_direccionObra;
@@ -17,7 +16,7 @@ public class AppointmentForminputDesc extends JPanel {
     public JButton Aceptar;
     public JButton Cancelar;
 
-    public AppointmentForminputDesc() {
+    public DoctorForminputDesc() {
         initComponents();
     }
 

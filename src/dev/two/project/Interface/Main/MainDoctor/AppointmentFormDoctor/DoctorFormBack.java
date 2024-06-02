@@ -1,14 +1,14 @@
-package dev.two.project.Interface.Main.MainPatient.AppointmentForm;
+package dev.two.project.Interface.Main.MainDoctor.AppointmentFormDoctor;
 
 import components.JPanelRound;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AppointmentFormBack extends JPanelRound {
+public class DoctorFormBack extends JPanelRound {
     private ImageIcon imagen;
 
-    public AppointmentFormBack() {
+    public DoctorFormBack() {
         this.setBounds(2, 5, 445, 590);
         this.setLayout(null);
         this.setBackground(new Color(0, 0, 0));

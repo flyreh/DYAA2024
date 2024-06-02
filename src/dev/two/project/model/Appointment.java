@@ -9,8 +9,10 @@ public class Appointment extends Nodo {
 
     public enum Status {
         POR_ATENDER,
-        ATENDIDA
+        ATENDIDA,
+        POSTERGADA,
     }
+
     private final int id;
     private static int idCounter = 10;
     private Status status;
@@ -23,7 +25,7 @@ public class Appointment extends Nodo {
     private LocalDate CreationAttentionDay;
     private LocalTime CreationAttentionTime;
 
-    public Appointment(String description, LocalDate CreationTimeDay,LocalTime CreationTime, Doctor doctor, Patient patient){
+    public Appointment(String description, LocalDate CreationTimeDay, LocalTime CreationTime, Doctor doctor, Patient patient) {
         this.id = ++idCounter;
         this.doctor = doctor;
         this.patient = patient;
@@ -99,6 +101,17 @@ public class Appointment extends Nodo {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        String Doctor = "";
+        Doctor += "Estado de Cita: " + this.getStatus() + "\n";
+        Doctor += "Nombre Paciente:  " + this.getPatient().getFirstname() + "\n";
+        Doctor += "Apellido Paciente: " + this.getPatient().getLastName() + "\n";
+        Doctor += "Especialidad: " + this.getDoctor().getSpecialty().getClass().getSimpleName() + "\n";
+        Doctor += "Descripcion: \n" + this.Initialdescription + "\n";
+        return Doctor;
     }
 
 }

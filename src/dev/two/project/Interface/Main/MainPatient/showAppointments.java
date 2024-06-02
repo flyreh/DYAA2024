@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class showAppointments extends JPanelRound {
     public JPanelRound jprInformationPanel;
     public JLabel jlNameArea;
     public JPanelRound ActuallyAppointment;
+    public JTextArea ActuallyAppointmentInfo;
     public JTable doctorsTable;
     public JScrollPane scrollPaneTable;
     public JTextArea doctorsInfo;
@@ -45,7 +47,7 @@ public class showAppointments extends JPanelRound {
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
         }
-        custom2 = custom2.deriveFont(Font.PLAIN, 12);
+        custom2 = custom2.deriveFont(Font.PLAIN, 13);
 
         jlNameArea = new JLabel("MUESTRA DE CITAS PENDIENTES");
         jlNameArea.setBounds(0, 0, 200, 40);
@@ -81,12 +83,24 @@ public class showAppointments extends JPanelRound {
         };
         doctorsTable.getTableHeader().setBackground(new Color(44, 42, 42));
         doctorsTable.getTableHeader().setForeground(Color.WHITE);
+        TableColumn column = doctorsTable.getColumnModel().getColumn(0); // Obtén la columna por su índice
+        column.setPreferredWidth(40);
+
+        TableColumn column1 = doctorsTable.getColumnModel().getColumn(2); // Obtén la columna por su índice
+        column1.setPreferredWidth(40);
+
+        TableColumn column2 = doctorsTable.getColumnModel().getColumn(4); // Obtén la columna por su índice
+        column2.setPreferredWidth(100);
+
+        TableColumn column3 = doctorsTable.getColumnModel().getColumn(5); // Obtén la columna por su índice
+        column3.setPreferredWidth(100);
+
         scrollPaneTable = new JScrollPane(doctorsTable);
-        scrollPaneTable.setBounds(20, 80, 600, 280);
+        scrollPaneTable.setBounds(15, 80, 620, 280);
         this.add(scrollPaneTable);
 
         JPanelRound jprDoctorsInfo = new JPanelRound();
-        jprDoctorsInfo.setBounds(630, 80, 200, 280);
+        jprDoctorsInfo.setBounds(640, 80, 200, 280);
         jprDoctorsInfo.setBackground(Color.BLACK);
         jprDoctorsInfo.setRoundBottomLeft(25);
         jprDoctorsInfo.setRoundBottomRight(25);
@@ -103,6 +117,16 @@ public class showAppointments extends JPanelRound {
         jprDoctorsInfo.add(doctorsInfo);
         this.add(jprDoctorsInfo);
 
+        ActuallyAppointmentInfo = new JTextArea();
+        ActuallyAppointmentInfo.setBounds(0, 0, 280, 180);
+        ActuallyAppointmentInfo.setFont(custom2);
+        ActuallyAppointmentInfo.setBackground(Color.WHITE);
+        ActuallyAppointmentInfo.setForeground(Color.BLACK);
+        ActuallyAppointmentInfo.setEditable(false);
+        ActuallyAppointmentInfo.setBorder(new LineBorder(Color.BLACK, 10, true));
+        ActuallyAppointmentInfo.setLineWrap(true);
+        ActuallyAppointmentInfo.setWrapStyleWord(true);
+
         ActuallyAppointment = new JPanelRound();
         ActuallyAppointment.setBounds(290, 400, 300, 200);
         ActuallyAppointment.setRoundBottomLeft(25);
@@ -110,6 +134,7 @@ public class showAppointments extends JPanelRound {
         ActuallyAppointment.setRoundTopLeft(25);
         ActuallyAppointment.setRoundTopRight(25);
         ActuallyAppointment.setBackground(Color.WHITE);
+        ActuallyAppointment.add(ActuallyAppointmentInfo);
         this.add(ActuallyAppointment);
 
     }

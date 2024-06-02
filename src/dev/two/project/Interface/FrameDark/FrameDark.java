@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class FrameDark  extends JFrame {
-    private PanelRoundDark paneldark;
+    public PanelRoundDark paneldark;
 
     public FrameDark(){
         this.setSize(1200,800);
