@@ -1,4 +1,6 @@
 package dev.two.project.model.MedicalAreas;
 
-public class Oftalmologia extends Area {
+import java.io.Serializable;
+
+public class Oftalmologia extends Area implements Serializable {
 }

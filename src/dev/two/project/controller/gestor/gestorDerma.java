@@ -12,6 +12,13 @@ public class gestorDerma {
     
     public static AVLDerma DoctorsDerma = new AVLDerma();
 
+    public gestorDerma(AVLDerma DoctorsDerma) {
+        gestorDerma.DoctorsDerma = DoctorsDerma;
+    }
+    public static AVLDerma getDoctorsDerma() {
+        return DoctorsDerma;
+    }
+
     public static void WriteDoctorDermaFile(Doctor doctor) {
         try {
             FileManager.escribirArchivo("doctorsDerma.txt", String.valueOf(doctor.getId()), true);

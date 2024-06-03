@@ -54,7 +54,7 @@ public class DoctorForminputDesc extends JPanel {
         campoDesc.add(campo_direccionObra);
 
         Color micolorBoton = new Color(110, 190, 170);
-        Aceptar = new JButton("Crear");
+        Aceptar = new JButton("ATENDER");
         Aceptar.setBounds(45, 200, 150, 45);
         Aceptar.setBackground(micolorBoton);
         Aceptar.setForeground(Color.WHITE);
@@ -64,7 +64,7 @@ public class DoctorForminputDesc extends JPanel {
         Aceptar.setIcon(aceptar);
 
         Color micolorBoton_2 = new Color(240, 30, 80);
-        Cancelar = new JButton("Cancelar");
+        Cancelar = new JButton("CANCELAR");
         Cancelar.setBounds(205, 200, 150, 45);
         Cancelar.setBackground(micolorBoton_2);
         Cancelar.setForeground(Color.WHITE);

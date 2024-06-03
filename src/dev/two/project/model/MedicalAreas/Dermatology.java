@@ -1,4 +1,6 @@
 package dev.two.project.model.MedicalAreas;
 
-public class Dermatology extends Area{
+import java.io.Serializable;
+
+public class Dermatology extends Area implements Serializable {
 }

@@ -1,13 +1,15 @@
 package dev.two.project.model;
 
+import dev.two.project.controller.gestor.gestorDoctor;
 import dev.two.project.model.MedicalAreas.Area;
 import dev.two.project.model.MedicalAreas.Dermatology;
 
+import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 
-public class Doctor extends NodoAVL {
-    private static int idCounter = 50;
+public class Doctor extends NodoAVL implements Serializable {
     private int id;
+    private static int idCounter = 50;
     private String firstName;
     private String secondName;
     private String lastName;
@@ -22,7 +24,7 @@ public class Doctor extends NodoAVL {
 
     public Doctor(String firstName, String secondName, String lastName, String password, int edad, String genero, String estadoCivil, String telefono, String correo) {
         super();
-        this.id = idCounter++;
+        this.id = ++idCounter;
         this.firstName = firstName;
         this.secondName = secondName;
         this.lastName = lastName;
@@ -32,6 +34,18 @@ public class Doctor extends NodoAVL {
         this.estadoCivil = estadoCivil;
         this.telefono = telefono;
         this.correo = correo;
+    }
+
+    public static int getIdCounter() {
+        return idCounter;
+    }
+
+    public static void setIdCounter(int idCounter) {
+        Doctor.idCounter = idCounter;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTelefono() {

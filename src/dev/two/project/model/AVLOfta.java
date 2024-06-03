@@ -1,7 +1,9 @@
 package dev.two.project.model;
 
-public class AVLOfta {
-    Doctor raiz;
+import java.io.Serializable;
+
+public class AVLOfta implements Serializable {
+    public Doctor raiz;
 
     public AVLOfta() {
         raiz = null;

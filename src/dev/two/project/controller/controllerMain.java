@@ -3,24 +3,69 @@ package dev.two.project.controller;
 import components.JPanelRound;
 import dev.two.project.Interface.FrameDark.FrameDark;
 import dev.two.project.Interface.MainWindow;
+import dev.two.project.Interface.OpcionSalida;
 import dev.two.project.Interface.login.confirmation.confirmation;
-import dev.two.project.controller.gestor.gestorAdmin;
+import dev.two.project.controller.gestor.*;
+import dev.two.project.model.*;
+import dev.two.project.tools.FileManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class controllerMain {
 
     public MainWindow mainWindow;
+    private OpcionSalida salir;
 
     public controllerMain(MainWindow mainWindow){
         this.mainWindow = mainWindow;
+        this.salir = new OpcionSalida() {
+            @Override
+            public void ejecutar() {
+                confirmarSalida();
+            }
+        };
+        InitData();
 
         initComponents();
     }
+    public void InitData(){
+        System.out.println("Inicializando gestores...");
+        try {
+            Appointment.setIdCounter( (int) FileManager.leerArchivoTxt("counters\\counterAppointment.txt"));
+            Doctor.setIdCounter((int) FileManager.leerArchivoTxt("counters\\counterDoctor.txt"));
+            Patient.setIdCounter((int) FileManager.leerArchivoTxt("counters\\counterPatient.txt"));
 
+            File filePatients = new File("src\\dev\\two\\project\\files\\dat\\AVLPatients.dat");
+            File fileDerma = new File("src\\dev\\two\\project\\files\\dat\\AVLDerma.dat");
+            File fileOfta = new File("src\\dev\\two\\project\\files\\dat\\AVLOfta.dat");
+            File fileTrauma = new File("src\\dev\\two\\project\\files\\dat\\AVLTrauma.dat");
+            System.out.println(filePatients.getAbsolutePath());
+            if(filePatients.exists()) {
+                gestorPatient.patients = (AVLpatients) FileManager.leerArchivo("dat\\AVLPatients.dat");
+                System.out.println("Archivo pacientes leido");
+            }
+            if(fileDerma.exists()) {
+                gestorDerma.DoctorsDerma = (AVLDerma) FileManager.leerArchivo("dat\\AVLDerma.dat");
+                System.out.println("Archivo dermatologos leido");
+            }
+            if(fileOfta.exists()) {
+                gestorOfta.DoctorsOfta = (AVLOfta) FileManager.leerArchivo("dat\\AVLOfta.dat");
+                System.out.println("Archivo oftalmologos leido");
+            }
+            if(fileTrauma.exists()) {
+                gestorTrauma.DoctorsTrauma = (AVLTrauma) FileManager.leerArchivo("dat\\AVLTrauma.dat");
+                System.out.println("Archivo traumatologos leido");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Gestores inicializados");
+    }
     public void initComponents(){
         MouseAdapter mouseAdapterMain = new MouseAdapter() {
             @Override
@@ -49,6 +94,7 @@ public class controllerMain {
             @Override
             public void mouseClicked(MouseEvent evt) {
                 JPanelRound source = (JPanelRound) evt.getSource();
+
                 if (source == mainWindow.mainPanel.mainPanelOptions.IniciarPacientes) {
                     mainWindow.mainPanel.mainPanelOptions.setVisible(false);
                     mainWindow.mainPanel.mainPanelLogo.setVisible(false);
@@ -182,7 +228,6 @@ public class controllerMain {
             }
         };
         MouseAdapter mouseAdapterOptionsAdmin = new MouseAdapter() {
-
             @Override
             public void mouseClicked(MouseEvent evt) {
                 JPanelRound source = (JPanelRound) evt.getSource();
@@ -224,6 +269,36 @@ public class controllerMain {
             }
         };
 
+        mainWindow.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent evt) {
+                mainWindow.coordX = evt.getX();
+                mainWindow.coordY = evt.getY();
+            }
+        });
+        mainWindow.headerpanel.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent evt) {
+                int x = evt.getXOnScreen();
+                int y = evt.getYOnScreen();
+                mainWindow.setLocation(x - mainWindow.coordX, y - mainWindow.coordY);
+            }
+        });
+        MouseAdapter ListenerExitPanel = new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent evt) {
+                mainWindow.exitPanel.lbExitButton.setIcon(mainWindow.exitPanel.exitON);
+            }
+            @Override
+            public void mouseExited(MouseEvent evt) {
+                mainWindow.exitPanel.lbExitButton.setIcon(mainWindow.exitPanel.exitOFF);
+            }
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                salir.generarOptionPane();
+            }
+        };
+        ListenerExitPanel(ListenerExitPanel);
         ListenerRegisterPatient(mouseAdapterRegisterPatient);
         ListenerMainPanelOptions(mouseAdapterMain);
         ListenerLoginPatient(mouseAdapterLoginPatient);
@@ -281,6 +356,14 @@ public class controllerMain {
         timer.setRepeats(false);
         timer.start();
     }
+    public void ListenerExitPanel(MouseAdapter mouseAdapterExitPanel){
+        mainWindow.exitPanel.addMouseListener(mouseAdapterExitPanel);
+    }
+
+    public void ListenerHeaderPanel(MouseAdapter mouseAdapterHeaderPanel){
+        mainWindow.headerpanel.addMouseListener(mouseAdapterHeaderPanel);
+    }
+
     public void ListenerOptionsAdmin(MouseAdapter mouseAdapterOptionsAdmin){
         mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.Dermatology.addMouseListener(mouseAdapterOptionsAdmin);
         mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorPanelOptions.Ofthalmology.addMouseListener(mouseAdapterOptionsAdmin);
@@ -309,6 +392,27 @@ public class controllerMain {
         mainWindow.mainPanel.mainLogin.loginAdmin.clinicLogo.regresar.addMouseListener(mouseAdapterLoginAdmin);
         mainWindow.mainPanel.mainLogin.loginAdmin.adminForm.jprLogin.addMouseListener(mouseAdapterLoginAdmin);
 
+    }
+    public void SaveTreeData()  {
+        try {
+            FileManager.escribirArchivo("counters\\counterAppointment.txt", String.valueOf( Appointment.getIdCounter()),false);
+            FileManager.escribirArchivo("counters\\counterDoctor.txt", String.valueOf(Doctor.getIdCounter()),false);
+            FileManager.escribirArchivo("counters\\counterPatient.txt", String.valueOf(Patient.getIdCounter()),false);
+
+            FileManager.escribirArchivo("dat\\AVLPatients.dat", gestorPatient.getPatients());
+            FileManager.escribirArchivo("dat\\AVLDerma.dat", gestorDerma.getDoctorsDerma());
+            FileManager.escribirArchivo("dat\\AVLOfta.dat", gestorOfta.getDoctorsOfta());
+            FileManager.escribirArchivo("dat\\AVLTrauma.dat", gestorTrauma.getDoctorsTrauma());
+
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+        System.out.println("Datos guardados");
+    }
+
+    private void confirmarSalida()  {
+        SaveTreeData();
+        System.exit(0);
     }
 
 }

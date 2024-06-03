@@ -1,6 +1,8 @@
 package dev.two.project.model;
 
-public class medicalH {
+import java.io.Serializable;
+
+public class medicalH implements Serializable {
     private Appointment cabeza;
 
 

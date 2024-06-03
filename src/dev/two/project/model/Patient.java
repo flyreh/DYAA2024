@@ -1,9 +1,13 @@
 package dev.two.project.model;
 
-public class Patient extends NodoAVL {
+import dev.two.project.controller.gestor.gestorPatient;
 
-    private final int id;
-    private static int idCounter = 100;
+import java.io.Serializable;
+
+public class Patient extends NodoAVL implements Serializable {
+
+    private int id;
+    private static int idCounter = 50;
     private String firstname;
     private String secondName;
     private String lastName;
@@ -31,8 +35,19 @@ public class Patient extends NodoAVL {
         this.telefono = telefono;
         this.correo = correo;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getId() {
         return id;
+    }
+
+    public static int getIdCounter() {
+        return idCounter;
+    }
+
+    public static void setIdCounter(int idCounter) {
+        Patient.idCounter = idCounter;
     }
 
     public String getFirstname() {

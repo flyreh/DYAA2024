@@ -13,6 +13,7 @@ public class PatientOptions extends JPanelRound {
 
     public JPanelRound SingOff;
 
+
     public PatientOptions(){
         this.setLayout(null);
         this.setBounds(30, 400, 250, 300);
@@ -33,6 +34,11 @@ public class PatientOptions extends JPanelRound {
         showAppointments.setRoundBottomRight(20);
         showAppointments.setRoundTopRight(20);
         showAppointments.setBackground(new Color(21, 20, 20));
+
+        JLabel nombreoption = new JLabel("VER CITAS");
+        nombreoption.setForeground(Color.WHITE);
+
+        showAppointments.add(nombreoption);
         this.add(showAppointments);
 
         showHistory = new JPanelRound();

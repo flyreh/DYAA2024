@@ -4,16 +4,19 @@ import dev.two.project.model.AVLpatients;
 import dev.two.project.model.Patient;
 import dev.two.project.tools.FileManager;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class gestorPatient {
+
     private static Patient sesion;
     public static AVLpatients patients = new AVLpatients();
 
-    public gestorPatient(AVLpatients patients, Patient sesion) {
+    public gestorPatient(AVLpatients patients) {
         gestorPatient.patients = patients;
-        gestorPatient.sesion = sesion;
     }
 
     public static void setSesion(Patient sesion) {
@@ -22,6 +25,18 @@ public class gestorPatient {
 
     public static Patient getSesion() {
         return sesion;
+    }
+
+    public static AVLpatients getPatients() {
+        return patients;
+    }
+
+    public static Object leerArchivo(String nombreArchivo) throws FileNotFoundException, IOException, ClassNotFoundException {
+        FileInputStream istream = new FileInputStream(nombreArchivo);
+        ObjectInputStream p = new ObjectInputStream(istream);
+        Object obj = p.readObject();
+        istream.close();
+        return obj;
     }
 
     public static void WritePatientFile(Patient patient) {
@@ -33,7 +48,6 @@ public class gestorPatient {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static boolean SearchPatientFile(String primerNombre, String password) {
@@ -44,11 +58,11 @@ public class gestorPatient {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if(almacen.size()<4){
+        if (almacen.size() < 4) {
             return false;
         }
         for (int i = 1; i < almacen.size(); i += 4) {
-            if(i+2 < almacen.size()) {
+            if (i + 2 < almacen.size()) {
                 if (almacen.get(i).equals(primerNombre)) {
                     if (almacen.get(i + 2).equals(password)) {
                         return true;
@@ -58,6 +72,7 @@ public class gestorPatient {
         }
         return false;
     }
+
     public static int returnIdpatient(String primerNombre, String password) {
         ArrayList<String> almacen = new ArrayList<>();
         try {

@@ -2,9 +2,11 @@ package dev.two.project.model;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
-public class AVLpatients {
+import java.io.Serializable;
 
-    Patient raiz;
+public class AVLpatients implements Serializable {
+
+    public Patient raiz;
 
     public AVLpatients() {
         raiz = null;

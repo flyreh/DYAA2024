@@ -1,7 +1,9 @@
 package dev.two.project.model;
 
-public class AVLDerma {
-    Doctor raiz;
+import java.io.Serializable;
+
+public class AVLDerma implements Serializable {
+    public Doctor raiz;
 
     public AVLDerma() {
         raiz = null;
@@ -274,7 +276,9 @@ public class AVLDerma {
 
         while(!encontrado && raizpatient!=null){
             if(id == raizpatient.getId()) encontrado=true;
+
             else if(id < raizpatient.getId()) raizpatient = (Doctor) raizpatient.getIzdo();
+
             else raizpatient = (Doctor) raizpatient.getDcho();
         }
         return raizpatient;

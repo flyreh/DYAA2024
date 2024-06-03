@@ -1,4 +1,6 @@
 package dev.two.project.model.MedicalAreas;
 
-public class Area {
+import java.io.Serializable;
+
+public class Area implements Serializable {
 }

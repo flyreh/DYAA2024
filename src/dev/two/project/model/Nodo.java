@@ -1,6 +1,8 @@
 package dev.two.project.model;
 
-public class Nodo {
+import java.io.Serializable;
+
+public class Nodo implements Serializable {
 
     public Nodo next;
 

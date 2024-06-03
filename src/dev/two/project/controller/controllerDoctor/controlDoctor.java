@@ -90,7 +90,6 @@ public class controlDoctor {
             public void mouseClicked(MouseEvent e) {
                 JPanelRound source = (JPanelRound) e.getSource();
                 if (source == mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.jprLogin) {
-                    System.out.println("login doctor presionado");
                     if (!ValidateLoginData()) {
                         mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.lbErrorLogin.setForeground(new Color(255, 0, 0));
                         mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.lbErrorLogin.setText("Datos incorrectos");
@@ -150,7 +149,7 @@ public class controlDoctor {
                     currentFrame.setSize(845, 615);
                     currentFrame.paneldark.setSize(845, 615);
 
-                    currentFrame.setLocationRelativeTo(mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment);
+                    currentFrame.setLocationRelativeTo(mainWindow.mainPanel.mainDoctor.mainDoctorCard);
                     currentFrame.setVisible(true);
                     currentFrame.addMouseListener(new MouseAdapter() {
                         @Override
@@ -176,6 +175,7 @@ public class controlDoctor {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getSource() == docForm.doctorForminputDesc.Aceptar){
+
                     MoveAppointment(AppointmentForminputDesc.campo_direccionObra.getText());
                     AppointmentForminputDesc.LimpiarDatos();
                     docForm.setVisible(false);
@@ -195,12 +195,12 @@ public class controlDoctor {
             @Override
             public void mouseEntered(MouseEvent evt) {
                 JPanelRound source = (JPanelRound) evt.getSource();
-                source.setBackground(new Color(126, 123, 123));
+                source.setBackground(new Color(182, 81, 81));
             }
             @Override
             public void mouseExited(MouseEvent evt) {
                 JPanelRound source = (JPanelRound) evt.getSource();
-                source.setBackground(new Color(255, 0, 0));
+                source.setBackground(new Color(0, 0, 0));
             }
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -241,6 +241,7 @@ public class controlDoctor {
     }
 
     public void InitSessionDoctor(String primerNombre, String password) {
+
         String specialty = verifyAuthDoctors(primerNombre, password);
         if (specialty == null) {
             mainWindow.mainPanel.mainLogin.loginDoctor.loginDoctorform.lbErrorLogin.setForeground(new Color(255, 0, 0));
@@ -326,16 +327,26 @@ public class controlDoctor {
     }
     public void ActActuallyAppointment(Doctor doctor) {
         Appointment appointment = (Appointment) doctor.getQueueAppointments().getFirst();
-        mainWindow.mainPanel.mainDoctor.mainDoctorCard.ActuallyAppointmentInfo.setText(appointment.toString());
+        if(appointment == null){
+            mainWindow.mainPanel.mainDoctor.mainDoctorCard.ActuallyAppointmentInfo.setText("No hay citas pendientes");
+            return;
+        }else{
+            mainWindow.mainPanel.mainDoctor.mainDoctorCard.ActuallyAppointmentInfo.setText(appointment.toString());
+        }
     }
 
     public void MoveAppointment(String description) {
         Appointment appointment = (Appointment) gestorDoctor.getSesion().getQueueAppointments().getFirst();
+
         appointment.setDoctordescription(description);
+
         appointment.setStatus(Appointment.Status.ATENDIDA);
+
         gestorDoctor.getSesion().getQueueAppointments().remove();
-        appointment.getPatient().getMedicalHistory().InsertarInicio(appointment);
+
         appointment.getPatient().getQueueAppointments().removeById(appointment.getId());
+
+        appointment.getPatient().getMedicalHistory().InsertarInicio(appointment);
 
         ActTableAppointmentsDoctor(gestorDoctor.getSesion());
     }
@@ -372,7 +383,9 @@ public class controlDoctor {
         } else {
             Doctor newdoctor = new Doctor(primerNombre, segundoNombre, apellido, password, edad, genero, estadoCivil, telefono, correo);
             newdoctor.setSpecialty(new Dermatology());
+
             gestorDerma.WriteDoctorDermaFile(newdoctor);
+
             gestorDerma.AddDoctorDermaTree(newdoctor);
             mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorRegisterForm.lbErrorLogin.setForeground(new Color(3, 253, 53));
             mainWindow.mainPanel.mainRegister.registerPanelDoctor.doctorRegisterForm.lbErrorLogin.setText("Paciente registrado");

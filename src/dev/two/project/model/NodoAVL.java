@@ -1,6 +1,8 @@
 package dev.two.project.model;
 
-public class NodoAVL {
+import java.io.Serializable;
+
+public class NodoAVL implements Serializable {
 
     protected NodoAVL izdo;
     protected NodoAVL dcho;

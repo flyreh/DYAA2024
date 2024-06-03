@@ -1,11 +1,12 @@
 package dev.two.project.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Appointment extends Nodo {
+public class Appointment extends Nodo implements Serializable {
 
     public enum Status {
         POR_ATENDER,
@@ -33,6 +34,14 @@ public class Appointment extends Nodo {
         this.CreationTime = CreationTime;
         this.Initialdescription = description;
         this.status = Status.POR_ATENDER;
+    }
+
+    public static int getIdCounter() {
+        return idCounter;
+    }
+
+    public static void setIdCounter(int idCounter) {
+        Appointment.idCounter = idCounter;
     }
 
     public int getId() {

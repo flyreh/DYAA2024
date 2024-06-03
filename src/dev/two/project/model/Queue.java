@@ -1,6 +1,8 @@
 package dev.two.project.model;
 
-public class Queue {
+import java.io.Serializable;
+
+public class Queue implements Serializable {
 
     private Nodo first;
     private Nodo last;
@@ -122,6 +124,31 @@ public class Queue {
             }
             size--;
         }
+    }
+    public void removeAt(int index) {
+        if (isEmpty()) {
+            return;
+        }
+
+        if (index < 0 || index >= this.size) {
+            return;
+        }
+
+        if (index == 0) {
+            remove();
+            return;
+        }
+
+        Nodo current = this.first;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.getNext();
+        }
+
+        current.setNext(current.getNext().getNext());
+        if (index == this.size - 1) {
+            this.last = current;
+        }
+        this.size--;
     }
 
 }

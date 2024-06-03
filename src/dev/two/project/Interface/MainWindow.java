@@ -15,9 +15,10 @@ public class MainWindow extends JFrame {
     public HeaderPanel headerpanel;
     public ExitPanel exitPanel;
     public mainPanel mainPanel;
-
+    public int coordX;
+    public int coordY;
     public MainWindow(){
-        this.setTitle("BuildSphere App");
+        this.setTitle("Diamant Clinic");
         this.setSize(1200, 800);
         this.setLayout(null);
         this.setLocationRelativeTo(null);

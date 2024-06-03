@@ -12,7 +12,12 @@ public class gestorOfta {
 
         public static AVLOfta DoctorsOfta = new AVLOfta();
 
-
+        public gestorOfta(AVLOfta DoctorsOfta) {
+                gestorOfta.DoctorsOfta = DoctorsOfta;
+        }
+        public static AVLOfta getDoctorsOfta() {
+                return DoctorsOfta;
+        }
 
         public static void WriteDoctorOftaFile(Doctor doctor) {
                 try {

@@ -1,7 +1,9 @@
 package dev.two.project.model;
 
-public class AVLTrauma {
-    Doctor raiz;
+import java.io.Serializable;
+
+public class AVLTrauma implements Serializable {
+    public Doctor raiz;
 
     public AVLTrauma() {
         raiz = null;

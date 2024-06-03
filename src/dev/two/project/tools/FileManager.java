@@ -2,6 +2,7 @@ package dev.two.project.tools;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class FileManager {
     private static final String ruta = "src\\dev\\two\\project\\files\\";
@@ -69,6 +70,16 @@ public abstract class FileManager {
         Object obj = p.readObject();
         istream.close();
         return obj;
+    }
+    public static int leerArchivoTxt(String nombreArchivo) throws FileNotFoundException {
+        File archivo = new File(ruta + nombreArchivo);
+        Scanner scanner = new Scanner(archivo);
+        int numero = 0;
+        if (scanner.hasNextInt()) {
+            numero = scanner.nextInt();
+        }
+        scanner.close();
+        return numero;
     }
 
     public static void eliminarArchivo(String nombreArchivo) {

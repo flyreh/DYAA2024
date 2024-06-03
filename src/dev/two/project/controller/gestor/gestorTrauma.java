@@ -12,6 +12,14 @@ public class gestorTrauma {
 
         public static AVLTrauma DoctorsTrauma = new AVLTrauma();
 
+        public gestorTrauma(AVLTrauma DoctorsTrauma) {
+                gestorTrauma.DoctorsTrauma = DoctorsTrauma;
+        }
+
+        public static AVLTrauma getDoctorsTrauma() {
+                return DoctorsTrauma;
+        }
+
         public static void WriteDoctorTraumaFile(Doctor doctor) {
                 try {
                         FileManager.escribirArchivo("doctorsTrauma.txt", String.valueOf(doctor.getId()), true);
