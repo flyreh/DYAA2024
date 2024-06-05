@@ -40,27 +40,8 @@ public class controllerMain {
             Doctor.setIdCounter((int) FileManager.leerArchivoTxt("counters\\counterDoctor.txt"));
             Patient.setIdCounter((int) FileManager.leerArchivoTxt("counters\\counterPatient.txt"));
 
-            File filePatients = new File("src\\dev\\two\\project\\files\\dat\\AVLPatients.dat");
-            File fileDerma = new File("src\\dev\\two\\project\\files\\dat\\AVLDerma.dat");
-            File fileOfta = new File("src\\dev\\two\\project\\files\\dat\\AVLOfta.dat");
-            File fileTrauma = new File("src\\dev\\two\\project\\files\\dat\\AVLTrauma.dat");
-            System.out.println(filePatients.getAbsolutePath());
-            if(filePatients.exists()) {
-                gestorPatient.patients = (AVLpatients) FileManager.leerArchivo("dat\\AVLPatients.dat");
-                System.out.println("Archivo pacientes leido");
-            }
-            if(fileDerma.exists()) {
-                gestorDerma.DoctorsDerma = (AVLDerma) FileManager.leerArchivo("dat\\AVLDerma.dat");
-                System.out.println("Archivo dermatologos leido");
-            }
-            if(fileOfta.exists()) {
-                gestorOfta.DoctorsOfta = (AVLOfta) FileManager.leerArchivo("dat\\AVLOfta.dat");
-                System.out.println("Archivo oftalmologos leido");
-            }
-            if(fileTrauma.exists()) {
-                gestorTrauma.DoctorsTrauma = (AVLTrauma) FileManager.leerArchivo("dat\\AVLTrauma.dat");
-                System.out.println("Archivo traumatologos leido");
-            }
+            FileManager.leerArchivo("dat\\AVL.dat");
+
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -399,10 +380,7 @@ public class controllerMain {
             FileManager.escribirArchivo("counters\\counterDoctor.txt", String.valueOf(Doctor.getIdCounter()),false);
             FileManager.escribirArchivo("counters\\counterPatient.txt", String.valueOf(Patient.getIdCounter()),false);
 
-            FileManager.escribirArchivo("dat\\AVLPatients.dat", gestorPatient.getPatients());
-            FileManager.escribirArchivo("dat\\AVLDerma.dat", gestorDerma.getDoctorsDerma());
-            FileManager.escribirArchivo("dat\\AVLOfta.dat", gestorOfta.getDoctorsOfta());
-            FileManager.escribirArchivo("dat\\AVLTrauma.dat", gestorTrauma.getDoctorsTrauma());
+            FileManager.escribirArchivo("dat\\AVL.dat", gestorPatient.patients, gestorDerma.DoctorsDerma, gestorOfta.DoctorsOfta, gestorTrauma.DoctorsTrauma);
 
         } catch (IOException ex) {
             ex.printStackTrace(System.out);

@@ -31,13 +31,6 @@ public class gestorPatient {
         return patients;
     }
 
-    public static Object leerArchivo(String nombreArchivo) throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream istream = new FileInputStream(nombreArchivo);
-        ObjectInputStream p = new ObjectInputStream(istream);
-        Object obj = p.readObject();
-        istream.close();
-        return obj;
-    }
 
     public static void WritePatientFile(Patient patient) {
         try {

@@ -1,5 +1,14 @@
 package dev.two.project.tools;
 
+import dev.two.project.controller.gestor.gestorDerma;
+import dev.two.project.controller.gestor.gestorOfta;
+import dev.two.project.controller.gestor.gestorPatient;
+import dev.two.project.controller.gestor.gestorTrauma;
+import dev.two.project.model.AVLDerma;
+import dev.two.project.model.AVLOfta;
+import dev.two.project.model.AVLTrauma;
+import dev.two.project.model.AVLpatients;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -56,20 +65,30 @@ public abstract class FileManager {
         }
     }
 
-    public static void escribirArchivo(String nombre, Object obj) throws FileNotFoundException, IOException {
+    public static void  escribirArchivo(String nombre, Object obj1, Object obj2, Object obj3, Object obj4) throws FileNotFoundException, IOException {
         FileOutputStream ostream = new FileOutputStream(ruta + nombre);
         ObjectOutputStream p = new ObjectOutputStream(ostream);
-        p.writeObject(obj);
-        p.flush();
+        p.writeObject(obj1);
+        p.writeObject(obj2);
+        p.writeObject(obj3);
+        p.writeObject(obj4);
+        p.close();
+        //p.flush();
         ostream.close();
     }
 
-    public static Object leerArchivo(String nombreArchivo) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static void leerArchivo(String nombreArchivo) throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream istream = new FileInputStream(ruta + nombreArchivo);
         ObjectInputStream p = new ObjectInputStream(istream);
-        Object obj = p.readObject();
+
+        gestorPatient.patients = (AVLpatients) p.readObject();
+        gestorDerma.DoctorsDerma = (AVLDerma) p.readObject();
+        gestorOfta.DoctorsOfta = (AVLOfta) p.readObject();
+        gestorTrauma.DoctorsTrauma = (AVLTrauma) p.readObject();
+
+        p.close();
         istream.close();
-        return obj;
+
     }
     public static int leerArchivoTxt(String nombreArchivo) throws FileNotFoundException {
         File archivo = new File(ruta + nombreArchivo);
