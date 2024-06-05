@@ -54,7 +54,6 @@ public class medicalH implements Serializable {
         }else{
             System.out.println("Posicion ingresada fuera de los límites de la lista");
         }
-
     }
 
     public int TamañoLista(){

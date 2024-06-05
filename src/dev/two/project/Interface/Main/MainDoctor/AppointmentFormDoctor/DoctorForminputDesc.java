@@ -24,7 +24,7 @@ public class DoctorForminputDesc extends JPanel {
 
         Font mifuentepanel = new Font("Arial Narrow", Font.PLAIN, 16);
         try {
-            mifuentepanel = Font.createFont(Font.TRUETYPE_FONT, new File("src\\com\\grupo8\\finalproject\\resources\\fonts\\Sarala\\Sarala-Regular.ttf"));
+            mifuentepanel = Font.createFont(Font.TRUETYPE_FONT, new File("src\\dev\\two\\project\\resources\\font\\Sarala\\Sarala-Regular.ttf"));
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
         }
