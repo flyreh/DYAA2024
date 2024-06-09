@@ -208,6 +208,29 @@ public class controlPatient {
                 }
             }
         };
+        MouseAdapter tableHistory = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JTable source = (JTable) e.getSource();
+                if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.TableHistory) {
+                    int row = mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.TableHistory.getSelectedRow();
+                    if (row != -1) {
+                        //id de la cita
+                        int id = (int) mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.TableHistory.getValueAt(row, 0);
+                        for( Appointment appointment = gestorPatient.getSesion().getMedicalHistory().getCabeza();
+                             appointment != null;
+                             appointment = (Appointment) appointment.next){
+                            if(appointment.getId() == id){
+                                mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.appointmentInfo.setText(appointment.toString());
+                            }
+                        }
+
+                    }
+                }
+            }
+        };
+
+        ListenerTableHistory(tableHistory);
         ListenerTableAppointments(tableAppointmentsListener);
         ListenerAppointmentForm(CreateAppointment);
         ListenerCreateAppointment(showAppointmentForm);
@@ -216,32 +239,10 @@ public class controlPatient {
         ListenerInitSessionPatient(initSessionPatient);
         ListenerRegistroPaciente(pacienteregistro);
     }
-
-    public void AceptarCita(String initDesc){
-        int row = mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsTable.getSelectedRow();
-        if (row != -1) {
-            int id = (int) mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsTable.getValueAt(row, 0);
-            Doctor doctor;
-            if(gestorDerma.DoctorsDerma.searchDoctorDermaId(id) != null) {
-                doctor = gestorDerma.DoctorsDerma.searchDoctorDermaId(id);
-            } else if(gestorOfta.DoctorsOfta.searchDoctorOftaId(id) != null) {
-                doctor = gestorOfta.DoctorsOfta.searchDoctorOftaId(id);
-            } else {
-                doctor = gestorTrauma.DoctorsTrauma.searchDoctorTraumaId(id);
-            }
-            LocalTime now = LocalTime.now();
-            LocalDate date = LocalDate.now();
-            // Agrego la cita a la cola de citas del doctor y a la cola de citas del paciente
-
-            Appointment appointment = new Appointment(initDesc, date, now, doctor, gestorPatient.getSesion());
-            doctor.getQueueAppointments().add(appointment);
-            gestorPatient.getSesion().getQueueAppointments().add(appointment);
-
-            ActTableAppointments(gestorPatient.getSesion());
-        }else{
-            System.out.println("Seleccione un doctor en la tabla");
-        }
+    public void ListenerTableHistory(MouseAdapter evt){
+        mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.TableHistory.addMouseListener(evt);
     }
+
     public void ListenerTableAppointments(MouseAdapter evt) {
         mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.doctorsTable.addMouseListener(evt);
     }
@@ -307,6 +308,7 @@ public class controlPatient {
         }
         return true;
     }
+    // Revisa en el archivo de doctores si el usuario existe o no para su autenticación
 
     public boolean verifyAuth(String primerNombre, String password) {
         return !gestorPatient.SearchPatientFile(primerNombre, password);
@@ -374,12 +376,38 @@ public class controlPatient {
         timer.setRepeats(false);
         timer.start();
     }
+    //Agrega una cita a la cola de citas del doctor y del paciente una vez ingresada la descripción por parte del paciente
+    public void AceptarCita(String initDesc){
+        int row = mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsTable.getSelectedRow();
+        if (row != -1) {
+            int id = (int) mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsTable.getValueAt(row, 0);
+            Doctor doctor;
+            if(gestorDerma.DoctorsDerma.searchDoctorDermaId(id) != null) {
+                doctor = gestorDerma.DoctorsDerma.searchDoctorDermaId(id);
+            } else if(gestorOfta.DoctorsOfta.searchDoctorOftaId(id) != null) {
+                doctor = gestorOfta.DoctorsOfta.searchDoctorOftaId(id);
+            } else {
+                doctor = gestorTrauma.DoctorsTrauma.searchDoctorTraumaId(id);
+            }
+            LocalTime now = LocalTime.now();
+            LocalDate date = LocalDate.now();
+
+            // Agrego la cita a la cola de citas del doctor y a la cola de citas del paciente
+            Appointment appointment = new Appointment(initDesc, date, now, doctor, gestorPatient.getSesion());
+            doctor.getQueueAppointments().add(appointment);
+            gestorPatient.getSesion().getQueueAppointments().add(appointment);
+
+            ActTableAppointments(gestorPatient.getSesion());
+        }else{
+            System.out.println("Seleccione un doctor en la tabla");
+        }
+    }
 
     public void ActTableAppointments(Patient patient) {
         DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.doctorsTable.getModel();
         model.setRowCount(0);
 
-        mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.ActuallyAppointmentInfo.setText("");
+        mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.ActuallyAppointmentInfo.setText("Seleccione una Fila");
 
         for (int i = 0; i < patient.getQueueAppointments().getSize(); i++) {
             Appointment appointment = (Appointment) patient.getQueueAppointments().get(i);
@@ -393,6 +421,8 @@ public class controlPatient {
             row[6] = appointment.getDoctor().getSpecialty().getClass().getSimpleName();
             model.addRow(row);
         }
+        //Notifica si el usuario tiene una cita a la cual asistir
+
         for (int i = 0; i < patient.getQueueAppointments().getSize(); i++) {
             Appointment appointment = (Appointment) patient.getQueueAppointments().get(i);
             if(appointment.getDoctor().getQueueAppointments().getFirst() == appointment){
@@ -402,8 +432,11 @@ public class controlPatient {
     }
 
     public void ActTableHistorial(Patient patient) {
-        DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.doctorsTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.TableHistory.getModel();
         model.setRowCount(0);
+
+        mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.appointmentInfo.setText("Seleccione una Fila");
+
         Appointment appointment = patient.getMedicalHistory().getCabeza();
         while (appointment != null) {
             Object[] row = new Object[5];
@@ -411,7 +444,7 @@ public class controlPatient {
             row[1] = appointment.getStatus();
             row[2] = appointment.getDoctor().getLastName();
             row[3] = appointment.getCreationTime();
-            row[4] = appointment.getStatus();
+            row[4] = appointment.getCreationAttention();
             model.addRow(row);
             appointment = (Appointment) appointment.next;
         }
@@ -434,6 +467,8 @@ public class controlPatient {
         model.setRowCount(0);
         fillTableWithDoctors(gestorTrauma.DoctorsTrauma.getRaiz(), model);
     }
+
+    //Para llenar las tablas se usa recorrido Inorden
 
     private void fillTableWithDoctors(Doctor doctor, DefaultTableModel model) {
         if (doctor != null) {

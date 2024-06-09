@@ -13,10 +13,10 @@ import java.io.IOException;
 public class showHistory extends JPanelRound {
     public JPanelRound jprInformationPanel;
     public JLabel jlNameArea;
-    public JPanelRound createAppointment;
-    public JTable doctorsTable;
+    public JPanelRound SorterHistory;
+    public JTable TableHistory;
     public JScrollPane scrollPaneTable;
-    public JTextArea doctorsInfo;
+    public JTextArea appointmentInfo;
 
     public showHistory() {
         this.setLayout(null);
@@ -65,7 +65,7 @@ public class showHistory extends JPanelRound {
         String[] columnNames = {"ID Cita","Status", "Doctor", "H.Creación", "H.Atención"};
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
-        doctorsTable = new JTable(model) {
+        TableHistory = new JTable(model) {
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component component = super.prepareRenderer(renderer, row, column);
@@ -77,39 +77,40 @@ public class showHistory extends JPanelRound {
                 return component;
             }
         };
-        doctorsTable.getTableHeader().setBackground(new Color(44, 42, 42));
-        doctorsTable.getTableHeader().setForeground(Color.WHITE);
-        scrollPaneTable = new JScrollPane(doctorsTable);
-        scrollPaneTable.setBounds(50, 250, 480, 300);
+        TableHistory.getTableHeader().setBackground(new Color(44, 42, 42));
+        TableHistory.getTableHeader().setForeground(Color.WHITE);
+        scrollPaneTable = new JScrollPane(TableHistory);
+        scrollPaneTable.setBounds(50, 250, 480, 330);
         this.add(scrollPaneTable);
 
-        JPanelRound jprDoctorsInfo = new JPanelRound();
-        jprDoctorsInfo.setBounds(555, 250, 230, 300);
-        jprDoctorsInfo.setBackground(Color.BLACK);
-        jprDoctorsInfo.setRoundBottomLeft(25);
-        jprDoctorsInfo.setRoundBottomRight(25);
-        jprDoctorsInfo.setRoundTopLeft(25);
-        jprDoctorsInfo.setRoundTopRight(25);
+        JPanelRound jprAppointmentInfo = new JPanelRound();
+        jprAppointmentInfo.setBounds(555, 250, 230, 330);
+        jprAppointmentInfo.setBackground(Color.BLACK);
+        jprAppointmentInfo.setRoundBottomLeft(25);
+        jprAppointmentInfo.setRoundBottomRight(25);
+        jprAppointmentInfo.setRoundTopLeft(25);
+        jprAppointmentInfo.setRoundTopRight(25);
 
-        doctorsInfo = new JTextArea();
-        doctorsInfo.setBounds(0, 0, 250, 300);
-        doctorsInfo.setFont(custom2);
-        doctorsInfo.setBackground(Color.BLACK);
-        doctorsInfo.setForeground(Color.WHITE);
-        doctorsInfo.setEditable(false);
-        doctorsInfo.setBorder(new LineBorder(Color.BLACK, 10, true));
-        jprDoctorsInfo.add(doctorsInfo);
-        this.add(jprDoctorsInfo);
+        appointmentInfo = new JTextArea();
+        appointmentInfo.setBounds(0, 0, 250, 330);
+        appointmentInfo.setFont(custom2);
+        appointmentInfo.setBackground(Color.BLACK);
+        appointmentInfo.setForeground(Color.WHITE);
+        appointmentInfo.setEditable(false);
+        appointmentInfo.setBorder(new LineBorder(Color.BLACK, 10, true));
 
-        createAppointment = new JPanelRound();
-        createAppointment.setBounds(50, 200, 200, 40);
-        createAppointment.setRoundBottomLeft(25);
-        createAppointment.setRoundBottomRight(25);
-        createAppointment.setRoundTopLeft(25);
-        createAppointment.setRoundTopRight(25);
-        createAppointment.setBackground(Color.WHITE);
-        createAppointment.add(new JLabel("Ordenar Alfabeticamente"));
-        this.add(createAppointment);
+        jprAppointmentInfo.add(appointmentInfo);
+        this.add(jprAppointmentInfo);
+
+        SorterHistory = new JPanelRound();
+        SorterHistory.setBounds(50, 200, 200, 40);
+        SorterHistory.setRoundBottomLeft(25);
+        SorterHistory.setRoundBottomRight(25);
+        SorterHistory.setRoundTopLeft(25);
+        SorterHistory.setRoundTopRight(25);
+        SorterHistory.setBackground(Color.WHITE);
+        SorterHistory.add(new JLabel("Ordenar Alfabeticamente"));
+        this.add(SorterHistory);
 
     }
 }

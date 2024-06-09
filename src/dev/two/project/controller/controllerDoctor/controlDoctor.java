@@ -18,6 +18,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class controlDoctor {
@@ -116,7 +118,7 @@ public class controlDoctor {
                             }
                         }
                     } else {
-                        System.out.println("No hay fila seleccionada");
+                        mainWindow.mainPanel.mainDoctor.mainDoctorCard.PatientAppointmentInfo.setText("Seleccione una Fila "+"\n"+ "\t"+"de la tabla");
                     }
                 }
             }
@@ -166,7 +168,7 @@ public class controlDoctor {
                     gestorDoctor.getSesion().getQueueAppointments().moveFirstToEnd();
 
                     ActTableAppointmentsDoctor(gestorDoctor.getSesion());
-                   //mostrar joption de si desea posponer la cita
+
                     //mover la cita al ultimo de la cola del doctor y marcar como postergada.
                 }
             }
@@ -328,24 +330,34 @@ public class controlDoctor {
     public void ActActuallyAppointment(Doctor doctor) {
         Appointment appointment = (Appointment) doctor.getQueueAppointments().getFirst();
         if(appointment == null){
+            mainWindow.mainPanel.mainDoctor.mainDoctorCard.PatientAppointmentInfo.setText("No Fila Seleccionada");
             mainWindow.mainPanel.mainDoctor.mainDoctorCard.ActuallyAppointmentInfo.setText("No hay citas pendientes");
             return;
         }else{
+            mainWindow.mainPanel.mainDoctor.mainDoctorCard.PatientAppointmentInfo.setText("Seleccione una fila de la tabla");
             mainWindow.mainPanel.mainDoctor.mainDoctorCard.ActuallyAppointmentInfo.setText(appointment.toString());
         }
     }
 
     public void MoveAppointment(String description) {
+        LocalTime nowAttention = LocalTime.now();
+        LocalDate dateAttention = LocalDate.now();
+
         Appointment appointment = (Appointment) gestorDoctor.getSesion().getQueueAppointments().getFirst();
 
         appointment.setDoctordescription(description);
 
         appointment.setStatus(Appointment.Status.ATENDIDA);
 
+        appointment.setCreationAttention(nowAttention);
+
+        appointment.setCreationAttentionDay(dateAttention);
+
+        //Quitamos la cita de la cola de citas del doctor
         gestorDoctor.getSesion().getQueueAppointments().remove();
-
+        //Quitamos la cita de la cola de citas del paciente
         appointment.getPatient().getQueueAppointments().removeById(appointment.getId());
-
+        //Añadimos la cita al historial médico del paciente
         appointment.getPatient().getMedicalHistory().InsertarInicio(appointment);
 
         ActTableAppointmentsDoctor(gestorDoctor.getSesion());

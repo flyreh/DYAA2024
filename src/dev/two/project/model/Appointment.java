@@ -120,6 +120,10 @@ public class Appointment extends Nodo implements Serializable {
         Doctor += "Apellido Paciente: " + this.getPatient().getLastName() + "\n";
         Doctor += "Especialidad: " + this.getDoctor().getSpecialty().getClass().getSimpleName() + "\n";
         Doctor += "Descripcion: \n" + this.Initialdescription + "\n";
+        if(this.CreationAttentionTime != null && this.CreationAttentionDay != null) {
+            Doctor += "Fecha de Atencion: " + this.CreationAttentionDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n";
+            Doctor += "Hora de Atencion: " + this.CreationAttentionTime.format(DateTimeFormatter.ofPattern("HH:mm")) + "\n";
+        }
         return Doctor;
     }
 
