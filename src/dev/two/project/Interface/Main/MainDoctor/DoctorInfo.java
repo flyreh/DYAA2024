@@ -42,7 +42,7 @@ public class DoctorInfo extends JPanelRound {
         Image scaledImage = originalImage.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        Doctorphoto = new JLabel("Paciente", scaledIcon, JLabel.CENTER);
+        Doctorphoto = new JLabel("Doctor", scaledIcon, JLabel.CENTER);
         Doctorphoto.setVerticalTextPosition(JLabel.TOP);
         Doctorphoto.setHorizontalTextPosition(JLabel.CENTER);
         Doctorphoto.setBounds(22, 10, 200, 170);

@@ -3,6 +3,7 @@ package dev.two.project.controller.controllerDoctor;
 import components.JPanelRound;
 import dev.two.project.Interface.FrameDark.FrameDark;
 import dev.two.project.Interface.Main.MainDoctor.AppointmentFormDoctor.DoctorForm;
+import dev.two.project.Interface.Main.MainDoctor.AppointmentFormDoctor.DoctorForminputDesc;
 import dev.two.project.Interface.Main.MainPatient.AppointmentForm.AppointmentForm;
 import dev.two.project.Interface.Main.MainPatient.AppointmentForm.AppointmentForminputDesc;
 import dev.two.project.Interface.MainWindow;
@@ -20,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class controlDoctor {
@@ -178,8 +180,8 @@ public class controlDoctor {
             public void mouseClicked(MouseEvent e) {
                 if(e.getSource() == docForm.doctorForminputDesc.Aceptar){
 
-                    MoveAppointment(AppointmentForminputDesc.campo_direccionObra.getText());
-                    AppointmentForminputDesc.LimpiarDatos();
+                    MoveAppointment(DoctorForminputDesc.campo_direccionObra.getText());
+                    DoctorForminputDesc.LimpiarDatos();
                     docForm.setVisible(false);
                     currentFrame.setVisible(false);
                     //cita atendida con éxito
@@ -187,7 +189,7 @@ public class controlDoctor {
                     //eliminar la cita de la cola de citas pendientes del doctor y del paciente.
                     //
                 }else if(e.getSource() == docForm.doctorForminputDesc.Cancelar){
-                    AppointmentForminputDesc.LimpiarDatos();
+                    DoctorForminputDesc.LimpiarDatos();
                     docForm.setVisible(false);
                     currentFrame.setVisible(false);
                 }
@@ -342,6 +344,8 @@ public class controlDoctor {
     public void MoveAppointment(String description) {
         LocalTime nowAttention = LocalTime.now();
         LocalDate dateAttention = LocalDate.now();
+        nowAttention.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        dateAttention.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         Appointment appointment = (Appointment) gestorDoctor.getSesion().getQueueAppointments().getFirst();
 

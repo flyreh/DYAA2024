@@ -40,10 +40,7 @@ public class controllerMain {
             Doctor.setIdCounter((int) FileManager.leerArchivoTxt("counters\\counterDoctor.txt"));
             Patient.setIdCounter((int) FileManager.leerArchivoTxt("counters\\counterPatient.txt"));
 
-
-
-                FileManager.leerArchivo("dat\\AVL.dat");
-                System.out.println("No se encontraron datos guardados");
+            FileManager.leerArchivo("dat\\AVL.dat");
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

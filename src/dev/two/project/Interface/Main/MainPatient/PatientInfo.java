@@ -26,7 +26,7 @@ public class PatientInfo extends JPanelRound {
         this.setRoundBottomLeft(50);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
-        this.setBackground(new Color(241, 233, 233));
+        this.setBackground(new Color(241, 233, 233, 220));
 
         initComponents();
     }

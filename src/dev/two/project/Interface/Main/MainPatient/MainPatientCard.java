@@ -18,7 +18,7 @@ public class MainPatientCard extends JPanelRound{
         this.setRoundBottomLeft(50);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
-        this.setBackground(new Color(168, 192, 191));
+        this.setBackground(new Color(40, 40, 40,100));
         initComponents();
     }
 

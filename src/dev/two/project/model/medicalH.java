@@ -101,4 +101,72 @@ public class medicalH implements Serializable {
         }
         System.out.println();
     }
+
+    public medicalH copy() {
+        medicalH copy = new medicalH();
+        Appointment current = this.cabeza;
+        while (current != null) {
+            Appointment newNode = new Appointment(current.getId(), current.getInitialdescription(), current.getCreationTimeDay(), current.getCreationTime(), current.getDoctor(), current.getPatient());
+            newNode.setDoctordescription(current.getDoctordescription());
+            newNode.setCreationAttention(current.getCreationAttention());
+            newNode.setCreationAttentionDay(current.getCreationAttentionDay());
+            copy.InsertarFinal(newNode);
+            current = (Appointment) current.next;
+        }
+        return copy;
+    }
+    // Método para ordenar la lista enlazada con merge sort
+    public Appointment mergeSort(Appointment head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Appointment middle = getMiddle(head);
+        Appointment nextOfMiddle = (Appointment) middle.next;
+
+        middle.next = null;
+
+        Appointment left = mergeSort(head);
+        Appointment right = mergeSort(nextOfMiddle);
+
+        Appointment sortedList = sortedMerge(left, right);
+        return sortedList;
+    }
+    // Método para obtener el nodo medio de la lista enlazada
+    public Appointment getMiddle(Appointment head) {
+        if (head == null) {
+            return head;
+        }
+
+        Appointment slow = head, fast = (Appointment) head.next;
+
+        while (fast != null) {
+            fast = (Appointment) fast.next;
+            if (fast != null) {
+                slow = (Appointment) slow.next;
+                fast = (Appointment) fast.next;
+            }
+        }
+        return slow;
+    }
+    // Método para fusionar dos listas enlazadas ordenadas
+    public Appointment sortedMerge(Appointment a, Appointment b) {
+        Appointment result = null;
+        if (a == null) {
+            return b;
+        }
+        if (b == null) {
+            return a;
+        }
+
+        // Aquí debes cambiar la condición de comparación según tu criterio de ordenamiento
+        if (a.getDoctor().getLastName().compareTo(b.getDoctor().getLastName()) <= 0) {
+            result = a;
+            result.next = sortedMerge((Appointment) a.next, b);
+        } else {
+            result = b;
+            result.next = sortedMerge(a, (Appointment) b.next);
+        }
+        return result;
+    }
 }

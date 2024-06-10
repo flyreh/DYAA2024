@@ -4,6 +4,7 @@ import components.JPanelRound;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
@@ -26,7 +27,7 @@ public class ViewCreateAppointment extends JPanelRound {
         this.setRoundBottomLeft(50);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
-        this.setBackground(new java.awt.Color(142, 157, 142));
+        this.setBackground(new java.awt.Color(40, 40, 40,100));
         initComponents();
     }
 
@@ -47,8 +48,9 @@ public class ViewCreateAppointment extends JPanelRound {
         }
         custom2 = custom2.deriveFont(Font.PLAIN, 15);
 
-        jlNameArea = new JLabel();
+        jlNameArea = new JLabel(">> CREACIÓN DE CITAS <<");
         jlNameArea.setBounds(0, 0, 150, 40);
+        jlNameArea.setFont(custom);
         jlNameArea.setForeground(Color.BLACK);
 
         jprInformationPanel = new JPanelRound();
@@ -69,18 +71,34 @@ public class ViewCreateAppointment extends JPanelRound {
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component component = super.prepareRenderer(renderer, row, column);
-                if (!isRowSelected(row)) {
-                    component.setBackground(new Color(119, 119, 119));
-                } else {
-                    component.setBackground(new Color(110, 129, 110));
+                if (isRowSelected(row)) {
+                    component = new DefaultTableCellRenderer() {
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            Graphics2D g2d = (Graphics2D) g;
+                            GradientPaint gp = new GradientPaint(0, 0, new Color(218, 21, 21, 139), 0, getHeight(), new Color(12, 65, 194, 159));
+                            g2d.setPaint(gp);
+                            g2d.fillRect(0, 0, getWidth(), getHeight());
+                            super.paintComponent(g);
+                        }
+                    }.getTableCellRendererComponent(this, getValueAt(row, column), false, false, row, column);
+                }else{
+                    component.setBackground(new Color(73, 73, 73));
                 }
                 return component;
             }
         };
+        doctorsTable.setGridColor(new Color(98, 98, 98));
         doctorsTable.getTableHeader().setBackground(new Color(44, 42, 42));
         doctorsTable.getTableHeader().setForeground(Color.WHITE);
+        doctorsTable.setRowHeight(23);
+        doctorsTable.setForeground(Color.WHITE);
+        doctorsTable.setFont(new Font("Cascadia Mono", Font.BOLD, 13));
+
         scrollPaneTable = new JScrollPane(doctorsTable);
         scrollPaneTable.setBounds(50, 100, 400, 300);
+        scrollPaneTable.setBackground(new Color(73, 73, 73));
+        scrollPaneTable.getViewport().setBackground(new Color(73, 73, 73));
         this.add(scrollPaneTable);
 
         JPanelRound jprDoctorsInfo = new JPanelRound();
@@ -103,7 +121,7 @@ public class ViewCreateAppointment extends JPanelRound {
 
         jlCreateAppointment = new JLabel("Crear cita con este doctor");
         jlCreateAppointment.setBounds(550, 540, 220, 20);
-        jlCreateAppointment.setFont(custom);
+        jlCreateAppointment.setFont(custom2);
 
         createAppointment = new JPanelRound();
         createAppointment.setBounds(500, 530, 220, 40);

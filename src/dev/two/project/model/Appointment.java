@@ -36,6 +36,16 @@ public class Appointment extends Nodo implements Serializable {
         this.status = Status.POR_ATENDER;
     }
 
+    public Appointment(int id, String description, LocalDate CreationTimeDay, LocalTime CreationTime, Doctor doctor, Patient patient) {
+        this.id = id;
+        this.doctor = doctor;
+        this.patient = patient;
+        this.CreationTimeDay = CreationTimeDay;
+        this.CreationTime = CreationTime;
+        this.Initialdescription = description;
+        this.status = Status.ATENDIDA;
+    }
+
     public static int getIdCounter() {
         return idCounter;
     }
@@ -46,6 +56,18 @@ public class Appointment extends Nodo implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public LocalTime getCreationAttentionTime() {
+        return CreationAttentionTime;
+    }
+
+    public String getInitialdescription() {
+        return Initialdescription;
+    }
+
+    public void setInitialdescription(String initialdescription) {
+        Initialdescription = initialdescription;
     }
 
     public LocalTime getCreationTime() {
@@ -114,17 +136,27 @@ public class Appointment extends Nodo implements Serializable {
 
     @Override
     public String toString() {
-        String Doctor = "";
-        Doctor += "Estado de Cita: " + this.getStatus() + "\n";
-        Doctor += "Nombre Paciente:  " + this.getPatient().getFirstname() + "\n";
-        Doctor += "Apellido Paciente: " + this.getPatient().getLastName() + "\n";
-        Doctor += "Especialidad: " + this.getDoctor().getSpecialty().getClass().getSimpleName() + "\n";
-        Doctor += "Descripcion: \n" + this.Initialdescription + "\n";
-        if(this.CreationAttentionTime != null && this.CreationAttentionDay != null) {
-            Doctor += "Fecha de Atencion: " + this.CreationAttentionDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n";
-            Doctor += "Hora de Atencion: " + this.CreationAttentionTime.format(DateTimeFormatter.ofPattern("HH:mm")) + "\n";
+        String Cita = "";
+        Cita += "Estado de Cita: " + this.getStatus() + "\n";
+        Cita += "Nombre Paciente:  " + this.getPatient().getFirstname() + "\n";
+        Cita += "Apellido Paciente: " + this.getPatient().getLastName() + "\n";
+        Cita += "Especialidad: " + this.getDoctor().getSpecialty().getClass().getSimpleName() + "\n";
+        Cita += "Descripcion: \n" + this.Initialdescription + "\n";
+        return Cita;
+    }
+
+    public String toString2() {
+        String Cita = "";
+        Cita += "Estado de Cita: " + this.getStatus() + "\n";
+        Cita += "Nombre Paciente:  " + this.getPatient().getFirstname() + "\n";
+        Cita += "Apellido Paciente: " + this.getPatient().getLastName() + "\n";
+        Cita += "Especialidad: " + this.getDoctor().getSpecialty().getClass().getSimpleName() + "\n\n";
+        Cita += "Descripcion del Doctor: \n" + this.Doctordescription + "\n\n";
+        if (this.CreationAttentionTime != null && this.CreationAttentionDay != null) {
+            Cita += "Fecha de Atencion: " + this.CreationAttentionDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n";
+            Cita += "Hora de Atencion: " + this.CreationAttentionTime.format(DateTimeFormatter.ofPattern("HH:mm")) + "\n";
         }
-        return Doctor;
+        return Cita;
     }
 
 }

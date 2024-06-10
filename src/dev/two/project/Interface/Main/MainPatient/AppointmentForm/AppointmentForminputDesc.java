@@ -61,7 +61,7 @@ public class AppointmentForminputDesc extends JPanel {
         Aceptar.setForeground(Color.WHITE);
         Aceptar.setBorder(new LineBorder(micolorBoton, 3, true));
         Aceptar.setFont(mifuentepanel.deriveFont(Font.PLAIN, 15));
-        ImageIcon aceptar = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\gif\\aceptar.png");
+        ImageIcon aceptar = new ImageIcon("src\\dev\\two\\project\\resources\\media\\img\\aceptar.png");
         Aceptar.setIcon(aceptar);
 
         Color micolorBoton_2 = new Color(240, 30, 80);
@@ -71,7 +71,7 @@ public class AppointmentForminputDesc extends JPanel {
         Cancelar.setForeground(Color.WHITE);
         Cancelar.setBorder(new LineBorder(micolorBoton_2, 5, true));
         Cancelar.setFont(mifuentepanel.deriveFont(Font.PLAIN, 15));
-        ImageIcon mostrar = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\gif\\MostrarDetalles.png");
+        ImageIcon mostrar = new ImageIcon("src\\dev\\two\\project\\resources\\media\\img\\MostrarDetalles.png");
         Cancelar.setIcon(mostrar);
 
         this.add(campoDesc);

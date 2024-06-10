@@ -18,6 +18,7 @@ import dev.two.project.controller.gestor.*;
 import dev.two.project.model.Appointment;
 import dev.two.project.model.Doctor;
 import dev.two.project.model.Patient;
+import dev.two.project.model.medicalH;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -123,6 +124,8 @@ public class controlPatient {
 
             @Override
             public void mouseClicked(MouseEvent evt) {
+                mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsInfo.setText("Seleccione una Fila");
+
                 JPanelRound source = (JPanelRound) evt.getSource();
                 if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.newAppointmentOptions.jprCreateDerma) {
                     FillTableDoctorsDerma();
@@ -191,10 +194,10 @@ public class controlPatient {
             @Override
             public void mouseClicked(MouseEvent e) {
                 JTable source = (JTable) e.getSource();
-                if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.doctorsTable) {
-                    int row = mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.doctorsTable.getSelectedRow();
+                if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.AppointmentTable) {
+                    int row = mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.AppointmentTable.getSelectedRow();
                     if (row != -1) {
-                        int id = (int) mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.doctorsTable.getValueAt(row, 2);
+                        int id = (int) mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.AppointmentTable.getValueAt(row, 2);
                         Doctor doctor;
                         if(gestorDerma.DoctorsDerma.searchDoctorDermaId(id) != null) {
                             doctor = gestorDerma.DoctorsDerma.searchDoctorDermaId(id);
@@ -221,7 +224,7 @@ public class controlPatient {
                              appointment != null;
                              appointment = (Appointment) appointment.next){
                             if(appointment.getId() == id){
-                                mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.appointmentInfo.setText(appointment.toString());
+                                mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.appointmentInfo.setText(appointment.toString2());
                             }
                         }
 
@@ -230,6 +233,76 @@ public class controlPatient {
             }
         };
 
+        MouseAdapter SorterTableHistory = new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                JPanelRound source = (JPanelRound) e.getSource();
+                if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.SorterHistory) {
+                    mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.SorterHistory.setBackground(new Color(105, 103, 103));
+                }
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                JPanelRound source = (JPanelRound) e.getSource();
+                if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.SorterHistory) {
+                    mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.SorterHistory.setBackground(Color.WHITE);
+                }
+            }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JPanelRound source = (JPanelRound) e.getSource();
+                if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.SorterHistory) {
+                    SorterHistory(gestorPatient.getSesion());
+                }
+            }
+        };
+        MouseAdapter BackOrderTable = new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                JPanelRound source = (JPanelRound) e.getSource();
+                if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.BackSorterTable) {
+                    mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.BackSorterTable.setBackground(new Color(105, 103, 103));
+                }
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                JPanelRound source = (JPanelRound) e.getSource();
+                if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.BackSorterTable) {
+                    mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.BackSorterTable.setBackground(Color.WHITE);
+                }
+            }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JPanelRound source = (JPanelRound) e.getSource();
+                if (source == mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.BackSorterTable) {
+                    ActTableHistorial(gestorPatient.getSesion());
+                }
+            }
+        };
+
+        MouseAdapter TableDoctorsListener = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getSource() == mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsTable) {
+                    int row = mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsTable.getSelectedRow();
+                    if (row != -1) {
+                        int id = (int) mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsTable.getValueAt(row, 0);
+                        Doctor doctor;
+                        if(gestorDerma.DoctorsDerma.searchDoctorDermaId(id) != null) {
+                            doctor = gestorDerma.DoctorsDerma.searchDoctorDermaId(id);
+                        } else if(gestorOfta.DoctorsOfta.searchDoctorOftaId(id) != null) {
+                            doctor = gestorOfta.DoctorsOfta.searchDoctorOftaId(id);
+                        } else {
+                            doctor = gestorTrauma.DoctorsTrauma.searchDoctorTraumaId(id);
+                        }
+                        mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsInfo.setText(doctor.toString());
+                    }
+                }
+            }
+        };
+        ListenerTableDoctors(TableDoctorsListener);
+        ListenerBackOrderTable(BackOrderTable);
+        ListenerSorterTableHistory(SorterTableHistory);
         ListenerTableHistory(tableHistory);
         ListenerTableAppointments(tableAppointmentsListener);
         ListenerAppointmentForm(CreateAppointment);
@@ -239,12 +312,21 @@ public class controlPatient {
         ListenerInitSessionPatient(initSessionPatient);
         ListenerRegistroPaciente(pacienteregistro);
     }
+    public void ListenerBackOrderTable(MouseAdapter evt){
+        mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.BackSorterTable.addMouseListener(evt);
+    }
+    public void ListenerSorterTableHistory(MouseAdapter evt){
+        mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.SorterHistory.addMouseListener(evt);
+    }
     public void ListenerTableHistory(MouseAdapter evt){
         mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.TableHistory.addMouseListener(evt);
     }
+    public void ListenerTableDoctors(MouseAdapter evt){
+        mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsTable.addMouseListener(evt);
+    }
 
     public void ListenerTableAppointments(MouseAdapter evt) {
-        mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.doctorsTable.addMouseListener(evt);
+        mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.AppointmentTable.addMouseListener(evt);
     }
 
     public void ListenerAppointmentForm(MouseAdapter evt) {
@@ -404,7 +486,7 @@ public class controlPatient {
     }
 
     public void ActTableAppointments(Patient patient) {
-        DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.doctorsTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.AppointmentTable.getModel();
         model.setRowCount(0);
 
         mainWindow.mainPanel.mainPatient.mainPatientCard.showAppointments.ActuallyAppointmentInfo.setText("Seleccione una Fila");
@@ -450,6 +532,31 @@ public class controlPatient {
         }
     }
 
+    public void SorterHistory(Patient patient) {
+        DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.TableHistory.getModel();
+        model.setRowCount(0);
+
+        mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.appointmentInfo.setText("Seleccione una Fila");
+        // Crea una copia de la lista de citas
+        medicalH original = patient.getMedicalHistory();
+        medicalH copy = original.copy();
+        // Ordena la copia
+        Appointment sortedHead = copy.mergeSort(copy.getCabeza());
+
+        // Usa la lista ordenada para llenar la tabla
+        Appointment appointment = sortedHead;
+        while (appointment != null) {
+            Object[] row = new Object[5];
+            row[0] = appointment.getId();
+            row[1] = appointment.getStatus();
+            row[2] = appointment.getDoctor().getLastName();
+            row[3] = appointment.getCreationTime();
+            row[4] = appointment.getCreationAttention();
+            model.addRow(row);
+            appointment = (Appointment) appointment.next;
+        }
+    }
+
     public void FillTableDoctorsDerma() {
         DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.newAppointment.viewCreateAppointment.doctorsTable.getModel();
         model.setRowCount(0);
@@ -468,7 +575,7 @@ public class controlPatient {
         fillTableWithDoctors(gestorTrauma.DoctorsTrauma.getRaiz(), model);
     }
 
-    //Para llenar las tablas se usa recorrido Inorden
+    //Para llenar las tablas con los doctores se usa recorrido Inorden
 
     private void fillTableWithDoctors(Doctor doctor, DefaultTableModel model) {
         if (doctor != null) {

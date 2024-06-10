@@ -149,8 +149,8 @@ public class Doctor extends NodoAVL implements Serializable {
         Doctor += "Género:    " + this.genero + "\n";
         Doctor += "Teléfono:  " + this.telefono + "\n";
         Doctor += "Correo Dr: " + this.correo + "\n";
-        Doctor += "Especialidad: " + this.specialty.getClass().getSimpleName() + "\n";
-
+        Doctor += "Especialidad: " + this.specialty.getClass().getSimpleName() + "\n\n";
+        Doctor += "Cantidad de Pacientes en Cola:\n" + "\t"+this.getQueueAppointments().getSize() + "\n";
         return Doctor;
     }
 }

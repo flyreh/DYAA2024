@@ -1,7 +1,10 @@
 package dev.two.project.Interface.Main.MainInterface;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 import dev.two.project.Interface.Main.MainDoctor.MainDoctor;
 import dev.two.project.Interface.Main.MainPatient.MainPatient;
@@ -43,7 +46,22 @@ public class mainPanel extends JPanel{
         this.add(mainRegister);
         mainRegister.setVisible(false);
 
-        mainPatient = new MainPatient();
+        mainPatient = new MainPatient(){
+            private Image backgroundImage;
+            {
+                try {
+                    backgroundImage = ImageIO.read(new File("src\\dev\\two\\project\\resources\\media\\img\\fondoClinica.jpg"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(backgroundImage, 0, 30, this.getWidth(), 740, this);
+            }
+        };
         this.add(mainPatient);
         mainPatient.setVisible(false);
 

@@ -32,7 +32,7 @@ public class MainDoctorCard extends JPanelRound {
         this.setRoundBottomLeft(50);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
-        this.setBackground(new java.awt.Color(142, 157, 142));
+        this.setBackground(new java.awt.Color(40, 40, 40));
         initComponents();
     }
 

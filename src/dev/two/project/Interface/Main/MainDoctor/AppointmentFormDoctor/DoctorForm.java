@@ -21,7 +21,7 @@ public class DoctorForm  extends JFrame {
         this.setSize(450, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setTitle("Creación de Cita");
+        this.setTitle("Atención de citas");
         this.setVisible(false);
         initComponents();
     }

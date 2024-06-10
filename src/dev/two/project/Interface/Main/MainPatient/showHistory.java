@@ -4,6 +4,7 @@ import components.JPanelRound;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
@@ -18,6 +19,8 @@ public class showHistory extends JPanelRound {
     public JScrollPane scrollPaneTable;
     public JTextArea appointmentInfo;
 
+    public JPanelRound BackSorterTable;
+
     public showHistory() {
         this.setLayout(null);
         this.setBounds(0, 0, 850, 620);
@@ -25,7 +28,7 @@ public class showHistory extends JPanelRound {
         this.setRoundBottomLeft(50);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
-        this.setBackground(new java.awt.Color(142, 157, 142));
+        this.setBackground(new java.awt.Color(40, 40, 40,100));
         initComponents();
     }
 
@@ -69,22 +72,39 @@ public class showHistory extends JPanelRound {
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component component = super.prepareRenderer(renderer, row, column);
-                if (!isRowSelected(row)) {
-                    component.setBackground(new Color(119, 119, 119));
-                } else {
-                    component.setBackground(new Color(110, 129, 110));
+                if (isRowSelected(row)) {
+                    component = new DefaultTableCellRenderer() {
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            Graphics2D g2d = (Graphics2D) g;
+                            GradientPaint gp = new GradientPaint(0, 0, new Color(218, 21, 21, 139), 0, getHeight(), new Color(12, 65, 194, 159));
+                            g2d.setPaint(gp);
+                            g2d.fillRect(0, 0, getWidth(), getHeight());
+                            super.paintComponent(g);
+                        }
+                    }.getTableCellRendererComponent(this, getValueAt(row, column), false, false, row, column);
+                }else{
+                    component.setBackground(new Color(73, 73, 73));
                 }
                 return component;
             }
         };
+        TableHistory.setGridColor(new Color(98, 98, 98));
         TableHistory.getTableHeader().setBackground(new Color(44, 42, 42));
         TableHistory.getTableHeader().setForeground(Color.WHITE);
+        TableHistory.setForeground(Color.WHITE);
+        TableHistory.getTableHeader().setFont(new Font("Cascadia Mono", Font.BOLD, 11));
+        TableHistory.setRowHeight(23);
+        TableHistory.setFont(new Font("Cascadia Mono", Font.ITALIC | Font.BOLD, 13));
+
         scrollPaneTable = new JScrollPane(TableHistory);
         scrollPaneTable.setBounds(50, 250, 480, 330);
+        scrollPaneTable.setBackground(new Color(73, 73, 73));
+        scrollPaneTable.getViewport().setBackground(new Color(73, 73, 73));
         this.add(scrollPaneTable);
 
         JPanelRound jprAppointmentInfo = new JPanelRound();
-        jprAppointmentInfo.setBounds(555, 250, 230, 330);
+        jprAppointmentInfo.setBounds(565, 230, 250, 350);
         jprAppointmentInfo.setBackground(Color.BLACK);
         jprAppointmentInfo.setRoundBottomLeft(25);
         jprAppointmentInfo.setRoundBottomRight(25);
@@ -92,7 +112,9 @@ public class showHistory extends JPanelRound {
         jprAppointmentInfo.setRoundTopRight(25);
 
         appointmentInfo = new JTextArea();
-        appointmentInfo.setBounds(0, 0, 250, 330);
+        appointmentInfo.setLineWrap(true);
+        appointmentInfo.setWrapStyleWord(true);
+        appointmentInfo.setBounds(0, 0, 248, 350);
         appointmentInfo.setFont(custom2);
         appointmentInfo.setBackground(Color.BLACK);
         appointmentInfo.setForeground(Color.WHITE);
@@ -112,5 +134,14 @@ public class showHistory extends JPanelRound {
         SorterHistory.add(new JLabel("Ordenar Alfabeticamente"));
         this.add(SorterHistory);
 
+        BackSorterTable = new JPanelRound();
+        BackSorterTable.setBounds(270, 200, 200, 40);
+        BackSorterTable.setRoundBottomLeft(25);
+        BackSorterTable.setRoundBottomRight(25);
+        BackSorterTable.setRoundTopLeft(25);
+        BackSorterTable.setRoundTopRight(25);
+        BackSorterTable.setBackground(Color.WHITE);
+        BackSorterTable.add(new JLabel("Reordenar"));
+        this.add(BackSorterTable);
     }
 }
