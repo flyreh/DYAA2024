@@ -86,6 +86,7 @@ public class MainDoctorCard extends JPanelRound {
                 return component;
             }
         };
+        AppointmentsTable.setForeground(Color.WHITE);
         AppointmentsTable.getTableHeader().setBackground(new Color(44, 42, 42));
         AppointmentsTable.getTableHeader().setForeground(Color.WHITE);
 

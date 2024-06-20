@@ -27,11 +27,11 @@ public class confirmation extends JFrame {
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
         }
-        fuenteCustom = fuenteCustom.deriveFont(Font.PLAIN, 20);
+        fuenteCustom = fuenteCustom.deriveFont(Font.PLAIN, 27);
 
         panelConfirmacion = new JPanelRound();
         panelConfirmacion.setBounds(0, 0, 400, 400);
-        panelConfirmacion.setBackground(new Color(41, 39, 43));
+        panelConfirmacion.setBackground(new Color(215, 214, 214, 255));
         panelConfirmacion.setRoundBottomLeft(50);
         panelConfirmacion.setRoundBottomRight(50);
         panelConfirmacion.setRoundTopLeft(50);
@@ -39,10 +39,10 @@ public class confirmation extends JFrame {
         panelConfirmacion.setLayout(null);
         this.add(panelConfirmacion);
 
-        jlConfirmacion = new JLabel("¡Inicio de sesión exitoso!");
+        jlConfirmacion = new JLabel("¡Sesión Iniciada!");
         jlConfirmacion.setBounds(0, 270, 400, 30);
         jlConfirmacion.setFont(fuenteCustom);
-        jlConfirmacion.setForeground(Color.WHITE);
+        jlConfirmacion.setForeground(Color.BLACK);
         jlConfirmacion.setHorizontalAlignment(JLabel.CENTER);
         panelConfirmacion.add(jlConfirmacion);
 
