@@ -65,7 +65,24 @@ public class mainPanel extends JPanel{
         this.add(mainPatient);
         mainPatient.setVisible(false);
 
-        mainDoctor = new MainDoctor();
+
+        mainDoctor = new MainDoctor(){
+            private Image backgroundImage;
+            {
+                try {
+                    backgroundImage = ImageIO.read(new File("src/dev/two/project/resources/media/img/directorio-de-doctores.jpg"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(backgroundImage, 0, 30, this.getWidth(), 740, this);
+            }
+
+        };
         this.add(mainDoctor);
         mainDoctor.setVisible(false);
     }

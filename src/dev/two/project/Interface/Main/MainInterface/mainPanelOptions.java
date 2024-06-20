@@ -56,6 +56,8 @@ public class mainPanelOptions extends JPanelRound {
         ImageIcon originalIcon = new ImageIcon("src/dev/two/project/resources/media/img/cliente.png");
         Image originalImage = originalIcon.getImage();
         Image scaledImage = originalImage.getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+
+        //icono con la imagen ya reescalada
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
         iniciarPacientes = new JLabel("Paciente", scaledIcon, JLabel.CENTER);
