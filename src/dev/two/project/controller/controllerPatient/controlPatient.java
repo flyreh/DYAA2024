@@ -533,6 +533,7 @@ public class controlPatient {
     }
 
     public void SorterHistory(Patient patient) {
+
         DefaultTableModel model = (DefaultTableModel) mainWindow.mainPanel.mainPatient.mainPatientCard.showHistory.TableHistory.getModel();
         model.setRowCount(0);
 

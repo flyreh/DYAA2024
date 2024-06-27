@@ -127,9 +127,11 @@ public class medicalH implements Serializable {
         middle.next = null;
 
         Appointment left = mergeSort(head);
+
         Appointment right = mergeSort(nextOfMiddle);
 
         Appointment sortedList = sortedMerge(left, right);
+
         return sortedList;
     }
     // Método para obtener el nodo medio de la lista enlazada
@@ -159,7 +161,7 @@ public class medicalH implements Serializable {
             return a;
         }
 
-        // Aquí debes cambiar la condición de comparación según tu criterio de ordenamiento
+        // Aquí se debe cambiar la condición de comparación según tu criterio de ordenamiento
         if (a.getDoctor().getLastName().compareTo(b.getDoctor().getLastName()) <= 0) {
             result = a;
             result.next = sortedMerge((Appointment) a.next, b);

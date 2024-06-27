@@ -179,15 +179,16 @@ public class controlDoctor {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getSource() == docForm.doctorForminputDesc.Aceptar){
+                    //cita atendida con éxito
+                    //añadir la cita al historial médico del paciente
+                    //eliminar la cita de la cola de citas pendientes del doctor y del paciente.
+                    //
 
                     MoveAppointment(DoctorForminputDesc.campo_direccionObra.getText());
                     DoctorForminputDesc.LimpiarDatos();
                     docForm.setVisible(false);
                     currentFrame.setVisible(false);
-                    //cita atendida con éxito
-                    //añadir la cita al historial médico del paciente
-                    //eliminar la cita de la cola de citas pendientes del doctor y del paciente.
-                    //
+
                 }else if(e.getSource() == docForm.doctorForminputDesc.Cancelar){
                     DoctorForminputDesc.LimpiarDatos();
                     docForm.setVisible(false);
