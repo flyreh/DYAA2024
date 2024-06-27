@@ -10,62 +10,60 @@ public class PatientOptions extends JPanelRound {
     public JPanelRound showAppointments;
     public JPanelRound showHistory;
     public JPanelRound newAppointment;
-
     public JPanelRound SingOff;
 
-
     public PatientOptions(){
-        this.setLayout(null);
+        this.setLayout(new GridBagLayout());
         this.setBounds(30, 400, 250, 300);
         this.setRoundTopLeft(50);
         this.setRoundBottomLeft(50);
         this.setRoundBottomRight(50);
         this.setRoundTopRight(50);
-        this.setBackground(new Color(241, 233, 233,220));
+        this.setBackground(new Color(241, 233, 233, 220));
         initComponents();
-
     }
+
     public void initComponents(){
 
-        showAppointments = new JPanelRound();
-        showAppointments.setBounds(35, 10, 180, 50);
-        showAppointments.setRoundTopLeft(20);
-        showAppointments.setRoundBottomLeft(20);
-        showAppointments.setRoundBottomRight(20);
-        showAppointments.setRoundTopRight(20);
-        showAppointments.setBackground(new Color(21, 20, 20));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 0, 10, 0);
+        gbc.gridx = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel nombreoption = new JLabel("VER CITAS");
-        nombreoption.setForeground(Color.WHITE);
+        showAppointments = createPanelRound("VER CITAS");
+        gbc.gridy = 0;
+        this.add(showAppointments, gbc);
 
-        showAppointments.add(nombreoption);
-        this.add(showAppointments);
+        showHistory = createPanelRound("VER HISTORIAL");
+        gbc.gridy = 1;
+        this.add(showHistory, gbc);
 
-        showHistory = new JPanelRound();
-        showHistory.setBounds(35, 75, 180, 50);
-        showHistory.setRoundTopLeft(20);
-        showHistory.setRoundBottomLeft(20);
-        showHistory.setRoundBottomRight(20);
-        showHistory.setRoundTopRight(20);
-        showHistory.setBackground(new Color(21, 20, 20));
-        this.add(showHistory);
+        newAppointment = createPanelRound("NUEVA CITA");
+        gbc.gridy = 2;
+        this.add(newAppointment, gbc);
 
-        newAppointment = new JPanelRound();
-        newAppointment.setBounds(35, 140, 180, 50);
-        newAppointment.setRoundTopLeft(20);
-        newAppointment.setRoundBottomLeft(20);
-        newAppointment.setRoundBottomRight(20);
-        newAppointment.setRoundTopRight(20);
-        newAppointment.setBackground(new Color(21, 20, 20));
-        this.add(newAppointment);
+        SingOff = createPanelRound("CERRAR SESIÓN");
+        gbc.gridy = 3;
+        this.add(SingOff, gbc);
+    }
 
-        SingOff = new JPanelRound();
-        SingOff.setBounds(35, 205, 180, 50);
-        SingOff.setRoundTopLeft(20);
-        SingOff.setRoundBottomLeft(20);
-        SingOff.setRoundBottomRight(20);
-        SingOff.setRoundTopRight(20);
-        SingOff.setBackground(new Color(21, 20, 20));
-        this.add(SingOff);
+    private JPanelRound createPanelRound(String text) {
+        JPanelRound panel = new JPanelRound();
+        panel.setPreferredSize(new Dimension(180, 50));
+        panel.setRoundTopLeft(20);
+        panel.setRoundBottomLeft(20);
+        panel.setRoundBottomRight(20);
+        panel.setRoundTopRight(20);
+        panel.setBackground(new Color(21, 20, 20));
+        addLabelToPanel(panel, text);
+        return panel;
+    }
+
+    private void addLabelToPanel(JPanelRound panel, String text) {
+        JLabel label = new JLabel(text, SwingConstants.CENTER);
+        label.setForeground(Color.WHITE);
+        label.setFont(new Font("Arial", Font.BOLD, 14));
+        panel.setLayout(new GridBagLayout());
+        panel.add(label);
     }
 }

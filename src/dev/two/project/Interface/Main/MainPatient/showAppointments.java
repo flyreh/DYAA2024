@@ -51,10 +51,10 @@ public class showAppointments extends JPanelRound {
         custom2 = custom2.deriveFont(Font.PLAIN, 13);
 
         jlNameArea = new JLabel("MUESTRA DE CITAS PENDIENTES");
-        jlNameArea.setBounds(0, 0, 200, 40);
         jlNameArea.setFont(custom);
         jlNameArea.setForeground(Color.BLACK);
         jlNameArea.setHorizontalAlignment(JLabel.CENTER);
+        jlNameArea.setBounds(0, 0, 400, 40);
 
         jprInformationPanel = new JPanelRound();
         jprInformationPanel.setBounds(200, 30, 400, 40);
@@ -63,7 +63,8 @@ public class showAppointments extends JPanelRound {
         jprInformationPanel.setRoundBottomLeft(20);
         jprInformationPanel.setRoundTopLeft(20);
         jprInformationPanel.setBackground(new Color(164, 165, 180));
-        jprInformationPanel.add(jlNameArea);
+        jprInformationPanel.setLayout(new BorderLayout());
+        jprInformationPanel.add(jlNameArea,BorderLayout.CENTER);
         this.add(jprInformationPanel);
 
 
