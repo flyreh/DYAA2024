@@ -74,7 +74,6 @@ public class controlPatient {
                                 String.valueOf(mainWindow.mainPanel.mainLogin.loginPatient.loginForm.pfContrasenia.getPassword()));
 
                     }
-
                 }
             }
         };

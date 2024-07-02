@@ -152,22 +152,22 @@ public class medicalH implements Serializable {
         return slow;
     }
     // Método para fusionar dos listas enlazadas ordenadas
-    public Appointment sortedMerge(Appointment a, Appointment b) {
+    public Appointment sortedMerge(Appointment A, Appointment B) {
         Appointment result = null;
-        if (a == null) {
-            return b;
+        if (A == null) {
+            return B;
         }
-        if (b == null) {
-            return a;
+        if (B == null) {
+            return A;
         }
 
         // Aquí se debe cambiar la condición de comparación según tu criterio de ordenamiento
-        if (a.getDoctor().getLastName().compareTo(b.getDoctor().getLastName()) <= 0) {
-            result = a;
-            result.next = sortedMerge((Appointment) a.next, b);
+        if (A.getDoctor().getLastName().compareTo(B.getDoctor().getLastName()) <= 0) {
+            result = A;
+            result.next = sortedMerge((Appointment) A.next, B);
         } else {
-            result = b;
-            result.next = sortedMerge(a, (Appointment) b.next);
+            result = B;
+            result.next = sortedMerge(A, (Appointment) B.next);
         }
         return result;
     }
