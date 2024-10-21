@@ -124,7 +124,7 @@ public class ViewCreateAppointment extends JPanelRound {
         jlCreateAppointment.setFont(custom2);
 
         createAppointment = new JPanelRound();
-        createAppointment.setBounds(500, 530, 220, 40);
+        createAppointment.setBounds(500, 450, 220, 40);
         createAppointment.setRoundBottomLeft(25);
         createAppointment.setRoundBottomRight(25);
         createAppointment.setRoundTopLeft(25);

@@ -117,6 +117,8 @@ public class medicalH implements Serializable {
     }
     // Método para ordenar la lista enlazada con merge sort
     public Appointment mergeSort(Appointment head) {
+
+        //caso base de la recursividad, un solo nodo. o al inicio la lista directamente está vacia
         if (head == null || head.next == null) {
             return head;
         }
@@ -154,6 +156,7 @@ public class medicalH implements Serializable {
     // Método para fusionar dos listas enlazadas ordenadas
     public Appointment sortedMerge(Appointment A, Appointment B) {
         Appointment result = null;
+
         if (A == null) {
             return B;
         }
@@ -162,6 +165,7 @@ public class medicalH implements Serializable {
         }
 
         // Aquí se debe cambiar la condición de comparación según tu criterio de ordenamiento
+
         if (A.getDoctor().getLastName().compareTo(B.getDoctor().getLastName()) <= 0) {
             result = A;
             result.next = sortedMerge((Appointment) A.next, B);

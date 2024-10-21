@@ -49,7 +49,7 @@ public class DoctorPanelOptions extends JPanelRound {
         }
 
         information = new JLabel();
-        information.setBounds(50, 650, 550, 20);
+        information.setBounds(50, 670, 550, 20);
         information.setFont(custom.deriveFont(Font.PLAIN, 20));
         information.setForeground(new Color(246, 244, 244));
         this.add(information);

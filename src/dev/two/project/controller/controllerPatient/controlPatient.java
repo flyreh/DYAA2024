@@ -502,8 +502,8 @@ public class controlPatient {
             row[6] = appointment.getDoctor().getSpecialty().getClass().getSimpleName();
             model.addRow(row);
         }
-        //Notifica si el usuario tiene una cita a la cual asistir
 
+        //Notifica si el usuario tiene una cita a la cual asistir
         for (int i = 0; i < patient.getQueueAppointments().getSize(); i++) {
             Appointment appointment = (Appointment) patient.getQueueAppointments().get(i);
             if(appointment.getDoctor().getQueueAppointments().getFirst() == appointment){
